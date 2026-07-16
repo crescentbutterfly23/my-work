@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Studio · Crescent Butterfly</title>
+  <link rel="icon" href="assets/favicon.ico" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body { background: var(--rose); min-height: 100vh; }
+
+    /* studio top bar */
+    .studiobar {
+      position: sticky; top: 0; z-index: 40;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px; padding: 0 4vw;
+      background: rgba(253, 246, 248, 0.92); backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(230, 177, 195, 0.5);
+    }
+    .studiobar .left { display: flex; align-items: center; gap: 0.8rem; }
+    .studiobar img { height: 34px; }
+    .studiobar .name { font-weight: 500; color: var(--crimson); letter-spacing: 0.06em; }
+    .studiobar .name small { display: block; font-weight: 300; font-size: 0.7rem; color: var(--ink-soft); letter-spacing: 0.2em; text-transform: uppercase; }
+    .studiobar .right { display: flex; gap: 0.8rem; align-items: center; }
+    .studiobar a { color: var(--ink-soft); font-size: 0.8rem; text-decoration: none; }
+    .studiobar .btn { padding: 0.6rem 1.5rem; font-size: 0.75rem; }
+
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 2.5rem 4vw 5rem; }
+
+    /* login gate */
+    .panel {
+      max-width: 520px; margin: 4rem auto; background: var(--paper);
+      border-radius: 22px; padding: 2.6rem 3rem 3rem;
+      box-shadow: 0 20px 50px rgba(125, 17, 40, 0.25);
+    }
+    .panel h1 { font-size: 1.9rem; margin: 0.3rem 0 1.6rem; text-align: center; }
+    .mark-top { height: 64px; display: block; margin: 0 auto 0.5rem; }
+
+    label { display: block; font-size: 0.8rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-soft); margin: 1.1rem 0 0.35rem; }
+    input, textarea {
+      width: 100%; font-family: inherit; font-size: 1rem; font-weight: 300;
+      padding: 0.7rem 0.9rem; border: 1.5px solid var(--rose); border-radius: 10px;
+      background: #fff; color: var(--maroon);
+    }
+    input:focus, textarea:focus { outline: 2px solid var(--coral); border-color: transparent; }
+    .row { display: flex; gap: 1rem; } .row > div { flex: 1; }
+    .msg { margin-top: 1rem; font-size: 0.9rem; }
+    .msg.ok { color: #1c7c40; } .msg.err { color: var(--crimson); }
+    .hint { font-size: 0.82rem; color: var(--ink-soft); font-weight: 300; margin-top: 0.3rem; }
+
+    /* ------- dashboard (Behance-style grid) ------- */
+    #dash, #editor, #studioBar, #messages { display: none; }
+    .dashhead { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 1.8rem; flex-wrap: wrap; gap: 1rem; }
+    .dashhead h1 { font-size: 1.8rem; }
+    .dashhead .count { color: var(--ink-soft); font-weight: 300; font-size: 0.95rem; }
+    .pgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.6rem; }
+    .ptile {
+      background: var(--paper); border-radius: 16px; overflow: hidden;
+      box-shadow: 0 8px 22px rgba(125, 17, 40, 0.12);
+      transition: transform 0.25s var(--ease-out), box-shadow 0.25s var(--ease-out);
+      position: relative;
+    }
+    .ptile:hover { transform: translateY(-4px); box-shadow: 0 16px 34px rgba(125, 17, 40, 0.2); }
+    .ptile .cover { aspect-ratio: 4/3; background: var(--warm); cursor: pointer; overflow: hidden; }
+    .ptile .cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .ptile .info { padding: 0.9rem 1.1rem 1.1rem; }
+    .ptile .info strong { display: block; font-weight: 500; color: var(--crimson); font-size: 0.98rem; }
+    .ptile .info small { color: var(--ink-soft); font-size: 0.78rem; }
+    .ptile .ops { display: flex; gap: 0.4rem; margin-top: 0.7rem; }
+    .ptile .ops button {
+      flex: 1; font-family: inherit; font-size: 0.72rem; letter-spacing: 0.08em;
+      padding: 0.4rem 0; border-radius: 8px; cursor: pointer;
+      border: 1.5px solid var(--rose-deep); background: transparent; color: var(--maroon);
+    }
+    .ptile .ops button:hover { border-color: var(--crimson); color: var(--crimson); }
+    .ptile .ops button.primary { background: var(--crimson); border-color: var(--crimson); color: #fff; }
+    .ptile .ops button.mv { flex: 0 0 34px; }
+    .newtile {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      min-height: 260px; border: 2.5px dashed var(--rose-deep); border-radius: 16px;
+      color: var(--crimson); cursor: pointer; background: transparent;
+      font-family: inherit; font-size: 0.85rem; letter-spacing: 0.16em; text-transform: uppercase;
+      transition: background 0.2s;
+    }
+    .newtile:hover { background: rgba(249, 196, 214, 0.4); }
+    .newtile .plus { font-size: 2.6rem; font-weight: 300; line-height: 1; margin-bottom: 0.6rem; }
+
+    /* ------- editor ------- */
+    .editor-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 2rem; align-items: start; }
+    .pane { background: var(--paper); border-radius: 18px; padding: 1.8rem 2rem 2rem; box-shadow: 0 12px 30px rgba(125, 17, 40, 0.15); }
+    .pane h2 { font-size: 1.1rem; font-weight: 500; color: var(--crimson); margin-bottom: 0.3rem; }
+    #coverPreview { width: 100%; max-height: 220px; object-fit: cover; margin-top: 0.8rem; border-radius: 10px; display: none; }
+    .backbtn {
+      background: none; border: 0; color: var(--crimson); font-family: inherit;
+      font-size: 0.85rem; letter-spacing: 0.14em; text-transform: uppercase; cursor: pointer;
+      margin-bottom: 1.4rem; padding: 0;
+    }
+
+    .blocks { display: flex; flex-direction: column; gap: 0.9rem; margin-top: 0.8rem; }
+    .block {
+      background: #fff; border: 1.5px solid var(--rose); border-radius: 12px;
+      padding: 0.9rem; display: flex; gap: 0.9rem; align-items: flex-start;
+    }
+    .block .content { flex: 1; min-width: 0; }
+    .block textarea { border: 1px solid var(--warm); min-height: 84px; }
+    .block img.bimg { max-width: 100%; max-height: 180px; border-radius: 8px; display: block; }
+    .block .tag { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 0.4rem; display: block; }
+    .block .tools { display: flex; flex-direction: column; gap: 0.35rem; }
+    .block .tools button {
+      width: 34px; height: 30px; border: 1.5px solid var(--rose); background: var(--paper);
+      color: var(--crimson); border-radius: 8px; cursor: pointer; font-family: inherit; font-size: 0.85rem;
+    }
+    .block .tools button:hover { background: var(--crimson); color: #fff; border-color: var(--crimson); }
+    .addbar { display: flex; gap: 0.8rem; margin-top: 1rem; }
+    .addbar button {
+      flex: 1; padding: 0.8rem; border: 2px dashed var(--rose-deep); background: transparent;
+      border-radius: 12px; color: var(--crimson); font-family: inherit; font-size: 0.85rem;
+      letter-spacing: 0.14em; text-transform: uppercase; cursor: pointer;
+    }
+    .addbar button:hover { background: var(--blush); border-style: solid; }
+    .actions { display: flex; gap: 1rem; align-items: center; margin-top: 1.6rem; flex-wrap: wrap; }
+    .btn.secondary { background: transparent; color: var(--crimson); border: 2px solid var(--crimson); box-shadow: none; }
+
+    /* studio nav + messages */
+    .viewlink {
+      background: none; border: 0; font-family: inherit; cursor: pointer;
+      color: var(--ink-soft); font-size: 0.82rem; letter-spacing: 0.1em;
+      text-transform: uppercase; padding: 0.4rem 0.2rem; position: relative;
+    }
+    .viewlink.on { color: var(--crimson); border-bottom: 2px solid var(--coral); }
+    #unreadBadge:not(:empty) {
+      display: inline-block; margin-left: 0.4rem; min-width: 20px; height: 20px;
+      background: var(--crimson); color: #fff; border-radius: 10px;
+      font-size: 0.7rem; line-height: 20px; text-align: center; padding: 0 5px;
+    }
+    .mlist { display: grid; gap: 1rem; }
+    .mcard {
+      background: var(--paper); border-radius: 16px; padding: 1.4rem 1.6rem;
+      box-shadow: 0 8px 22px rgba(125, 17, 40, 0.12);
+      border-left: 4px solid transparent;
+    }
+    .mcard.unread { border-left-color: var(--coral); }
+    .mcard .mhead { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; flex-wrap: wrap; }
+    .mcard .mhead strong { color: var(--crimson); font-weight: 500; }
+    .mcard .mhead small { color: var(--ink-soft); }
+    .mcard .pills { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 0.8rem 0; }
+    .mcard .pills span {
+      font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase;
+      border: 1.5px solid var(--rose-deep); border-radius: 999px; padding: 0.25rem 0.8rem;
+      color: var(--maroon);
+    }
+    .mcard .mbody { font-weight: 300; font-size: 0.95rem; white-space: pre-wrap; margin-bottom: 1rem; }
+    .mcard .mops { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+    .mcard .mops a, .mcard .mops button {
+      font-family: inherit; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.45rem 1rem; border-radius: 8px; cursor: pointer; text-decoration: none;
+      border: 1.5px solid var(--crimson); color: var(--crimson); background: none;
+    }
+    .mcard .mops a:hover, .mcard .mops button:hover { background: var(--crimson); color: #fff; }
+    .mempty {
+      text-align: center; padding: 4rem 1rem; background: var(--paper);
+      border-radius: 16px; color: var(--ink-soft); font-weight: 300;
+    }
+
+    @media (max-width: 900px) {
+      .editor-grid { grid-template-columns: 1fr; }
+      .studiobar .name small { display: none; }
+      .studiobar a { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="studiobar" id="studioBar">
+  <div class="left">
+    <img src="assets/mark_embossed.png" alt="" />
+    <div class="name">Crescent Studio<small>Project manager</small></div>
+  </div>
+  <div class="right">
+    <button class="viewlink on" id="navProjects">Projects</button>
+    <button class="viewlink" id="navMessages">Messages<span id="unreadBadge"></span></button>
+    <a href="index.html" target="_blank" rel="noopener">View live site</a>
+    <button class="btn" id="newBtn">+ New project</button>
+  </div>
+</div>
+
+<div class="panel" id="gate">
+  <img class="mark-top" src="assets/mark_embossed.png" alt="" />
+  <h1>Studio Access</h1>
+  <label for="pw">Passphrase</label>
+  <input id="pw" type="password" autocomplete="current-password" />
+  <p class="msg err" id="gateMsg"></p>
+  <br />
+  <button class="btn" id="loginBtn">Enter Studio</button>
+</div>
+
+<!-- dashboard: every project as a visual tile -->
+<div class="wrap" id="dash">
+  <div class="dashhead">
+    <h1>Your projects</h1>
+    <span class="count" id="count"></span>
+  </div>
+  <div class="pgrid" id="pgrid"></div>
+</div>
+
+<!-- messages: project quiz submissions -->
+<div class="wrap" id="messages">
+  <div class="dashhead">
+    <h1>Messages</h1>
+    <span class="count" id="mcount"></span>
+  </div>
+  <div class="mlist" id="mlist"></div>
+</div>
+
+<!-- editor -->
+<div class="wrap" id="editor">
+  <button class="backbtn" id="backBtn">&larr; All projects</button>
+  <div class="editor-grid">
+    <div class="pane">
+      <h2 id="formTitle">New project</h2>
+      <p class="hint">Details shown on the work grid.</p>
+
+      <label for="title">Title *</label>
+      <input id="title" maxlength="120" placeholder="e.g. Bloom Café Brand Identity" />
+
+      <div class="row">
+        <div>
+          <label for="category">Category</label>
+          <input id="category" maxlength="60" placeholder="Brand Identity / Print / Digital…" />
+        </div>
+        <div>
+          <label for="year">Year</label>
+          <input id="year" maxlength="10" placeholder="2026" />
+        </div>
+      </div>
+
+      <label for="description">Short description</label>
+      <textarea id="description" rows="3" maxlength="1000" placeholder="One or two sentences for the card…"></textarea>
+
+      <label for="coverFile">Cover image * </label>
+      <input id="coverFile" type="file" accept="image/*" />
+      <img id="coverPreview" alt="cover preview" />
+
+      <h2 style="margin-top:1.8rem">Design system</h2>
+      <p class="hint">Dress the project page in this brand's style. Leave off to use the
+        Crescent Butterfly look. Follows <code>DESIGN_SYSTEM_TEMPLATE.md</code>.</p>
+      <label style="display:flex; align-items:center; gap:0.6rem; cursor:pointer">
+        <input type="checkbox" id="themeOn" style="width:auto" /> Use a custom design system
+      </label>
+      <div id="themeFields" style="display:none">
+        <div class="row">
+          <div><label for="themeBg">Background</label><input type="color" id="themeBg" value="#fdf6f8" style="height:44px; padding:4px" /></div>
+          <div><label for="themeSurface">Surface</label><input type="color" id="themeSurface" value="#ffffff" style="height:44px; padding:4px" /></div>
+        </div>
+        <div class="row">
+          <div><label for="themeAccent">Accent</label><input type="color" id="themeAccent" value="#ba132f" style="height:44px; padding:4px" /></div>
+          <div><label for="themeText">Text</label><input type="color" id="themeText" value="#7d1128" style="height:44px; padding:4px" /></div>
+        </div>
+        <div class="row">
+          <div><label for="themeHeadingFont">Heading font (Google Fonts)</label><input id="themeHeadingFont" maxlength="60" placeholder="e.g. Playfair Display" /></div>
+          <div><label for="themeBodyFont">Body font (Google Fonts)</label><input id="themeBodyFont" maxlength="60" placeholder="empty = Poppins" /></div>
+        </div>
+      </div>
+
+      <p class="msg" id="msg"></p>
+      <div class="actions">
+        <button class="btn" id="publishBtn">Publish</button>
+        <button class="btn secondary" id="cancelBtn">Cancel</button>
+      </div>
+    </div>
+
+    <div class="pane">
+      <h2>Presentation</h2>
+      <p class="hint">Build the project page piece by piece: add text and image blocks, reorder with the arrows. The page presents them top to bottom under the cover.</p>
+      <div class="blocks" id="blocks"></div>
+      <div class="addbar">
+        <button type="button" id="addText">+ Text</button>
+        <button type="button" id="addImage">+ Image</button>
+      </div>
+      <input id="blockImgFile" type="file" accept="image/*" multiple style="display:none" />
+    </div>
+  </div>
+</div>
+
+<script>
+const $ = (id) => document.getElementById(id);
+let KEY = sessionStorage.getItem("cb_admin_key") || "";
+let editing = null;
+let coverDataURL = "";
+let blocks = [];
+let listCache = [];
+
+async function api(method, body, qs = "") {
+  const res = await fetch("/api/projects" + qs, {
+    method,
+    headers: { "content-type": "application/json", "x-admin-key": KEY },
+    body: body ? JSON.stringify(body) : undefined,
+  });
+  if (!res.ok) throw new Error((await res.json().catch(() => ({}))).error || res.status);
+  return res.json();
+}
+
+/* ---------- views ---------- */
+function show(view) {
+  $("gate").style.display = view === "gate" ? "block" : "none";
+  $("studioBar").style.display = view === "gate" ? "none" : "flex";
+  $("dash").style.display = view === "dash" ? "block" : "none";
+  $("messages").style.display = view === "messages" ? "block" : "none";
+  $("editor").style.display = view === "editor" ? "block" : "none";
+  $("navProjects").classList.toggle("on", view === "dash" || view === "editor");
+  $("navMessages").classList.toggle("on", view === "messages");
+  window.scrollTo(0, 0);
+}
+$("navProjects").addEventListener("click", () => { show("dash"); loadDash(); });
+$("navMessages").addEventListener("click", () => { show("messages"); loadMsgs(); });
+
+/* ---------- login ---------- */
+async function tryLogin() {
+  KEY = $("pw").value.trim();
+  if (!KEY) return;
+  try {
+    const res = await fetch("/api/projects?id=__login_check__", {
+      method: "DELETE", headers: { "x-admin-key": KEY },
+    });
+    if (res.status === 401) throw new Error("wrong");
+    sessionStorage.setItem("cb_admin_key", KEY);
+    show("dash");
+    loadDash();
+    refreshBadge();
+  } catch {
+    $("gateMsg").textContent = "That passphrase isn't right.";
+  }
+}
+$("loginBtn").addEventListener("click", tryLogin);
+$("pw").addEventListener("keydown", (e) => e.key === "Enter" && tryLogin());
+if (KEY) { $("pw").value = KEY; tryLogin(); }
+
+/* ---------- image helper ---------- */
+function fileToDataURL(file, maxDim = 1800, quality = 0.85) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => {
+      const scale = Math.min(1, maxDim / Math.max(img.width, img.height));
+      const canvas = document.createElement("canvas");
+      canvas.width = Math.round(img.width * scale);
+      canvas.height = Math.round(img.height * scale);
+      canvas.getContext("2d").drawImage(img, 0, 0, canvas.width, canvas.height);
+      resolve(canvas.toDataURL("image/jpeg", quality));
+    };
+    img.onerror = reject;
+    img.src = URL.createObjectURL(file);
+  });
+}
+
+/* ---------- dashboard ---------- */
+async function loadDash() {
+  listCache = await (await fetch("/api/projects")).json();
+  $("count").textContent = `${listCache.length} published`;
+  const grid = $("pgrid");
+  grid.innerHTML = "";
+
+  const newTile = document.createElement("button");
+  newTile.className = "newtile";
+  newTile.innerHTML = `<span class="plus">+</span>New project`;
+  newTile.addEventListener("click", () => startNew());
+  grid.appendChild(newTile);
+
+  listCache.forEach((p, i) => {
+    const t = document.createElement("div");
+    t.className = "ptile";
+    t.innerHTML = `
+      <div class="cover" title="Edit"><img alt=""></div>
+      <div class="info">
+        <strong></strong><small></small>
+        <div class="ops">
+          <button class="mv" data-d="-1" title="Show earlier">&larr;</button>
+          <button class="mv" data-d="1" title="Show later">&rarr;</button>
+          <button class="primary edit">Edit</button>
+          <button class="del">Delete</button>
+        </div>
+      </div>`;
+    t.querySelector("img").src = p.image;
+    t.querySelector("strong").textContent = p.title;
+    t.querySelector("small").textContent =
+      [p.category, p.year].filter(Boolean).join(" · ") +
+      ` · ${(p.blocks || []).length} blocks`;
+    t.querySelector(".cover").addEventListener("click", () => startEdit(p));
+    t.querySelector(".edit").addEventListener("click", () => startEdit(p));
+    t.querySelectorAll(".mv").forEach((btn) =>
+      btn.addEventListener("click", async () => {
+        const j = i + Number(btn.dataset.d);
+        if (j < 0 || j >= listCache.length) return;
+        const order = listCache.map((x) => x.id);
+        [order[i], order[j]] = [order[j], order[i]];
+        await api("PATCH", { order });
+        loadDash();
+      })
+    );
+    t.querySelector(".del").addEventListener("click", async () => {
+      if (!confirm(`Delete "${p.title}"?`)) return;
+      await api("DELETE", null, "?id=" + encodeURIComponent(p.id));
+      loadDash();
+    });
+    grid.appendChild(t);
+  });
+}
+$("newBtn").addEventListener("click", () => startNew());
+$("backBtn").addEventListener("click", () => show("dash"));
+
+/* ---------- messages (project quiz submissions) ---------- */
+async function inqApi(method, body, qs = "") {
+  const res = await fetch("/api/inquiries" + qs, {
+    method,
+    headers: { "content-type": "application/json", "x-admin-key": KEY },
+    body: body ? JSON.stringify(body) : undefined,
+  });
+  if (!res.ok) throw new Error((await res.json().catch(() => ({}))).error || res.status);
+  return res.json();
+}
+
+function fmtDate(iso) {
+  return new Date(iso).toLocaleString(undefined, { dateStyle: "medium", timeStyle: "short" });
+}
+
+async function refreshBadge() {
+  try {
+    const msgs = await inqApi("GET");
+    const unread = msgs.filter((m) => !m.read).length;
+    $("unreadBadge").textContent = unread || "";
+    return msgs;
+  } catch { return []; }
+}
+
+async function loadMsgs() {
+  const msgs = await refreshBadge();
+  $("mcount").textContent = `${msgs.length} received`;
+  const el = $("mlist");
+  el.innerHTML = "";
+  if (!msgs.length) {
+    el.innerHTML = `<div class="mempty">No project inquiries yet. When someone finishes the
+      "Start a project" quiz, it lands here.</div>`;
+    return;
+  }
+  for (const m of msgs) {
+    const card = document.createElement("div");
+    card.className = "mcard" + (m.read ? "" : " unread");
+    card.innerHTML = `
+      <div class="mhead"><strong></strong><small></small></div>
+      <div class="pills"></div>
+      <p class="mbody"></p>
+      <div class="mops">
+        <a class="reply" target="_blank" rel="noopener">Reply by email</a>
+        <button class="toggle"></button>
+        <button class="del">Delete</button>
+      </div>`;
+    card.querySelector("strong").textContent = `${m.name} · ${m.email}`;
+    card.querySelector("small").textContent = fmtDate(m.created);
+    const pills = card.querySelector(".pills");
+    [...(m.services || []), m.stage, m.timeline, m.budget].filter(Boolean).forEach((v) => {
+      const s = document.createElement("span");
+      s.textContent = v;
+      pills.appendChild(s);
+    });
+    card.querySelector(".mbody").textContent = m.message || "(no message)";
+    card.querySelector(".reply").href =
+      `mailto:${encodeURIComponent(m.email)}?subject=${encodeURIComponent("Your project inquiry - Crescent Butterfly")}`;
+    const tg = card.querySelector(".toggle");
+    tg.textContent = m.read ? "Mark unread" : "Mark read";
+    tg.addEventListener("click", async () => {
+      await inqApi("PUT", { id: m.id, read: !m.read });
+      loadMsgs();
+    });
+    card.querySelector(".del").addEventListener("click", async () => {
+      if (!confirm(`Delete the inquiry from "${m.name}"?`)) return;
+      await inqApi("DELETE", null, "?id=" + encodeURIComponent(m.id));
+      loadMsgs();
+    });
+    el.appendChild(card);
+  }
+}
+
+/* ---------- presentation maker ---------- */
+function renderBlocks() {
+  const wrap = $("blocks");
+  wrap.innerHTML = "";
+  blocks.forEach((b, i) => {
+    const el = document.createElement("div");
+    el.className = "block";
+    const tools = `
+      <div class="tools">
+        <button type="button" data-act="up" title="Move up">&uarr;</button>
+        <button type="button" data-act="down" title="Move down">&darr;</button>
+        <button type="button" data-act="del" title="Remove">&times;</button>
+      </div>`;
+    if (b.type === "text") {
+      el.innerHTML = `<div class="content"><span class="tag">Text</span>
+        <textarea placeholder="Write a paragraph of the story…"></textarea></div>${tools}`;
+      const ta = el.querySelector("textarea");
+      ta.value = b.text || "";
+      ta.addEventListener("input", () => (b.text = ta.value));
+    } else {
+      el.innerHTML = `<div class="content"><span class="tag">Image</span>
+        <img class="bimg" alt="block image" /></div>${tools}`;
+      el.querySelector("img").src = b.image;
+    }
+    el.querySelectorAll(".tools button").forEach((btn) =>
+      btn.addEventListener("click", () => {
+        const act = btn.dataset.act;
+        if (act === "del") blocks.splice(i, 1);
+        if (act === "up" && i > 0) [blocks[i - 1], blocks[i]] = [blocks[i], blocks[i - 1]];
+        if (act === "down" && i < blocks.length - 1) [blocks[i + 1], blocks[i]] = [blocks[i], blocks[i + 1]];
+        renderBlocks();
+      })
+    );
+    wrap.appendChild(el);
+  });
+}
+
+$("addText").addEventListener("click", () => {
+  blocks.push({ type: "text", text: "" });
+  renderBlocks();
+  const tas = $("blocks").querySelectorAll("textarea");
+  tas[tas.length - 1].focus();
+});
+$("addImage").addEventListener("click", () => $("blockImgFile").click());
+$("blockImgFile").addEventListener("change", async () => {
+  for (const f of $("blockImgFile").files) {
+    blocks.push({ type: "image", image: await fileToDataURL(f) });
+  }
+  $("blockImgFile").value = "";
+  renderBlocks();
+});
+
+$("coverFile").addEventListener("change", async () => {
+  const f = $("coverFile").files[0];
+  if (!f) return;
+  coverDataURL = await fileToDataURL(f);
+  $("coverPreview").src = coverDataURL;
+  $("coverPreview").style.display = "block";
+});
+
+/* ---------- editor state ---------- */
+$("themeOn").addEventListener("change", () => {
+  $("themeFields").style.display = $("themeOn").checked ? "block" : "none";
+});
+
+function setThemeFields(t) {
+  $("themeOn").checked = !!t;
+  $("themeFields").style.display = t ? "block" : "none";
+  $("themeBg").value = (t && t.background) || "#fdf6f8";
+  $("themeSurface").value = (t && t.surface) || "#ffffff";
+  $("themeAccent").value = (t && t.accent) || "#ba132f";
+  $("themeText").value = (t && t.text) || "#7d1128";
+  $("themeHeadingFont").value = (t && t.headingFont) || "";
+  $("themeBodyFont").value = (t && t.bodyFont) || "";
+}
+
+function readThemeFields() {
+  if (!$("themeOn").checked) return {};
+  return {
+    background: $("themeBg").value,
+    surface: $("themeSurface").value,
+    accent: $("themeAccent").value,
+    text: $("themeText").value,
+    headingFont: $("themeHeadingFont").value.trim(),
+    bodyFont: $("themeBodyFont").value.trim(),
+  };
+}
+
+function resetForm() {
+  editing = null;
+  coverDataURL = "";
+  blocks = [];
+  ["title", "category", "year", "description", "coverFile"].forEach((i) => ($(i).value = ""));
+  $("coverPreview").style.display = "none";
+  setThemeFields(null);
+  renderBlocks();
+  $("msg").textContent = "";
+  $("msg").className = "msg";
+}
+
+function startNew() {
+  resetForm();
+  $("formTitle").textContent = "New project";
+  $("publishBtn").textContent = "Publish";
+  show("editor");
+}
+
+function startEdit(p) {
+  resetForm();
+  editing = p;
+  $("title").value = p.title || "";
+  $("category").value = p.category || "";
+  $("year").value = p.year || "";
+  $("description").value = p.description || "";
+  $("coverPreview").src = p.image;
+  $("coverPreview").style.display = "block";
+  setThemeFields(p.theme || null);
+  if (Array.isArray(p.blocks) && p.blocks.length) {
+    blocks = p.blocks.map((b) => ({ ...b }));
+  } else {
+    // legacy: story paragraphs + gallery become editable blocks
+    const paras = (p.story || "").split(/\n\s*\n/).filter(Boolean);
+    const gal = [...(p.gallery || [])];
+    blocks = [];
+    paras.forEach((t, i) => {
+      blocks.push({ type: "text", text: t });
+      if (gal.length && i < paras.length - 1) blocks.push({ type: "image", image: gal.shift() });
+    });
+    gal.forEach((g) => blocks.push({ type: "image", image: g }));
+  }
+  renderBlocks();
+  $("formTitle").textContent = "Edit project";
+  $("publishBtn").textContent = "Save changes";
+  show("editor");
+}
+
+$("cancelBtn").addEventListener("click", () => show("dash"));
+
+$("publishBtn").addEventListener("click", async () => {
+  const msg = $("msg");
+  msg.className = "msg";
+  const fields = {
+    title: $("title").value.trim(),
+    category: $("category").value.trim(),
+    year: $("year").value.trim(),
+    description: $("description").value.trim(),
+    theme: readThemeFields(),
+    blocks: blocks.filter((b) => (b.type === "text" ? b.text.trim() : b.image)),
+  };
+  if (!fields.title || (!editing && !coverDataURL)) {
+    msg.className = "msg err";
+    msg.textContent = editing ? "A title is required." : "A title and a cover image are required.";
+    return;
+  }
+  msg.textContent = editing ? "Saving…" : "Publishing…";
+  try {
+    if (editing) {
+      await api("PUT", { id: editing.id, ...fields, ...(coverDataURL ? { image: coverDataURL } : {}) });
+    } else {
+      await api("POST", { ...fields, image: coverDataURL });
+    }
+    show("dash");
+    loadDash();
+  } catch (e) {
+    msg.className = "msg err";
+    msg.textContent = "Failed: " + e.message;
+  }
+});
+</script>
+</body>
+</html>

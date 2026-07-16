@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crescent Butterfly · Graphic Design by Natalie Cruz Serrat</title>
+  <meta name="description" content="Crescent Butterfly Graphic Design. Brand identities, print and digital design crafted with precision and a touch of wonder by Natalie Cruz Serrat." />
+  <link rel="icon" href="assets/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header class="site">
+  <a class="lockup" href="index.html" aria-label="Crescent Butterfly home">
+    <img class="mark" src="assets/mark_embossed.png" alt="" />
+    <img class="word" src="assets/wordmark_embossed.png" alt="Crescent Butterfly, Graphic Design" />
+  </a>
+  <nav>
+    <a href="work.html">Work</a>
+    <a href="services.html">Services</a>
+    <a class="nav-cta" href="start.html">Start a project</a>
+  </nav>
+</header>
+
+<section class="hero" id="top">
+  <div class="hero-copy">
+    <h1>Design that <em>takes flight.</em></h1>
+    <p class="lede">Brand identities, print and digital design crafted with precision and a touch of wonder.</p>
+    <div class="actions">
+      <a class="btn" href="start.html">Start a project</a>
+      <a class="btn ghost" href="work.html">See the work</a>
+    </div>
+  </div>
+  <div class="hero-frame">
+    <img src="assets/hero-work.jpg" alt="Crescent Butterfly graphic design work" fetchpriority="high" />
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true">
+  <div class="track" id="marqueeTrack">
+    <span><b>Brand identity</b></span><span>Logo systems</span><span><b>Print design</b></span>
+    <span>Social templates</span><span><b>Stationery</b></span><span>Packaging</span>
+  </div>
+</div>
+
+<section class="block" id="featured">
+  <h2>Latest work</h2>
+  <hr class="rule" />
+  <div class="grid" id="workGrid">
+    <div class="empty reveal">
+      <img src="assets/illus/petals.png" alt="" />
+      Loading projects…
+    </div>
+  </div>
+  <p style="text-align:center; margin-top:3.5rem">
+    <a class="btn ghost" href="work.html">View all work</a>
+  </p>
+</section>
+
+<section class="statement">
+  <div class="inner">
+    <p class="reveal">Good design is quiet precision. Great design also has <em>a little wonder</em> in it.</p>
+  </div>
+</section>
+
+<section class="block" id="journey">
+  <span class="eyebrow">The designer behind the wings</span>
+  <h2>The journey so far</h2>
+  <hr class="rule" />
+  <div class="journey">
+    <div class="rail" aria-hidden="true"></div>
+    <div class="milestone reveal">
+      <span class="when">2023 · Full Sail University</span>
+      <h3>Trained for this</h3>
+      <p>Graduated in graphic design with a habit that stuck: obsessing over the details until they sing.</p>
+    </div>
+    <div class="milestone reveal">
+      <span class="when">2024 · The mark</span>
+      <h3>A butterfly made of moons</h3>
+      <p>Sketches became a crescent-winged butterfly, then a full identity: embossed, dusty-rose, unmistakable.</p>
+    </div>
+    <div class="milestone reveal">
+      <span class="when">2025 · Crescent Butterfly</span>
+      <h3>The studio takes wing</h3>
+      <p>Cards, templates, guidelines and the first client work under one quiet, cohesive system.</p>
+    </div>
+    <div class="milestone reveal">
+      <span class="when">Every morning · 9:00 AM</span>
+      <h3>The design journal</h3>
+      <p>One strong website, one well-made ad, one great designer, studied daily.
+        <a href="https://crescentbutterfly23.github.io/design-journal/" target="_blank" rel="noopener">Read the journal</a>.</p>
+    </div>
+    <div class="milestone reveal">
+      <span class="when">Today</span>
+      <h3>Open for projects</h3>
+      <p>Taking on brand, print and digital work. Yours could be the next story on this timeline.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="contact">
+  <img class="reveal" src="assets/illus/bloom.png" alt="" aria-hidden="true" />
+  <h2 class="reveal">Let's make something beautiful.</h2>
+  <p class="reveal" style="--d:.1s">Launching a brand, refreshing your look, or need a designer in your corner? Tell me about it.</p>
+  <a class="btn reveal" style="--d:.2s" href="start.html">Start a project</a>
+</section>
+
+<footer class="site">
+  © <span id="yr"></span> Crescent Butterfly Graphic Design · Natalie Cruz Serrat ·
+  <a href="mailto:crescentbutterfly23@gmail.com">crescentbutterfly23@gmail.com</a>
+</footer>
+
+<script src="shared.js"></script>
+<script>
+// featured: the three newest projects
+loadProjects().then((projects) => {
+  renderCards(document.getElementById("workGrid"), projects.slice(0, 3));
+});
+</script>
+
+<!-- GSAP for the hero -> page zoom transition -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script>
+// Hero -> page zoom: pin the hero and scrub the framed visual's scale with
+// scroll so it grows from ~0.8 to fill the viewport (edge-to-edge, corners
+// round to 0) while the headline/CTA fade and lift. At full zoom the section
+// unpins and the first content section is revealed, as if entering the visual.
+// Transform-only, GSAP ScrollTrigger. Isolated so it can't touch other scroll
+// logic, anchor links, or the sticky nav.
+window.addEventListener("load", () => {
+  const frame = document.querySelector(".hero-frame");
+  const copy = document.querySelector(".hero-copy");
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!frame || !copy) return;
+
+  // fallback: no GSAP or reduced motion -> clean static hero (work peeking below)
+  if (reduce || !window.gsap || !window.ScrollTrigger) return;
+
+  gsap.registerPlugin(ScrollTrigger);
+  gsap.set(frame, { xPercent: -50, scale: 1, transformOrigin: "50% 100%" });
+  gsap.set(copy, { xPercent: -50 });
+
+  // scale needed for the work frame to cover the viewport (recomputed on refresh)
+  const cover = () =>
+    Math.max(innerWidth / frame.offsetWidth, innerHeight / frame.offsetHeight) * 1.06;
+
+  gsap.timeline({
+    scrollTrigger: {
+      trigger: ".hero",
+      start: "top top",
+      end: () => "+=" + Math.round(innerHeight * 1.4), // ~140vh of scroll
+      pin: true,
+      pinSpacing: true,
+      scrub: true,
+      anticipatePin: 1,
+      invalidateOnRefresh: true,
+    },
+  })
+    .to(frame, { scale: cover, borderRadius: 0, ease: "none" }, 0)
+    .to(copy, { opacity: 0, y: -70, ease: "none" }, 0);
+
+  // measure once the image + fonts have settled so start/end are correct
+  const heroImg = frame.querySelector("img");
+  if (heroImg && !heroImg.complete) heroImg.addEventListener("load", () => ScrollTrigger.refresh());
+  requestAnimationFrame(() => ScrollTrigger.refresh());
+});
+</script>
+</body>
+</html>

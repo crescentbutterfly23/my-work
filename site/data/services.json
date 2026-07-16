@@ -1,0 +1,68 @@
+[
+  {
+    "id": "brand-identity",
+    "index": "01",
+    "title": "Brand Identity",
+    "lede": "Your business, given a face people remember — built from the mark outward into a system that holds together for years.",
+    "intro": "A logo is where it starts, not where it ends. I design identities as complete systems: a mark, a palette, a type hierarchy and the rules that keep them consistent everywhere your brand shows up. The result is a look that feels just as intentional on a business card as it does on a billboard or an Instagram grid.",
+    "includes": [
+      { "h": "Logo & mark design", "p": "A primary mark plus the secondary and responsive variations you'll actually use." },
+      { "h": "Color systems", "p": "A considered palette with usage rules, tints, and accessible contrast." },
+      { "h": "Typography", "p": "A type hierarchy for headings, body and detail, chosen to pair with the mark." },
+      { "h": "Brand guidelines", "p": "A clear document so anyone can apply the brand correctly." },
+      { "h": "Full brand kit", "p": "Exported logo files, color codes and templates, organized and ready to use." }
+    ],
+    "steps": [
+      { "h": "Listen", "p": "We define your business, your audience, and the feeling the brand needs to create." },
+      { "h": "Sketch", "p": "Directions take shape as marks and moodboards; we choose one to pursue." },
+      { "h": "Refine", "p": "The chosen direction is built out into a full, consistent system." },
+      { "h": "Deliver", "p": "Guidelines and a complete kit, organized so they're a joy to use." }
+    ],
+    "idealFor": "New businesses launching from zero, or established brands that have outgrown a single logo and need a real system.",
+    "next": "print-design"
+  },
+  {
+    "id": "print-design",
+    "index": "02",
+    "title": "Print Design",
+    "lede": "Things you can hold should feel as considered as things you scroll — press-ready, correctly built, and unmistakably on-brand.",
+    "intro": "Print is unforgiving: the color either survives the printer or it doesn't, the bleed is either right or the edge is wrong. I design print pieces that are as carefully produced as they are drawn — from the first layout to files your printer can run without a phone call.",
+    "includes": [
+      { "h": "Business cards", "p": "The handshake of your brand, built with correct bleeds and finishes in mind." },
+      { "h": "Stationery", "p": "Letterheads, compliment slips and envelopes as one cohesive set." },
+      { "h": "Brochures & flyers", "p": "Layouts that guide the eye and hold together across every panel." },
+      { "h": "Templates", "p": "Invoices, decks and documents your team can reuse without breaking the look." },
+      { "h": "Packaging", "p": "Structure and surface designed together so the unboxing feels intentional." }
+    ],
+    "steps": [
+      { "h": "Scope", "p": "We confirm sizes, quantities, stock and finish before a pixel is drawn." },
+      { "h": "Design", "p": "Layouts developed with production realities built in from the start." },
+      { "h": "Proof", "p": "A careful check of bleeds, color and type before anything goes to press." },
+      { "h": "Handoff", "p": "Press-ready files, packaged and labeled exactly how your printer needs them." }
+    ],
+    "idealFor": "Brands that meet clients in person, ship products, or simply want physical pieces that feel premium.",
+    "next": "digital-social"
+  },
+  {
+    "id": "digital-social",
+    "index": "03",
+    "title": "Digital & Social",
+    "lede": "Assets built for the feed: consistent, on-brand, and designed to stop the scroll without shouting.",
+    "intro": "Your social presence is often the first version of your brand people meet. I design digital assets and template systems so every post, story and header looks like it belongs to the same studio — and so you can keep publishing without the look drifting over time.",
+    "includes": [
+      { "h": "Social templates", "p": "Editable post, story and carousel layouts that keep the grid cohesive." },
+      { "h": "Web graphics", "p": "Hero images, banners and section art tuned for screens." },
+      { "h": "Headers & covers", "p": "Profile and channel art sized and styled per platform." },
+      { "h": "Campaign assets", "p": "A coordinated set of pieces built around a single idea." },
+      { "h": "Wallpapers & extras", "p": "The delightful little brand touches that make people smile." }
+    ],
+    "steps": [
+      { "h": "Plan", "p": "We map the platforms, formats and cadence you actually post to." },
+      { "h": "Design", "p": "A flexible template system, not just one-off graphics." },
+      { "h": "Build", "p": "Editable files set up so swapping copy and images stays on-brand." },
+      { "h": "Deliver", "p": "Every size exported, plus a short guide on keeping it consistent." }
+    ],
+    "idealFor": "Businesses posting regularly who want a feed that looks designed, not assembled.",
+    "next": "brand-identity"
+  }
+]
