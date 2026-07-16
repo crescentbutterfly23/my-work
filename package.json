@@ -1,9 +1,0 @@
-{
-  "name": "crescent-butterfly-portfolio",
-  "version": "1.0.0",
-  "private": true,
-  "description": "Crescent Butterfly Graphic Design portfolio",
-  "dependencies": {
-    "@netlify/blobs": "^8.1.0"
-  }
-}
