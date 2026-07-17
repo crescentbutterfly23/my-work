@@ -41,7 +41,7 @@
     <span class="sticker hero-sticker">✦ Open for projects</span>
 
     <!-- margin scribbles -->
-    <span class="doodle crimson draw" data-len="150" style="bottom:7%; left:3%; width:clamp(38px,4.5vw,62px); --dur:11s" aria-hidden="true">
+    <span class="doodle crimson draw d-spiral" data-len="150" style="bottom:7%; left:3%; width:clamp(38px,4.5vw,62px); --dur:11s" aria-hidden="true">
       <svg viewBox="0 0 70 70"><path d="M35 35c0-5 7-5 7 1s-9 9-15 4-5-18 7-20 22 8 21 21-12 24-26 22"/></svg>
     </span>
     <span class="doodle coral draw" data-len="150" style="top:9%; left:31%; width:clamp(22px,2.6vw,36px); --dur:8s; --delay:-2s" aria-hidden="true">
@@ -141,9 +141,13 @@
     <h2 class="reveal">Let's make something <em class="circled">loud.</em></h2>
     <p class="reveal" style="--d:.1s">Launching a brand, refreshing your look, or need a designer in your corner? Tell me about it.</p>
     <p class="note ink reveal" style="--d:.15s; margin-bottom:.7rem">I read &amp; reply to every single one — promise.</p>
-    <a class="btn reveal" style="--d:.2s" href="start.html">Start a project</a>
-    <span class="doodle crimson draw" data-len="140" style="bottom:6%; right:6%; width:clamp(50px,7vw,100px); --rot:6deg; --dur:9s; --delay:-4s" aria-hidden="true">
-      <svg viewBox="0 0 120 80"><path d="M6 8c30 4 62 22 84 56"/><path d="M90 64 84 40M90 64 66 62"/></svg>
+    <span class="cta-point">
+      <a class="btn reveal" style="--d:.2s" href="start.html">Start a project</a>
+      <!-- points at the button on its own — no longer a corner flourish
+           that curved off into empty space above the footer -->
+      <span class="doodle crimson draw cta-arrow" data-len="140" style="--dur:9s; --delay:-4s" aria-hidden="true">
+        <svg viewBox="0 0 120 80"><path d="M114 8c-30 4-62 22-84 56"/><path d="M30 64 36 40M30 64 54 62"/></svg>
+      </span>
     </span>
   </section>
 </main>

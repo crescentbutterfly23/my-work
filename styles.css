@@ -87,9 +87,21 @@ h1, h2, h3 {
 
 /* ---------- SKETCHBOOK PAGE ----------
    ruled lines + the red margin rule + spiral binding */
-/* Opaque on purpose: this hides the body grain behind it, so the ruled
-   page reads as notebook paper (lines only) rather than lines + dots. */
-.paper-ruled {
+/* The section is capped at max-width and centred, so an opaque background on
+   the element itself would leave the fixed body grain showing in the side
+   margins on wide screens. Paint the paper + ruled lines on a FULL-BLEED
+   ::before instead, so the notebook page spans edge to edge and covers the
+   dots everywhere. (body has overflow-x:hidden, so 100vw is safe.) */
+/* clip the 100vw full-bleed overflow so it can't cause an 8px horizontal
+   scroll (100vw includes the scrollbar width). main wraps the sections; the
+   sticky header is its sibling, so sticky is unaffected. */
+main { overflow-x: clip; }
+.paper-ruled { position: relative; }
+.paper-ruled::before {
+  content: "";
+  position: absolute; inset: 0;
+  left: 50%; width: 100vw; transform: translateX(-50%);
+  z-index: -1; pointer-events: none;
   background-color: var(--paper);
   background-image: repeating-linear-gradient(to bottom, transparent 0 31px, rgba(20, 16, 15, 0.09) 31px 32px);
 }
@@ -560,6 +572,18 @@ section.block > h2 { font-size: clamp(2rem, 6vw, 4rem); margin-bottom: 0.8rem; }
 .cta h2 em { font-style: normal; color: var(--crimson); }
 .cta p { font-weight: 500; max-width: 36rem; margin: 0 auto 2.2rem; color: var(--maroon); }
 
+/* the arrow is anchored to the button itself, not the section — so it always
+   points at "Start a project" instead of curling off into empty corner space */
+.cta-point { position: relative; display: inline-block; }
+.cta-point .cta-arrow {
+  position: absolute; top: -3.4rem; right: -4.6rem;
+  width: clamp(50px, 7vw, 84px);
+}
+@media (max-width: 700px) {
+  /* the button goes full-width here (see .btn rule below) — nothing beside it to point from */
+  .cta-point .cta-arrow { display: none; }
+}
+
 footer.site {
   background: var(--ink);
   border-top: 4px solid var(--ink);
@@ -760,6 +784,11 @@ body.themed .prose, body.themed .project-hero .lede { font-family: var(--t-font-
   .hero .slab { display: none; }
   .hero .cutout { position: relative; right: auto; top: auto; display: block; margin: 2rem auto 0; transform: rotate(4deg); }
   .hero .hero-sticker { position: relative; right: auto; bottom: auto; display: inline-flex; margin-top: 1.5rem; }
+  /* these two decos are positioned by percentage against the DESKTOP hero's
+     short, wide box. On mobile the hero stacks tall instead, so the same
+     percentages land on top of the buttons and body text — hide them rather
+     than chase a moving target. */
+  .hero .d-spiral, .hero .d-sparkle2 { display: none; }
   .svc { grid-template-columns: 1fr; gap: 1.2rem; padding: 2.5rem 0; }
 }
 @media (max-width: 700px) {
