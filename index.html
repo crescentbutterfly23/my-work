@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crescent Butterfly · Graphic Design by Natalie Cruz Serrat</title>
+  <meta name="description" content="Crescent Butterfly Graphic Design. Brand identities, print and digital design — cut, pasted and fussed over by Natalie Cruz Serrat." />
+  <link rel="icon" href="assets/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Caveat:wght@600;700&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header class="site" id="siteHeader">
+  <a class="lockup" href="index.html" aria-label="Crescent Butterfly home">
+    <img class="mark" src="assets/mark_embossed.png" alt="" />
+    <img class="word" src="assets/wordmark_embossed.png" alt="Crescent Butterfly, Graphic Design" />
+  </a>
+  <nav aria-label="Primary navigation">
+    <a href="work.html">Work</a>
+    <a href="services.html">Services</a>
+    <a class="nav-cta" href="start.html">Start a project</a>
+  </nav>
+</header>
+
+<main>
+  <!-- ---------- HERO: the collage ---------- -->
+  <section class="hero" id="top" aria-label="Crescent Butterfly introduction">
+    <span class="slab" aria-hidden="true"></span>
+    <span class="slab two" aria-hidden="true"></span>
+
+    <span class="deco d-moon draw" data-len="200" aria-hidden="true"><svg class="ic"><use href="#ic-moon" /></svg></span>
+    <span class="deco d-sparkle draw" data-len="240" style="--draw:.9s" aria-hidden="true"><svg class="ic"><use href="#ic-sparkle" /></svg></span>
+    <span class="deco d-sparkle2 draw" data-len="240" style="--draw:.9s" aria-hidden="true"><svg class="ic"><use href="#ic-sparkle" /></svg></span>
+
+    <!-- the hero butterfly stays the real logo — a deliberate contrast
+         against the flat/sketched icons elsewhere -->
+    <img class="cutout" src="assets/mark_embossed.png" alt="" aria-hidden="true" fetchpriority="high" />
+    <span class="sticker hero-sticker">✦ Open for projects</span>
+
+    <!-- margin scribbles -->
+    <span class="doodle crimson draw" data-len="150" style="bottom:7%; left:3%; width:clamp(38px,4.5vw,62px); --dur:11s" aria-hidden="true">
+      <svg viewBox="0 0 70 70"><path d="M35 35c0-5 7-5 7 1s-9 9-15 4-5-18 7-20 22 8 21 21-12 24-26 22"/></svg>
+    </span>
+    <span class="doodle coral draw" data-len="150" style="top:9%; left:31%; width:clamp(22px,2.6vw,36px); --dur:8s; --delay:-2s" aria-hidden="true">
+      <svg viewBox="0 0 40 40"><path d="M20 3v34M3 20h34M8 8l24 24M32 8L8 32"/></svg>
+    </span>
+
+    <div class="hero-stage">
+      <div class="type-stack reveal">
+        <h1>Design<br /><span class="stroke">that</span> takes<br /><em>flight.</em></h1>
+      </div>
+      <p class="lede reveal" style="--d:.1s">
+        Brand identities, print and digital design — cut, pasted and
+        <span class="scribbled">fussed over</span>
+        until every last detail sings. By Natalie Cruz Serrat.
+      </p>
+      <div class="actions reveal" style="--d:.2s">
+        <a class="btn hot" href="start.html">Start a project</a>
+        <span class="btn-bloom">
+          <span class="petals" aria-hidden="true">
+            <span class="petal"><svg class="ic"><use href="#ic-petal" /></svg></span>
+            <span class="petal"><svg class="ic"><use href="#ic-petal" /></svg></span>
+            <span class="petal"><svg class="ic"><use href="#ic-petal" /></svg></span>
+            <span class="petal"><svg class="ic"><use href="#ic-petal" /></svg></span>
+            <span class="petal"><svg class="ic"><use href="#ic-petal" /></svg></span>
+          </span>
+          <a class="btn ghost" href="work.html">See the work</a>
+        </span>
+        <span class="note ink">← start here!</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- FEATURED WORK (real projects) ---------- -->
+  <section class="block" id="featured">
+    <span class="doodle crimson draw" data-len="170" style="top:12%; right:4%; width:clamp(52px,7vw,96px); --rot:-6deg; --dur:10s" aria-hidden="true">
+      <svg viewBox="0 0 120 40"><path d="M4 30c14-26 26 6 38-10s22 20 34 2 30 6 40-8"/></svg>
+    </span>
+    <h2 class="reveal">Latest work <span class="note">the good stuff ↓</span></h2>
+    <hr class="rule" />
+    <div class="grid" id="workGrid">
+      <div class="empty reveal">
+        <span class="icon"><svg class="ic"><use href="#ic-petals" /></svg></span>
+        Loading projects…
+      </div>
+    </div>
+    <p class="center-action"><a class="btn ghost" href="work.html">View all work</a></p>
+  </section>
+
+  <!-- ---------- STATEMENT: a black page ripped out of the book ---------- -->
+  <section class="statement torn-top torn-bottom">
+    <div class="inner">
+      <p class="reveal">Good design is quiet precision. Great design also has <em class="circled">a little wonder</em> in it.</p>
+    </div>
+  </section>
+
+  <!-- ---------- JOURNEY: a ruled sketchbook page ---------- -->
+  <section class="block paper-ruled bound-top" id="journey">
+    <span class="binding" aria-hidden="true"></span>
+    <span class="margin-rule" aria-hidden="true"></span>
+    <span class="eyebrow">The designer behind the wings</span>
+    <h2 class="reveal">The journey so far <span class="note tilt-r ink">still redrawing</span></h2>
+    <hr class="rule" />
+    <div class="journey">
+      <div class="rail" aria-hidden="true"></div>
+      <div class="milestone reveal">
+        <span class="when">2023 · Full Sail University</span>
+        <h3>Trained for this</h3>
+        <p>Graduated in graphic design with a habit that stuck: reworking every detail until it sings.</p>
+      </div>
+      <div class="milestone reveal">
+        <span class="when">2024 · The mark</span>
+        <h3>A butterfly made of moons</h3>
+        <p>Sketches became a crescent-winged butterfly, then a full identity: embossed, dusty-rose, unmistakable.</p>
+      </div>
+      <div class="milestone reveal">
+        <span class="when">2025 · Crescent Butterfly</span>
+        <h3>The studio takes wing</h3>
+        <p>Cards, templates, guidelines and the first client work under one loud, cohesive system.</p>
+      </div>
+      <div class="milestone reveal">
+        <span class="when">Every morning · 9:00 AM</span>
+        <h3>The design journal</h3>
+        <p>One strong website, one well-made ad, one great designer, studied daily.
+          <a href="https://crescentbutterfly23.github.io/design-journal/" target="_blank" rel="noopener">Read the journal</a>.</p>
+      </div>
+      <div class="milestone reveal">
+        <span class="when">Today</span>
+        <h3>Open for projects</h3>
+        <p>Taking on brand, print and digital work. Yours could be the next story on this timeline.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- CTA ---------- -->
+  <section class="cta torn-top" id="contact">
+    <span class="icon reveal" aria-hidden="true"><svg class="ic"><use href="#ic-bloom" /></svg></span>
+    <h2 class="reveal">Let's make something <em class="circled">loud.</em></h2>
+    <p class="reveal" style="--d:.1s">Launching a brand, refreshing your look, or need a designer in your corner? Tell me about it.</p>
+    <p class="note ink reveal" style="--d:.15s; margin-bottom:.7rem">I read &amp; reply to every single one — promise.</p>
+    <a class="btn reveal" style="--d:.2s" href="start.html">Start a project</a>
+    <span class="doodle crimson draw" data-len="140" style="bottom:6%; right:6%; width:clamp(50px,7vw,100px); --rot:6deg; --dur:9s; --delay:-4s" aria-hidden="true">
+      <svg viewBox="0 0 120 80"><path d="M6 8c30 4 62 22 84 56"/><path d="M90 64 84 40M90 64 66 62"/></svg>
+    </span>
+  </section>
+</main>
+
+<footer class="site">
+  © <span id="yr"></span> Crescent Butterfly Graphic Design · Natalie Cruz Serrat ·
+  <a href="mailto:crescentbutterfly23@gmail.com">crescentbutterfly23@gmail.com</a>
+</footer>
+
+<script src="shared.js"></script>
+<script>
+// The home grid shows only starred projects (set the star in admin.html).
+// If nothing is starred yet, fall back to the three newest so the page is never empty.
+loadProjects().then((projects) => {
+  const starred = projects.filter((p) => p.featured);
+  renderCards(document.getElementById("workGrid"), starred.length ? starred : projects.slice(0, 3));
+});
+</script>
+</body>
+</html>

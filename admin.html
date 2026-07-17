@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Studio Desk · Crescent Butterfly</title>
+  <link rel="icon" href="assets/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Caveat:wght@600;700&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ---------- studio desk: same cut-paper language, workbench edition ---------- */
+    .desk { max-width: 1180px; margin: 0 auto; padding: clamp(1.5rem, 4vw, 3rem) 4vw 6rem; }
+
+    .desk-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.6rem; }
+    .desk-head h1 { font-size: clamp(2.2rem, 6vw, 4rem); }
+    .desk-head h1 em { font-style: normal; color: var(--crimson); }
+
+    /* the "unsaved" strip — loud on purpose */
+    .warn {
+      border: 4px solid var(--ink); background: var(--blush);
+      box-shadow: 7px 7px 0 var(--ink);
+      padding: 1rem 1.2rem; margin-bottom: 2rem;
+      transform: rotate(-0.6deg);
+      font-family: "Space Mono", monospace; font-size: 0.8rem; font-weight: 700;
+      display: flex; align-items: center; gap: 0.8rem; flex-wrap: wrap;
+    }
+    .warn.dirty { background: var(--coral); }
+    .warn .dot { width: 14px; height: 14px; background: var(--ink); border-radius: 50%; flex: 0 0 auto; }
+    .warn.dirty .dot { background: var(--crimson); animation: pulse 1s ease-in-out infinite; }
+    @keyframes pulse { 50% { transform: scale(1.5); } }
+
+    .toolbar { display: flex; gap: 0.9rem; flex-wrap: wrap; align-items: center; margin-bottom: 2.4rem; }
+    .tally {
+      font-family: "Space Mono", monospace; font-size: 0.78rem; font-weight: 700;
+      border: 3px solid var(--ink); background: var(--paper);
+      padding: 0.5rem 0.9rem; box-shadow: 3px 3px 0 var(--ink);
+    }
+    .tally b { color: var(--crimson); }
+
+    /* ---------- project rows ---------- */
+    .rows { display: flex; flex-direction: column; gap: 1.8rem; }
+    .prow {
+      display: grid; grid-template-columns: 132px 1fr auto; gap: 1.2rem;
+      background: var(--paper); border: 4px solid var(--ink);
+      box-shadow: 8px 8px 0 var(--ink); padding: 1.1rem;
+      align-items: start;
+    }
+    .prow:nth-child(odd) { transform: rotate(-0.5deg); }
+    .prow:nth-child(even) { transform: rotate(0.5deg); }
+    .prow.is-star { box-shadow: 8px 8px 0 var(--crimson); }
+
+    .prow .shot { border: 3px solid var(--ink); aspect-ratio: 4/3; overflow: hidden; background: var(--rose); }
+    .prow .shot img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .prow .shot.missing { display: grid; place-items: center; font-family: "Space Mono", monospace; font-size: 0.6rem; text-align: center; color: var(--ink); background: var(--blush); }
+
+    .fields { display: flex; flex-direction: column; gap: 0.55rem; min-width: 0; }
+    .fields .line { display: flex; gap: 0.55rem; flex-wrap: wrap; }
+    .fields .line > * { flex: 1 1 8rem; min-width: 0; }
+
+    .desk label { display: block; font-family: "Space Mono", monospace; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-2); margin-bottom: 0.2rem; }
+    .desk input, .desk textarea, .desk select {
+      width: 100%; font-family: "Inter", sans-serif; font-size: 0.9rem; font-weight: 500;
+      padding: 0.5rem 0.6rem; border: 2.5px solid var(--ink); border-radius: 0;
+      background: #fff; color: var(--maroon);
+    }
+    .desk textarea { resize: vertical; line-height: 1.5; }
+    .desk input:focus, .desk textarea:focus { outline: 3px solid var(--coral); outline-offset: 1px; }
+    .desk .ext { font-family: "Space Mono", monospace; font-size: 0.7rem; }
+
+    /* ---------- the star ---------- */
+    .side { display: flex; flex-direction: column; gap: 0.5rem; align-items: center; }
+    .star {
+      font-size: 1.6rem; line-height: 1; cursor: pointer;
+      width: 54px; height: 54px; display: grid; place-items: center;
+      border: 3px solid var(--ink); background: var(--paper); color: var(--ink-2);
+      box-shadow: 3px 3px 0 var(--ink);
+      transition: transform 0.12s var(--ease), box-shadow 0.12s var(--ease), background 0.15s;
+    }
+    .star:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 var(--ink); }
+    .star.on { background: var(--crimson); color: #fff; transform: rotate(-6deg); }
+    .star.on:hover { transform: rotate(-6deg) translate(-2px,-2px); }
+
+    .mini {
+      font-family: "Space Mono", monospace; font-size: 0.6rem; font-weight: 700;
+      border: 2.5px solid var(--ink); background: var(--paper); color: var(--ink);
+      padding: 0.3rem 0.5rem; cursor: pointer; width: 54px; text-align: center;
+    }
+    .mini:hover { background: var(--blush); }
+    .mini.danger:hover { background: var(--crimson); color: #fff; }
+
+    .tagline { font-family: "Caveat", cursive; font-size: 1.15rem; color: var(--crimson); }
+
+    /* ---------- export drawer ---------- */
+    .drawer { margin-top: 3rem; border: 4px dashed var(--ink); padding: 1.2rem; background: var(--paper-2); }
+    .drawer h2 { font-size: 1.4rem; margin-bottom: 0.5rem; }
+    .drawer p { font-size: 0.85rem; font-weight: 500; color: var(--ink-2); margin-bottom: 0.9rem; }
+    .drawer textarea { width: 100%; height: 240px; font-family: "Space Mono", monospace; font-size: 0.7rem; border: 3px solid var(--ink); padding: 0.7rem; background: #fff; }
+
+    @media (max-width: 760px) {
+      .prow { grid-template-columns: 92px 1fr; }
+      .side { grid-column: 1 / -1; flex-direction: row; }
+      .star, .mini { width: auto; padding-inline: 0.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site">
+  <a class="lockup" href="index.html" aria-label="Crescent Butterfly home">
+    <img class="mark" src="assets/mark_embossed.png" alt="" />
+    <img class="word" src="assets/wordmark_embossed.png" alt="Crescent Butterfly, Graphic Design" />
+  </a>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="work.html">Work</a>
+  </nav>
+</header>
+
+<div class="desk">
+  <div class="desk-head">
+    <h1>Studio <em>desk</em></h1>
+    <span class="tagline">star it → it lands on the home page</span>
+  </div>
+
+  <div class="warn" id="warn">
+    <span class="dot"></span>
+    <span id="warnText">Loaded. Nothing changed yet.</span>
+  </div>
+
+  <div class="toolbar">
+    <button class="btn hot" id="download">↓ Download projects.json</button>
+    <button class="btn ghost" id="copy">Copy JSON</button>
+    <button class="btn ghost" id="add">+ New project</button>
+    <span class="tally"><b id="starCount">0</b> starred · <span id="totalCount">0</span> total</span>
+  </div>
+
+  <div class="rows" id="rows"></div>
+
+  <div class="drawer">
+    <h2>The file</h2>
+    <p>This is <code>data/projects.json</code>. Download it (or copy it), drop it into
+      <code>site/data/</code>, then commit and push — that's what publishes your changes.</p>
+    <textarea id="preview" spellcheck="false" readonly></textarea>
+  </div>
+</div>
+
+<script>
+let projects = [];
+let dirty = false;
+
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+function markDirty(on = true) {
+  dirty = on;
+  $("warn").classList.toggle("dirty", on);
+  $("warnText").textContent = on
+    ? "UNSAVED — download projects.json and commit it, or these edits vanish on refresh."
+    : "Loaded. Nothing changed yet.";
+}
+
+function tally() {
+  $("starCount").textContent = projects.filter((p) => p.featured).length;
+  $("totalCount").textContent = projects.length;
+  $("preview").value = JSON.stringify(projects, null, 2);
+}
+
+function render() {
+  $("rows").innerHTML = projects
+    .map((p, i) => `
+      <div class="prow ${p.featured ? "is-star" : ""}" data-i="${i}">
+        <div class="shot ${p.image ? "" : "missing"}">
+          ${p.image ? `<img src="${esc(p.image)}" alt="" onerror="this.parentNode.classList.add('missing');this.remove()">` : "NO IMAGE"}
+        </div>
+
+        <div class="fields">
+          <div><label>Title</label><input data-k="title" value="${esc(p.title)}" /></div>
+          <div class="line">
+            <div><label>Category</label><input data-k="category" value="${esc(p.category)}" placeholder="Brand Identity…" /></div>
+            <div><label>Year</label><input data-k="year" value="${esc(p.year)}" /></div>
+            <div><label>ID (url slug)</label><input data-k="id" value="${esc(p.id)}" /></div>
+          </div>
+          <div><label>Description — shown on the card</label><textarea data-k="description" rows="2">${esc(p.description)}</textarea></div>
+          <div class="line">
+            <div><label>Image path</label><input class="ext" data-k="image" value="${esc(p.image)}" /></div>
+            <div><label>Behance link — leave blank for an on-site story page</label><input class="ext" data-k="url" value="${esc(p.url)}" /></div>
+          </div>
+        </div>
+
+        <div class="side">
+          <button class="star ${p.featured ? "on" : ""}" data-act="star" title="Show on the home page">${p.featured ? "★" : "☆"}</button>
+          <button class="mini" data-act="up" title="Move up">▲</button>
+          <button class="mini" data-act="down" title="Move down">▼</button>
+          <button class="mini danger" data-act="del" title="Delete">DEL</button>
+        </div>
+      </div>`)
+    .join("");
+  tally();
+}
+
+// edits
+$("rows").addEventListener("input", (e) => {
+  const k = e.target.dataset.k;
+  if (!k) return;
+  const i = +e.target.closest(".prow").dataset.i;
+  const v = e.target.value.trim();
+  if (v === "") delete projects[i][k];
+  else projects[i][k] = v;
+  markDirty();
+  tally();
+});
+
+// star / reorder / delete
+$("rows").addEventListener("click", (e) => {
+  const btn = e.target.closest("[data-act]");
+  if (!btn) return;
+  const i = +btn.closest(".prow").dataset.i;
+  const act = btn.dataset.act;
+
+  if (act === "star") projects[i].featured = !projects[i].featured;
+  if (act === "up" && i > 0) [projects[i - 1], projects[i]] = [projects[i], projects[i - 1]];
+  if (act === "down" && i < projects.length - 1) [projects[i + 1], projects[i]] = [projects[i], projects[i + 1]];
+  if (act === "del") {
+    if (!confirm(`Delete "${projects[i].title}"? This only changes the file you export.`)) return;
+    projects.splice(i, 1);
+  }
+  markDirty();
+  render();
+});
+
+$("add").addEventListener("click", () => {
+  projects.unshift({
+    id: "new-project-" + Date.now().toString(36),
+    title: "Untitled project",
+    category: "",
+    year: String(new Date().getFullYear()),
+    featured: false,
+    description: "",
+    image: "",
+    url: "",
+  });
+  markDirty();
+  render();
+});
+
+$("download").addEventListener("click", () => {
+  const blob = new Blob([JSON.stringify(projects, null, 2)], { type: "application/json" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "projects.json";
+  a.click();
+  URL.revokeObjectURL(a.href);
+  markDirty(false);
+});
+
+$("copy").addEventListener("click", async () => {
+  await navigator.clipboard.writeText(JSON.stringify(projects, null, 2));
+  $("copy").textContent = "Copied!";
+  setTimeout(() => ($("copy").textContent = "Copy JSON"), 1400);
+});
+
+// don't lose work to a stray refresh
+addEventListener("beforeunload", (e) => { if (dirty) e.preventDefault(); });
+
+// every project in data/projects.json shows up here
+fetch("data/projects.json", { cache: "no-store" })
+  .then((r) => r.json())
+  .then((d) => { projects = d; render(); })
+  .catch(() => {
+    $("warnText").textContent = "Couldn't read data/projects.json — are you running a local server?";
+  });
+</script>
+</body>
+</html>
