@@ -6,8 +6,9 @@
     "year": "2026",
     "featured": true,
     "description": "Building my own studio brand: a crescent-winged butterfly, a dusty-rose world, and a full identity system from cards to templates.",
-    "story": "Every designer's hardest client is themselves. Crescent Butterfly needed a mark that felt precise and a little wondrous at the same time, so I drew a butterfly whose wings are built from crescent moons, dotted like a paper-cut and embossed to catch soft light.\n\nThe palette grew out of the mark: a coral butterfly living on dusty-rose fields, with blush details and a deep crimson reserved strictly for type and accents. The rule is simple. Soft fields, one bright creature, and dark red only where a word needs weight.\n\nThe system now covers business cards, a letterhead, social templates and full brand guidelines, all built on the same quiet grid so every new piece feels like it was always part of the family.",
     "image": "assets/projects/cb-card-front.png",
+    "blocks": [],
+    "story": "Every designer's hardest client is themselves. Crescent Butterfly needed a mark that felt precise and a little wondrous at the same time, so I drew a butterfly whose wings are built from crescent moons, dotted like a paper-cut and embossed to catch soft light.\n\nThe palette grew out of the mark: a coral butterfly living on dusty-rose fields, with blush details and a deep crimson reserved strictly for type and accents. The rule is simple. Soft fields, one bright creature, and dark red only where a word needs weight.\n\nThe system now covers business cards, a letterhead, social templates and full brand guidelines, all built on the same quiet grid so every new piece feels like it was always part of the family.",
     "gallery": [
       "assets/projects/cb-card-back.png",
       "assets/projects/cb-instagram.png",
@@ -21,8 +22,9 @@
     "year": "2025",
     "featured": true,
     "description": "A portrait series photographing artists at work.",
+    "behance": "https://www.behance.net/gallery/236139535/Artists-At-Work",
     "image": "assets/projects/behance/artists-at-work.jpg",
-    "url": "https://www.behance.net/gallery/236139535/Artists-At-Work"
+    "blocks": []
   },
   {
     "id": "lunafit-fresh",
@@ -31,8 +33,9 @@
     "year": "2025",
     "featured": true,
     "description": "Brand and campaign design for LunaFit Fresh, built out across print and in-store display.",
+    "behance": "https://www.behance.net/gallery/235288183/LunaFit-Fresh",
     "image": "assets/projects/behance/lunafit-fresh.png",
-    "url": "https://www.behance.net/gallery/235288183/LunaFit-Fresh"
+    "blocks": []
   },
   {
     "id": "sticker-portraits",
@@ -41,8 +44,9 @@
     "year": "2023",
     "featured": false,
     "description": "Send your picture, and you will get a personalized portrait in the form of a sticker.",
+    "behance": "https://www.behance.net/gallery/178266131/Sticker-Portraits",
     "image": "assets/projects/behance/sticker-portraits.png",
-    "url": "https://www.behance.net/gallery/178266131/Sticker-Portraits"
+    "blocks": []
   },
   {
     "id": "beautiful-web-spring-wear",
@@ -51,8 +55,9 @@
     "year": "2023",
     "featured": false,
     "description": "What if spiders ran a clothing store? Beautiful Webs is a clothing store for women that specializes on spring dresses made with soft vibrant silks.",
+    "behance": "https://www.behance.net/gallery/177227881/Case-Study-Beautiful-Web-Spring-Wear",
     "image": "assets/projects/behance/spring-wear.png",
-    "url": "https://www.behance.net/gallery/177227881/Case-Study-Beautiful-Web-Spring-Wear"
+    "blocks": []
   },
   {
     "id": "butterfly-garden-candy-shop",
@@ -61,8 +66,9 @@
     "year": "2023",
     "featured": false,
     "description": "What if butterflies ran a candy store? Many sweet treats are shaped like flowers, since this is a store run by butterflies and they love the nectar from flowers.",
+    "behance": "https://www.behance.net/gallery/177227683/Case-Study-Butterfly-Garden-Candy-Shop",
     "image": "assets/projects/behance/butterfly-garden.png",
-    "url": "https://www.behance.net/gallery/177227683/Case-Study-Butterfly-Garden-Candy-Shop"
+    "blocks": []
   },
   {
     "id": "castillo-sampaguita",
@@ -71,8 +77,9 @@
     "year": "2023",
     "featured": false,
     "description": "A casual restaurant for families, serving cuisine brought to the Philippines and back to Valencia — built around the feeling of being transported to the islands.",
+    "behance": "https://www.behance.net/gallery/177227305/Case-Study-Castillo-Sampaguita",
     "image": "assets/projects/behance/castillo-sampaguita.jpg",
-    "url": "https://www.behance.net/gallery/177227305/Case-Study-Castillo-Sampaguita"
+    "blocks": []
   },
   {
     "id": "social-cereal",
@@ -81,8 +88,9 @@
     "year": "2023",
     "featured": false,
     "description": "Cereal Killer's is a cereal brand focused on mysterious and horror related themes — this time leaning cute, while keeping some darkness to it.",
+    "behance": "https://www.behance.net/gallery/177222527/Case-Study-Social-Cereal",
     "image": "assets/projects/behance/social-cereal.png",
-    "url": "https://www.behance.net/gallery/177222527/Case-Study-Social-Cereal"
+    "blocks": []
   },
   {
     "id": "house-ghosts",
@@ -91,8 +99,9 @@
     "year": "2023",
     "featured": false,
     "description": "A children's book telling the tale of Amelia, a curious girl who discovers mischievous yet protective ancestral spirits guarding her family's home.",
+    "behance": "https://www.behance.net/gallery/177227493/Case-Study-House-Ghosts",
     "image": "assets/projects/behance/house-ghosts.png",
-    "url": "https://www.behance.net/gallery/177227493/Case-Study-House-Ghosts"
+    "blocks": []
   },
   {
     "id": "dance-perfumes",
@@ -101,8 +110,9 @@
     "year": "2023",
     "featured": false,
     "description": "Two dance-inspired fragrances: “Flamenco Dancing Gypsy” and “Bolero Sensuous Step.”",
+    "behance": "https://www.behance.net/gallery/177222763/Case-Study-Dance-Perfumes",
     "image": "assets/projects/behance/dance-perfumes.png",
-    "url": "https://www.behance.net/gallery/177222763/Case-Study-Dance-Perfumes"
+    "blocks": []
   },
   {
     "id": "jessica-jung-author-website",
@@ -111,8 +121,9 @@
     "year": "2023",
     "featured": false,
     "description": "A website design for author Jessica Jung.",
+    "behance": "https://www.behance.net/gallery/177226105/Case-Study-Jessica-Jung-Author-Website",
     "image": "assets/projects/behance/jessica-jung.jpg",
-    "url": "https://www.behance.net/gallery/177226105/Case-Study-Jessica-Jung-Author-Website"
+    "blocks": []
   },
   {
     "id": "xs-energy-drinks",
@@ -121,8 +132,9 @@
     "year": "2023",
     "featured": false,
     "description": "An advertising and social campaign for XS Energy Drinks.",
+    "behance": "https://www.behance.net/gallery/177225427/Case-Study-XS-Energy-Drinks",
     "image": "assets/projects/behance/xs-energy.png",
-    "url": "https://www.behance.net/gallery/177225427/Case-Study-XS-Energy-Drinks"
+    "blocks": []
   },
   {
     "id": "couture-queens",
@@ -131,7 +143,8 @@
     "year": "2023",
     "featured": false,
     "description": "Branding, website and app design for the Couture Queens L.A. Fashion Festival.",
+    "behance": "https://www.behance.net/gallery/177223501/Case-Study-Couture-Queens-LA-Fashion-Festival",
     "image": "assets/projects/behance/couture-queens.png",
-    "url": "https://www.behance.net/gallery/177223501/Case-Study-Couture-Queens-LA-Fashion-Festival"
+    "blocks": []
   }
 ]

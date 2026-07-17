@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Editing · Crescent Butterfly</title>
+  <link rel="icon" href="assets/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Caveat:wght@600;700&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ---------- immersive single-project editor ---------- */
+    body { background: var(--paper-2); }
+
+    .bar {
+      position: sticky; top: 0; z-index: 60;
+      display: flex; align-items: center; gap: 0.9rem; flex-wrap: wrap;
+      padding: 0.7rem 3vw;
+      background: var(--ink); border-bottom: 4px solid var(--ink);
+    }
+    .bar .back {
+      font-family: "Space Mono", monospace; font-size: 0.7rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.1em; text-decoration: none;
+      color: var(--paper); border: 2.5px solid var(--paper); padding: 0.45rem 0.8rem;
+    }
+    .bar .back:hover { background: var(--paper); color: var(--ink); }
+    .bar .who { font-family: "Archivo Black", sans-serif; color: var(--paper); font-size: 1rem; text-transform: uppercase; }
+    .bar .spacer { flex: 1; }
+    .bar .saved { font-family: "Space Mono", monospace; font-size: 0.65rem; color: var(--blush); }
+    .bar .star {
+      cursor: pointer; border: 2.5px solid var(--paper); background: transparent; color: var(--paper);
+      font-size: 1rem; padding: 0.35rem 0.6rem;
+    }
+    .bar .star.on { background: var(--crimson); border-color: var(--crimson); }
+
+    .sheet { max-width: 980px; margin: 0 auto; padding: 2rem 3vw 6rem; }
+
+    .meta {
+      background: var(--paper); border: 4px solid var(--ink); box-shadow: 8px 8px 0 var(--ink);
+      padding: 1.2rem; margin-bottom: 2rem;
+    }
+    .meta h1 { font-size: clamp(1.6rem, 4vw, 2.4rem); margin-bottom: 1rem; }
+    .meta h1 em { font-style: normal; color: var(--crimson); }
+    .grid2 { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+    .grid2 > * { flex: 1 1 9rem; min-width: 0; }
+
+    label { display: block; font-family: "Space Mono", monospace; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-2); margin: 0.5rem 0 0.2rem; }
+    input, textarea, select {
+      width: 100%; font-family: "Inter", sans-serif; font-size: 0.92rem; font-weight: 500;
+      padding: 0.55rem 0.65rem; border: 2.5px solid var(--ink); border-radius: 0;
+      background: #fff; color: var(--maroon);
+    }
+    textarea { resize: vertical; line-height: 1.55; }
+    input:focus, textarea:focus, select:focus { outline: 3px solid var(--coral); outline-offset: 1px; }
+    .mono { font-family: "Space Mono", monospace; font-size: 0.72rem; }
+
+    /* ---------- how-to ---------- */
+    .howto { border: 4px dashed var(--ink); background: var(--blush); padding: 1.1rem 1.2rem; margin-bottom: 2rem; }
+    .howto summary { font-family: "Archivo Black", sans-serif; text-transform: uppercase; cursor: pointer; font-size: 1.05rem; }
+    .howto .body { margin-top: 1rem; font-size: 0.86rem; font-weight: 500; color: var(--maroon); }
+    .howto h4 { font-family: "Space Mono", monospace; font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; margin: 1rem 0 0.35rem; color: var(--crimson); }
+    .howto ul { margin: 0 0 0 1.1rem; }
+    .howto li { margin-bottom: 0.3rem; }
+    .howto code { background: var(--paper); border: 1.5px solid var(--ink); padding: 0 0.25rem; font-size: 0.8em; }
+    .diagram { display: flex; gap: 0.4rem; margin: 0.5rem 0 0.2rem; }
+    .diagram i {
+      height: 30px; border: 2.5px solid var(--ink); background: var(--rose);
+      font-family: "Space Mono", monospace; font-style: normal; font-size: 0.55rem;
+      display: grid; place-items: center;
+    }
+    .diagram i.txt { background: var(--paper); }
+
+    /* ---------- blocks ---------- */
+    .blk {
+      background: var(--paper); border: 4px solid var(--ink); box-shadow: 6px 6px 0 var(--ink);
+      padding: 1rem; margin-bottom: 1.2rem;
+    }
+    .blk-head { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.6rem; }
+    .blk-kind {
+      font-family: "Space Mono", monospace; font-size: 0.6rem; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      background: var(--ink); color: var(--paper); padding: 0.28rem 0.55rem;
+    }
+    .blk-head select { width: auto; font-size: 0.75rem; padding: 0.28rem 0.4rem; }
+    .blk-head .spacer { flex: 1; }
+    .mini {
+      font-family: "Space Mono", monospace; font-size: 0.62rem; font-weight: 700;
+      border: 2.5px solid var(--ink); background: var(--paper); color: var(--ink);
+      padding: 0.3rem 0.55rem; cursor: pointer;
+    }
+    .mini:hover { background: var(--blush); }
+    .mini.danger:hover { background: var(--crimson); color: #fff; }
+
+    .prev { margin-top: 0.6rem; border: 2.5px solid var(--ink); max-height: 220px; overflow: hidden; background: #fff; }
+    .prev img { width: 100%; display: block; }
+    .prev.bad { padding: 0.6rem; font-family: "Space Mono", monospace; font-size: 0.65rem; color: var(--crimson); }
+    .gridprev { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-top: 0.5rem; }
+    .gridprev img { width: 74px; height: 56px; object-fit: cover; border: 2.5px solid var(--ink); }
+    .paste {
+      border: 3px dashed var(--ink); background: #fff; padding: 0.55rem;
+      font-family: "Space Mono", monospace; font-size: 0.6rem; text-align: center;
+      cursor: pointer; color: var(--ink-2); margin-top: 0.4rem;
+    }
+    .paste:focus { outline: 3px solid var(--coral); color: var(--ink); background: var(--blush); }
+
+    .addbar {
+      position: sticky; bottom: 0; z-index: 50;
+      display: flex; gap: 0.5rem; flex-wrap: wrap; justify-content: center;
+      background: var(--ink); border: 4px solid var(--ink); padding: 0.7rem; margin-top: 2rem;
+    }
+    .addbar button {
+      font-family: "Space Mono", monospace; font-size: 0.68rem; font-weight: 700;
+      border: 3px solid var(--paper); background: var(--paper); color: var(--ink);
+      padding: 0.5rem 0.9rem; cursor: pointer;
+    }
+    .addbar button:hover { background: var(--coral); border-color: var(--coral); }
+    .empty-note { font-family: "Space Mono", monospace; font-size: 0.72rem; color: var(--ink-2); text-align: center; padding: 2rem; border: 3px dashed var(--ink); }
+  </style>
+</head>
+<body>
+
+<div class="bar">
+  <a class="back" href="admin.html">← Desk</a>
+  <span class="who" id="who">…</span>
+  <button class="star" id="star" title="Show on the home page">☆</button>
+  <span class="spacer"></span>
+  <span class="saved" id="saved"></span>
+  <button class="btn ghost" id="download" style="padding:.5rem .9rem;font-size:.7rem">↓ projects.json</button>
+</div>
+
+<div class="sheet">
+  <details class="howto">
+    <summary>How this page works ▾</summary>
+    <div class="body">
+      <p>Blocks stack down the project page in the order you put them here. Edits save to a
+        local draft as you type — <strong>they only go live once you download
+        <code>projects.json</code>, drop it into <code>site/data/</code>, and commit.</strong></p>
+
+      <h4>Text — the style picker</h4>
+      <ul>
+        <li><strong>Heading</strong> — big Archivo Black caps with a crimson underline. Use to break the page into sections.</li>
+        <li><strong>Lead</strong> — oversized statement type. Good for the opening line or a punchy pull-quote.</li>
+        <li><strong>Body</strong> — normal readable paragraph.</li>
+      </ul>
+
+      <h4>Image — the width picker</h4>
+      <ul>
+        <li><strong>1 / 3</strong> — sits centred at a third of the page width.</li>
+        <li><strong>1 / 2</strong> — half width.</li>
+        <li><strong>Full width</strong> — edge to edge. Best for banners and hero shots.</li>
+      </ul>
+      <div class="diagram">
+        <i style="flex:1">1/3</i><i class="txt" style="flex:2">empty</i>
+      </div>
+      <div class="diagram"><i style="flex:1">1/2</i><i class="txt" style="flex:1">empty</i></div>
+      <div class="diagram"><i style="flex:1">FULL WIDTH</i></div>
+
+      <h4>Image + text — text beside a picture</h4>
+      <p>Use an <strong>Image + text</strong> block. Pick how wide the image is
+        (<code>1/3</code> or <code>1/2</code>) and which side it sits on — the text fills the rest.</p>
+      <div class="diagram"><i style="flex:1">IMAGE</i><i class="txt" style="flex:2">text →</i></div>
+      <div class="diagram"><i class="txt" style="flex:2">← text</i><i style="flex:1">IMAGE</i></div>
+      <p style="margin-top:.5rem">On phones these stack automatically — image first, then text.</p>
+
+      <h4>Grid</h4>
+      <p>Several images side by side, one link per line. They wrap to fit.</p>
+
+      <h4>Images</h4>
+      <ul>
+        <li><strong>Paste a link</strong> (right-click an image on Behance → Copy image address). This is the easy path.</li>
+        <li><strong>Paste an image</strong> into the dashed box — it downloads the file and fills in the path. Move it to the folder shown, then commit it too.</li>
+      </ul>
+    </div>
+  </details>
+
+  <div class="meta">
+    <h1>Project <em>details</em></h1>
+    <label for="f-title">Title</label>
+    <input id="f-title" data-k="title" />
+    <div class="grid2">
+      <div><label for="f-category">Category</label><input id="f-category" data-k="category" placeholder="Brand Identity…" /></div>
+      <div><label for="f-year">Year</label><input id="f-year" data-k="year" /></div>
+      <div><label for="f-id">ID (url slug)</label><input id="f-id" class="mono" data-k="id" /></div>
+    </div>
+    <label for="f-description">Description — shown on the card</label>
+    <textarea id="f-description" data-k="description" rows="2"></textarea>
+    <div class="grid2">
+      <div><label for="f-image">Cover image</label><input id="f-image" class="mono" data-k="image" /></div>
+      <div><label for="f-behance">Behance link (shown at the foot of the page)</label><input id="f-behance" class="mono" data-k="behance" /></div>
+    </div>
+  </div>
+
+  <div id="blocks"></div>
+
+  <div class="addbar">
+    <button data-add="text">+ Text</button>
+    <button data-add="image">+ Image</button>
+    <button data-add="split">+ Image + text</button>
+    <button data-add="grid">+ Grid</button>
+    <button data-add="preview" style="background:var(--crimson);border-color:var(--crimson);color:#fff">👁 Preview page</button>
+  </div>
+</div>
+
+<script src="js/desk.js"></script>
+<script>
+let projects = [];
+let p = null;
+let saveTimer = null;
+
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const id = new URLSearchParams(location.search).get("id");
+
+function touch() {
+  clearTimeout(saveTimer);
+  $("saved").textContent = "saving…";
+  saveTimer = setTimeout(() => {
+    deskSave(projects);
+    $("saved").textContent = "draft saved · not published";
+  }, 250);
+}
+
+const sel = (name, opts, cur, bi) =>
+  `<select data-bk="${name}" data-bi="${bi}">${opts
+    .map(([v, l]) => `<option value="${v}" ${cur === v ? "selected" : ""}>${l}</option>`)
+    .join("")}</select>`;
+
+function head(kind, chooser, bi) {
+  return `<div class="blk-head">
+    <span class="blk-kind">${kind}</span>${chooser}
+    <span class="spacer"></span>
+    <button class="mini" data-b="up" data-bi="${bi}">▲</button>
+    <button class="mini" data-b="down" data-bi="${bi}">▼</button>
+    <button class="mini danger" data-b="del" data-bi="${bi}">✕ delete</button>
+  </div>`;
+}
+
+const pasteZone = (bi) =>
+  `<div class="paste" tabindex="0" data-paste data-bi="${bi}">click here, then paste an image (Ctrl+V)</div>`;
+
+const imgPreview = (src) =>
+  src
+    ? `<div class="prev"><img src="${esc(src)}" alt="" onerror="this.parentNode.className='prev bad';this.parentNode.textContent='That image did not load — check the link.'"></div>`
+    : "";
+
+function blockHTML(b, bi) {
+  if (b.type === "text") {
+    return `<div class="blk">${head("Text", sel("style", TEXT_STYLES, b.style || "body", bi), bi)}
+      <textarea data-bk="text" data-bi="${bi}" rows="3" placeholder="Write about this part of the project…">${esc(b.text)}</textarea></div>`;
+  }
+  if (b.type === "image") {
+    return `<div class="blk">${head("Image", sel("width", IMG_WIDTHS, b.width || "full", bi), bi)}
+      <label>Image link or path</label>
+      <input class="mono" data-bk="image" data-bi="${bi}" value="${esc(b.image)}" placeholder="https://mir-s3-cdn-cf.behance.net/…  or  assets/projects/…" />
+      ${pasteZone(bi)}
+      <label>Caption (optional)</label>
+      <input data-bk="caption" data-bi="${bi}" value="${esc(b.caption)}" />
+      ${imgPreview(b.image)}</div>`;
+  }
+  if (b.type === "split") {
+    const widths = IMG_WIDTHS.filter(([v]) => v !== "full"); // full makes no sense beside text
+    return `<div class="blk">${head(
+      "Image + text",
+      sel("width", widths, b.width || "half", bi) + sel("side", SPLIT_SIDES, b.side || "left", bi) + sel("style", TEXT_STYLES, b.style || "body", bi),
+      bi
+    )}
+      <label>Image link or path</label>
+      <input class="mono" data-bk="image" data-bi="${bi}" value="${esc(b.image)}" />
+      ${pasteZone(bi)}
+      <label>Text beside the image</label>
+      <textarea data-bk="text" data-bi="${bi}" rows="3"></textarea>
+      <label>Caption (optional)</label>
+      <input data-bk="caption" data-bi="${bi}" value="${esc(b.caption)}" />
+      ${imgPreview(b.image)}</div>`;
+  }
+  if (b.type === "grid") {
+    const list = (b.images || []).filter(Boolean);
+    return `<div class="blk">${head("Grid", "", bi)}
+      <label>One image link per line</label>
+      <textarea class="mono" data-bk="images" data-bi="${bi}" rows="3" placeholder="https://…&#10;https://…"></textarea>
+      <div class="gridprev">${list.map((s) => `<img src="${esc(s)}" alt="" onerror="this.style.opacity=.25">`).join("")}</div></div>`;
+  }
+  return "";
+}
+
+function render() {
+  $("who").textContent = p.title || "Untitled";
+  $("star").classList.toggle("on", !!p.featured);
+  $("star").textContent = p.featured ? "★" : "☆";
+
+  const blocks = p.blocks || [];
+  $("blocks").innerHTML = blocks.length
+    ? blocks.map(blockHTML).join("")
+    : `<div class="empty-note">No blocks yet — add one below.<br>This page currently shows just the cover and description.</div>`;
+
+  // textareas get their value set via JS so newlines survive
+  blocks.forEach((b, bi) => {
+    const t = document.querySelector(`textarea[data-bk="text"][data-bi="${bi}"]`);
+    if (t) t.value = b.text || "";
+    const g = document.querySelector(`textarea[data-bk="images"][data-bi="${bi}"]`);
+    if (g) g.value = (b.images || []).join("\n");
+  });
+}
+
+function fillMeta() {
+  document.querySelectorAll(".meta [data-k]").forEach((el) => (el.value = p[el.dataset.k] ?? ""));
+}
+
+/* ---------- edits ---------- */
+document.querySelector(".meta").addEventListener("input", (e) => {
+  const k = e.target.dataset.k;
+  if (!k) return;
+  const v = e.target.value.trim();
+  if (v === "") delete p[k];
+  else p[k] = v;
+  if (k === "title") $("who").textContent = v || "Untitled";
+  touch();
+});
+
+$("blocks").addEventListener("input", (e) => {
+  const t = e.target;
+  if (!t.dataset.bk) return;
+  const b = p.blocks[+t.dataset.bi];
+  if (t.dataset.bk === "images") b.images = t.value.split("\n").map((s) => s.trim()).filter(Boolean);
+  else b[t.dataset.bk] = t.value;
+  touch();
+});
+
+$("blocks").addEventListener("change", (e) => {
+  const t = e.target;
+  if (!t.dataset.bk) return;
+  if (t.tagName === "SELECT") {
+    p.blocks[+t.dataset.bi][t.dataset.bk] = t.value;
+    touch(); return render();
+  }
+  if (t.dataset.bk === "image" || t.dataset.bk === "images") render(); // refresh preview
+});
+
+$("blocks").addEventListener("click", (e) => {
+  const t = e.target.closest("[data-b]");
+  if (!t) return;
+  const arr = p.blocks;
+  const bi = +t.dataset.bi;
+  if (t.dataset.b === "up" && bi > 0) [arr[bi - 1], arr[bi]] = [arr[bi], arr[bi - 1]];
+  if (t.dataset.b === "down" && bi < arr.length - 1) [arr[bi + 1], arr[bi]] = [arr[bi], arr[bi + 1]];
+  if (t.dataset.b === "del") arr.splice(bi, 1);
+  touch(); render();
+});
+
+/* paste an image — see admin.html for why this downloads instead of embedding */
+$("blocks").addEventListener("paste", (e) => {
+  const zone = e.target.closest("[data-paste]");
+  if (!zone) return;
+  const bi = +zone.dataset.bi;
+  const item = [...(e.clipboardData?.items || [])].find((x) => x.type.startsWith("image/"));
+
+  if (!item) {
+    const text = e.clipboardData.getData("text").trim();
+    if (!/^https?:\/\/|^assets\//.test(text)) return;
+    e.preventDefault();
+    p.blocks[bi].image = text;
+    touch(); return render();
+  }
+
+  e.preventDefault();
+  const file = item.getAsFile();
+  const ext = (file.type.split("/")[1] || "png").replace("jpeg", "jpg");
+  const name = `${p.id}-${bi + 1}.${ext}`;
+  const path = `assets/projects/${p.id}/${name}`;
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(file);
+  a.download = name;
+  a.click();
+  URL.revokeObjectURL(a.href);
+  p.blocks[bi].image = path;
+  touch(); render();
+  alert(`Saved "${name}" to your Downloads.\n\nMove it to:\n  site/${path}\n\nThen commit it alongside projects.json.`);
+});
+
+/* ---------- toolbar ---------- */
+document.querySelector(".addbar").addEventListener("click", (e) => {
+  const t = e.target.closest("[data-add]");
+  if (!t) return;
+  if (t.dataset.add === "preview") {
+    deskSave(projects);
+    // &preview=1 makes project.html read the draft instead of the published file
+    return window.open(`project.html?id=${encodeURIComponent(p.id)}&preview=1`, "_blank");
+  }
+  p.blocks = p.blocks || [];
+  p.blocks.push(newBlock(t.dataset.add));
+  touch(); render();
+  window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+});
+
+$("star").addEventListener("click", () => { p.featured = !p.featured; touch(); render(); });
+$("download").addEventListener("click", () => { deskSave(projects); deskDownload(projects); });
+
+/* ---------- boot ---------- */
+deskLoad().then((d) => {
+  projects = d;
+  p = projects.find((x) => x.id === id);
+  if (!p) {
+    document.querySelector(".sheet").innerHTML =
+      `<div class="empty-note">No project with id "<b>${esc(id)}</b>".<br><br><a class="btn ghost" href="admin.html">← Back to the desk</a></div>`;
+    document.querySelector(".addbar").remove();
+    return;
+  }
+  document.title = `Editing ${p.title} · Crescent Butterfly`;
+  fillMeta();
+  render();
+  $("saved").textContent = deskHasDraft() ? "draft loaded · not published" : "";
+});
+</script>
+</body>
+</html>

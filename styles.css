@@ -587,6 +587,7 @@ footer.site a:hover { text-decoration: underline; }
 }
 .project-body .prose:nth-of-type(odd) { align-self: flex-start; }
 .project-body .prose:nth-of-type(even) { align-self: flex-end; }
+/* ---------- image blocks ---------- */
 .pfig {
   border: 4px solid var(--ink);
   box-shadow: 10px 10px 0 var(--ink);
@@ -595,9 +596,58 @@ footer.site a:hover { text-decoration: underline; }
   background: var(--paper);
   overflow: hidden;
 }
-.pfig.wide { max-width: 100%; align-self: stretch; }
 .pfig img { width: 100%; display: block; }
-.pgallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+/* how wide the image sits in its block — set per-block in project-edit.html */
+.pfig.full, .pfig.wide { max-width: 100%; width: 100%; align-self: stretch; }  /* .wide = legacy alias */
+.pfig.half   { max-width: 50%;  width: 50%;  align-self: center; }
+.pfig.third  { max-width: 33.333%; width: 33.333%; align-self: center; }
+.pfig.narrow { max-width: 38rem; align-self: center; }                          /* legacy */
+/* fills whatever cell it's dropped into (split + grid) */
+.pfig.fill { max-width: 100%; width: 100%; align-self: stretch; box-shadow: 6px 6px 0 var(--ink); }
+
+/* ---------- image beside text ---------- */
+.psplit { display: grid; gap: clamp(1.4rem, 3vw, 2.6rem); align-items: center; align-self: stretch; width: 100%; }
+.psplit.w-third { grid-template-columns: 1fr 2fr; }   /* image takes a third */
+.psplit.w-half  { grid-template-columns: 1fr 1fr; }
+.psplit.w-full  { grid-template-columns: 1fr; }
+/* Flip the image to the right. The track sizes are positional, so they have to
+   swap too — otherwise `order` drops the image into the wide column and a
+   "1/3 image" renders two-thirds wide. */
+.psplit.img-right .psplit-media { order: 2; }
+.psplit.w-third.img-right { grid-template-columns: 2fr 1fr; }
+.psplit .psplit-text .prose { max-width: none; align-self: auto; }
+.psplit .psplit-text .pblock-head { align-self: auto; max-width: none; }
+/* on a phone a 1/3 image beside text is unreadable — stack everything */
+@media (max-width: 780px) {
+  .psplit.w-third, .psplit.w-half { grid-template-columns: 1fr; }
+  .psplit.img-right .psplit-media { order: 0; }
+  .pfig.half, .pfig.third { max-width: 100%; width: 100%; }
+}
+.pfig figcaption {
+  font-family: "Space Mono", ui-monospace, monospace;
+  font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 700;
+  color: var(--ink); background: var(--blush);
+  border-top: 4px solid var(--ink); padding: 0.6rem 0.8rem;
+}
+.pgallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.6rem; align-self: stretch; }
+
+.behance-link {
+  align-self: flex-start;
+  font-family: "Space Mono", ui-monospace, monospace;
+  font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--ink); text-decoration: none;
+  border: 3px solid var(--ink); background: var(--blush);
+  padding: 0.7rem 1.1rem; box-shadow: 4px 4px 0 var(--ink);
+  transition: transform 0.12s var(--ease), box-shadow 0.12s var(--ease);
+}
+.behance-link:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--ink); }
+
+/* a heading between blocks */
+.pblock-head {
+  font-size: clamp(1.6rem, 4vw, 2.6rem);
+  max-width: 24ch; align-self: flex-start;
+  border-bottom: 8px solid var(--crimson); padding-bottom: 0.3rem;
+}
 .project-next {
   text-align: center; margin-top: 5rem; padding: 3.5rem 2rem;
   background: var(--blush); border: 4px solid var(--ink); box-shadow: 10px 10px 0 var(--ink);

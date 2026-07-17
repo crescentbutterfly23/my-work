@@ -49,8 +49,19 @@
 <script src="shared.js"></script>
 <script>
 (async () => {
-  const id = new URLSearchParams(location.search).get("id");
-  const projects = await loadProjects();
+  const params = new URLSearchParams(location.search);
+  const id = params.get("id");
+
+  // ?preview=1 comes from project-edit.html — render the unpublished draft
+  // so you can see block changes before committing them.
+  let projects = null;
+  if (params.has("preview")) {
+    try {
+      const draft = JSON.parse(localStorage.getItem("cb-desk-draft"));
+      if (Array.isArray(draft)) projects = draft;
+    } catch { /* no usable draft — fall back to the published file */ }
+  }
+  if (!projects) projects = await loadProjects();
   const idx = Math.max(0, projects.findIndex((x) => x.id === id));
   const p = projects[idx];
   if (!p) {
@@ -86,23 +97,80 @@
 
   // storytelling flow: cover first, then the presentation blocks in order
   const body = document.getElementById("pBody");
-  const addFig = (src, wide) => {
+
+  // the cover is the LCP element: load it eagerly
+  if (p.image) {
+    const cover = document.createElement("figure");
+    cover.className = "pfig full reveal";
+    cover.innerHTML = `<img alt="" fetchpriority="high">`;
+    cover.querySelector("img").src = p.image;
+    cover.querySelector("img").alt = p.title;
+    body.appendChild(cover);
+  }
+
+  const figure = (src, width, caption) => {
     const f = document.createElement("figure");
-    f.className = "pfig reveal" + (wide ? " wide" : "");
-    // the cover is the LCP element: load it eagerly, lazy-load the rest
-    f.innerHTML = wide ? `<img alt="" fetchpriority="high">` : `<img loading="lazy" alt="">`;
-    f.querySelector("img").src = src;
-    f.querySelector("img").alt = p.title;
-    body.appendChild(f);
-  };
-  const addPara = (text, lead) => {
-    const el = document.createElement("p");
-    el.className = "prose reveal" + (lead ? " lead" : "");
-    el.textContent = text;
-    body.appendChild(el);
+    f.className = `pfig reveal ${width || "full"}`;
+    const img = document.createElement("img");
+    img.loading = "lazy";
+    img.src = src;
+    img.alt = caption || p.title;
+    f.appendChild(img);
+    if (caption) {
+      const c = document.createElement("figcaption");
+      c.textContent = caption;
+      f.appendChild(c);
+    }
+    return f;
   };
 
-  addFig(p.image, true);
+  const textEl = (style, text) => {
+    if (style === "heading") {
+      const h = document.createElement("h2");
+      h.className = "pblock-head reveal";
+      h.textContent = text;
+      return h;
+    }
+    const el = document.createElement("p");
+    el.className = "prose reveal" + (style === "lead" ? " lead" : "");
+    el.textContent = text;
+    return el;
+  };
+
+  // Blocks are authored in project-edit.html:
+  //   text  { style: heading|lead|body }
+  //   image { width: third|half|full, caption }
+  //   split { width: third|half, side: left|right }  — image beside text
+  //   grid  { images: [] }
+  function renderBlock(b) {
+    if (b.type === "text" && b.text) return textEl(b.style, b.text);
+
+    if (b.type === "image" && b.image) return figure(b.image, b.width || "full", b.caption);
+
+    if (b.type === "split" && (b.image || b.text)) {
+      const wrap = document.createElement("div");
+      wrap.className =
+        `psplit reveal w-${b.width || "half"}` + (b.side === "right" ? " img-right" : "");
+      if (b.image) {
+        const media = figure(b.image, "fill", b.caption);
+        media.classList.add("psplit-media");
+        wrap.appendChild(media);
+      }
+      const col = document.createElement("div");
+      col.className = "psplit-text";
+      if (b.text) col.appendChild(textEl(b.style, b.text));
+      wrap.appendChild(col);
+      return wrap;
+    }
+
+    if (b.type === "grid" && Array.isArray(b.images) && b.images.length) {
+      const g = document.createElement("div");
+      g.className = "pgallery reveal";
+      b.images.filter(Boolean).forEach((src) => g.appendChild(figure(src, "fill")));
+      return g;
+    }
+    return null;
+  }
 
   let blocks = p.blocks;
   if (!Array.isArray(blocks) || !blocks.length) {
@@ -111,15 +179,25 @@
     const gallery = [...(p.gallery || [])];
     blocks = [];
     paras.forEach((t, i) => {
-      blocks.push({ type: "text", text: t });
+      blocks.push({ type: "text", text: t, style: i === 0 ? "lead" : "body" });
       if (gallery.length && i < paras.length - 1) blocks.push({ type: "image", image: gallery.shift() });
     });
     gallery.forEach((g) => blocks.push({ type: "image", image: g }));
   }
-  let firstText = true;
-  for (const b of blocks) {
-    if (b.type === "text") { addPara(b.text, firstText); firstText = false; }
-    else if (b.type === "image") addFig(b.image, false);
+  blocks.forEach((b) => {
+    const el = renderBlock(b);
+    if (el) body.appendChild(el);
+  });
+
+  // the full case study still lives on Behance — offer it, don't force it
+  if (p.behance) {
+    const a = document.createElement("a");
+    a.className = "behance-link reveal";
+    a.href = p.behance;
+    a.target = "_blank";
+    a.rel = "noopener";
+    a.textContent = "See the full case study on Behance ↗";
+    body.appendChild(a);
   }
 
   // previous / next story

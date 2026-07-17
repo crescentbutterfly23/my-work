@@ -141,14 +141,8 @@ function renderCards(grid, projects) {
   projects.forEach((p, i) => {
     const card = document.createElement("a");
     card.className = "card reveal";
-    // projects with a `url` live on Behance — send people there;
-    // everything else opens the internal case-study page
-    const external = Boolean(p.url);
-    card.href = external ? p.url : `project.html?id=${encodeURIComponent(p.id)}`;
-    if (external) {
-      card.target = "_blank";
-      card.rel = "noopener";
-    }
+    // every card opens the on-site project page — never links out
+    card.href = `project.html?id=${encodeURIComponent(p.id)}`;
     card.style.setProperty("--d", `${(i % 3) * 0.06}s`);
     card.innerHTML = `
       <div class="thumb"><img ${i === 0 ? 'fetchpriority="high"' : 'loading="lazy"'} alt=""></div>
@@ -156,7 +150,7 @@ function renderCards(grid, projects) {
         <span class="cat"></span>
         <h3></h3>
         <p></p>
-        <span class="read">${external ? "View on Behance ↗" : "Read the story →"}</span>
+        <span class="read">See the project →</span>
       </div>`;
     const img = card.querySelector("img");
     img.src = p.image;

@@ -11,18 +11,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Caveat:wght@600;700&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
   <style>
-    /* ---------- studio desk: same cut-paper language, workbench edition ---------- */
     .desk { max-width: 1180px; margin: 0 auto; padding: clamp(1.5rem, 4vw, 3rem) 4vw 6rem; }
-
     .desk-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.6rem; }
     .desk-head h1 { font-size: clamp(2.2rem, 6vw, 4rem); }
     .desk-head h1 em { font-style: normal; color: var(--crimson); }
+    .tagline { font-family: "Caveat", cursive; font-size: 1.15rem; color: var(--crimson); }
 
-    /* the "unsaved" strip — loud on purpose */
     .warn {
       border: 4px solid var(--ink); background: var(--blush);
-      box-shadow: 7px 7px 0 var(--ink);
-      padding: 1rem 1.2rem; margin-bottom: 2rem;
+      box-shadow: 7px 7px 0 var(--ink); padding: 1rem 1.2rem; margin-bottom: 2rem;
       transform: rotate(-0.6deg);
       font-family: "Space Mono", monospace; font-size: 0.8rem; font-weight: 700;
       display: flex; align-items: center; gap: 0.8rem; flex-wrap: wrap;
@@ -40,37 +37,45 @@
     }
     .tally b { color: var(--crimson); }
 
-    /* ---------- project rows ---------- */
     .rows { display: flex; flex-direction: column; gap: 1.8rem; }
     .prow {
-      display: grid; grid-template-columns: 132px 1fr auto; gap: 1.2rem;
+      display: grid; grid-template-columns: 132px 1fr auto; gap: 1.2rem; align-items: start;
       background: var(--paper); border: 4px solid var(--ink);
       box-shadow: 8px 8px 0 var(--ink); padding: 1.1rem;
-      align-items: start;
     }
-    .prow:nth-child(odd) { transform: rotate(-0.5deg); }
-    .prow:nth-child(even) { transform: rotate(0.5deg); }
+    .prow:nth-child(odd) { transform: rotate(-0.4deg); }
+    .prow:nth-child(even) { transform: rotate(0.4deg); }
     .prow.is-star { box-shadow: 8px 8px 0 var(--crimson); }
 
-    .prow .shot { border: 3px solid var(--ink); aspect-ratio: 4/3; overflow: hidden; background: var(--rose); }
-    .prow .shot img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .prow .shot.missing { display: grid; place-items: center; font-family: "Space Mono", monospace; font-size: 0.6rem; text-align: center; color: var(--ink); background: var(--blush); }
+    .shot { border: 3px solid var(--ink); aspect-ratio: 4/3; overflow: hidden; background: var(--rose); }
+    .shot img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .shot.missing { display: grid; place-items: center; font-family: "Space Mono", monospace; font-size: 0.6rem; text-align: center; color: var(--ink); background: var(--blush); }
 
     .fields { display: flex; flex-direction: column; gap: 0.55rem; min-width: 0; }
     .fields .line { display: flex; gap: 0.55rem; flex-wrap: wrap; }
     .fields .line > * { flex: 1 1 8rem; min-width: 0; }
 
     .desk label { display: block; font-family: "Space Mono", monospace; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-2); margin-bottom: 0.2rem; }
-    .desk input, .desk textarea, .desk select {
+    .desk input, .desk textarea {
       width: 100%; font-family: "Inter", sans-serif; font-size: 0.9rem; font-weight: 500;
       padding: 0.5rem 0.6rem; border: 2.5px solid var(--ink); border-radius: 0;
       background: #fff; color: var(--maroon);
     }
     .desk textarea { resize: vertical; line-height: 1.5; }
     .desk input:focus, .desk textarea:focus { outline: 3px solid var(--coral); outline-offset: 1px; }
-    .desk .ext { font-family: "Space Mono", monospace; font-size: 0.7rem; }
 
-    /* ---------- the star ---------- */
+    .editlink {
+      display: inline-flex; align-items: center; gap: 0.5rem; align-self: flex-start;
+      margin-top: 0.3rem; text-decoration: none;
+      font-family: "Space Mono", monospace; font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      background: var(--ink); color: var(--paper); border: 3px solid var(--ink);
+      padding: 0.55rem 1rem; box-shadow: 4px 4px 0 var(--coral);
+      transition: transform 0.12s var(--ease), box-shadow 0.12s var(--ease), background 0.15s;
+    }
+    .editlink:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--coral); background: var(--crimson); border-color: var(--crimson); }
+    .editlink .n { background: var(--coral); color: var(--ink); padding: 0 0.35rem; }
+
     .side { display: flex; flex-direction: column; gap: 0.5rem; align-items: center; }
     .star {
       font-size: 1.6rem; line-height: 1; cursor: pointer;
@@ -81,8 +86,6 @@
     }
     .star:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 var(--ink); }
     .star.on { background: var(--crimson); color: #fff; transform: rotate(-6deg); }
-    .star.on:hover { transform: rotate(-6deg) translate(-2px,-2px); }
-
     .mini {
       font-family: "Space Mono", monospace; font-size: 0.6rem; font-weight: 700;
       border: 2.5px solid var(--ink); background: var(--paper); color: var(--ink);
@@ -91,13 +94,10 @@
     .mini:hover { background: var(--blush); }
     .mini.danger:hover { background: var(--crimson); color: #fff; }
 
-    .tagline { font-family: "Caveat", cursive; font-size: 1.15rem; color: var(--crimson); }
-
-    /* ---------- export drawer ---------- */
     .drawer { margin-top: 3rem; border: 4px dashed var(--ink); padding: 1.2rem; background: var(--paper-2); }
     .drawer h2 { font-size: 1.4rem; margin-bottom: 0.5rem; }
     .drawer p { font-size: 0.85rem; font-weight: 500; color: var(--ink-2); margin-bottom: 0.9rem; }
-    .drawer textarea { width: 100%; height: 240px; font-family: "Space Mono", monospace; font-size: 0.7rem; border: 3px solid var(--ink); padding: 0.7rem; background: #fff; }
+    .drawer textarea { width: 100%; height: 200px; font-family: "Space Mono", monospace; font-size: 0.7rem; border: 3px solid var(--ink); padding: 0.7rem; background: #fff; }
 
     @media (max-width: 760px) {
       .prow { grid-template-columns: 92px 1fr; }
@@ -127,13 +127,14 @@
 
   <div class="warn" id="warn">
     <span class="dot"></span>
-    <span id="warnText">Loaded. Nothing changed yet.</span>
+    <span id="warnText">Loaded from the published file.</span>
   </div>
 
   <div class="toolbar">
     <button class="btn hot" id="download">↓ Download projects.json</button>
     <button class="btn ghost" id="copy">Copy JSON</button>
     <button class="btn ghost" id="add">+ New project</button>
+    <button class="btn ghost" id="discard">Discard draft</button>
     <span class="tally"><b id="starCount">0</b> starred · <span id="totalCount">0</span> total</span>
   </div>
 
@@ -142,26 +143,24 @@
   <div class="drawer">
     <h2>The file</h2>
     <p>This is <code>data/projects.json</code>. Download it (or copy it), drop it into
-      <code>site/data/</code>, then commit and push — that's what publishes your changes.</p>
+      <code>site/data/</code>, then commit and push — that's the only thing that publishes changes.</p>
     <textarea id="preview" spellcheck="false" readonly></textarea>
   </div>
 </div>
 
+<script src="js/desk.js"></script>
 <script>
 let projects = [];
-let dirty = false;
 
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
-function markDirty(on = true) {
-  dirty = on;
-  $("warn").classList.toggle("dirty", on);
-  $("warnText").textContent = on
-    ? "UNSAVED — download projects.json and commit it, or these edits vanish on refresh."
-    : "Loaded. Nothing changed yet.";
+function touch() {
+  deskSave(projects);
+  $("warn").classList.add("dirty");
+  $("warnText").textContent = "UNSAVED DRAFT — download projects.json and commit it to publish.";
+  tally();
 }
-
 function tally() {
   $("starCount").textContent = projects.filter((p) => p.featured).length;
   $("totalCount").textContent = projects.length;
@@ -170,38 +169,35 @@ function tally() {
 
 function render() {
   $("rows").innerHTML = projects
-    .map((p, i) => `
+    .map((p, i) => {
+      const n = (p.blocks || []).length;
+      return `
       <div class="prow ${p.featured ? "is-star" : ""}" data-i="${i}">
         <div class="shot ${p.image ? "" : "missing"}">
           ${p.image ? `<img src="${esc(p.image)}" alt="" onerror="this.parentNode.classList.add('missing');this.remove()">` : "NO IMAGE"}
         </div>
-
         <div class="fields">
           <div><label>Title</label><input data-k="title" value="${esc(p.title)}" /></div>
           <div class="line">
             <div><label>Category</label><input data-k="category" value="${esc(p.category)}" placeholder="Brand Identity…" /></div>
             <div><label>Year</label><input data-k="year" value="${esc(p.year)}" /></div>
-            <div><label>ID (url slug)</label><input data-k="id" value="${esc(p.id)}" /></div>
           </div>
-          <div><label>Description — shown on the card</label><textarea data-k="description" rows="2">${esc(p.description)}</textarea></div>
-          <div class="line">
-            <div><label>Image path</label><input class="ext" data-k="image" value="${esc(p.image)}" /></div>
-            <div><label>Behance link — leave blank for an on-site story page</label><input class="ext" data-k="url" value="${esc(p.url)}" /></div>
-          </div>
+          <a class="editlink" href="project-edit.html?id=${encodeURIComponent(p.id)}">
+            ✎ Edit project page <span class="n">${n} block${n === 1 ? "" : "s"}</span>
+          </a>
         </div>
-
         <div class="side">
           <button class="star ${p.featured ? "on" : ""}" data-act="star" title="Show on the home page">${p.featured ? "★" : "☆"}</button>
-          <button class="mini" data-act="up" title="Move up">▲</button>
-          <button class="mini" data-act="down" title="Move down">▼</button>
-          <button class="mini danger" data-act="del" title="Delete">DEL</button>
+          <button class="mini" data-act="up">▲</button>
+          <button class="mini" data-act="down">▼</button>
+          <button class="mini danger" data-act="del">DEL</button>
         </div>
-      </div>`)
+      </div>`;
+    })
     .join("");
   tally();
 }
 
-// edits
 $("rows").addEventListener("input", (e) => {
   const k = e.target.dataset.k;
   if (!k) return;
@@ -209,17 +205,14 @@ $("rows").addEventListener("input", (e) => {
   const v = e.target.value.trim();
   if (v === "") delete projects[i][k];
   else projects[i][k] = v;
-  markDirty();
-  tally();
+  touch();
 });
 
-// star / reorder / delete
 $("rows").addEventListener("click", (e) => {
-  const btn = e.target.closest("[data-act]");
-  if (!btn) return;
-  const i = +btn.closest(".prow").dataset.i;
-  const act = btn.dataset.act;
-
+  const t = e.target.closest("[data-act]");
+  if (!t) return;
+  const i = +t.closest(".prow").dataset.i;
+  const act = t.dataset.act;
   if (act === "star") projects[i].featured = !projects[i].featured;
   if (act === "up" && i > 0) [projects[i - 1], projects[i]] = [projects[i], projects[i - 1]];
   if (act === "down" && i < projects.length - 1) [projects[i + 1], projects[i]] = [projects[i], projects[i + 1]];
@@ -227,51 +220,39 @@ $("rows").addEventListener("click", (e) => {
     if (!confirm(`Delete "${projects[i].title}"? This only changes the file you export.`)) return;
     projects.splice(i, 1);
   }
-  markDirty();
-  render();
+  touch(); render();
 });
 
 $("add").addEventListener("click", () => {
   projects.unshift({
     id: "new-project-" + Date.now().toString(36),
     title: "Untitled project",
-    category: "",
-    year: String(new Date().getFullYear()),
-    featured: false,
-    description: "",
-    image: "",
-    url: "",
+    category: "", year: String(new Date().getFullYear()),
+    featured: false, description: "", image: "", blocks: [],
   });
-  markDirty();
-  render();
+  touch(); render();
 });
-
-$("download").addEventListener("click", () => {
-  const blob = new Blob([JSON.stringify(projects, null, 2)], { type: "application/json" });
-  const a = document.createElement("a");
-  a.href = URL.createObjectURL(blob);
-  a.download = "projects.json";
-  a.click();
-  URL.revokeObjectURL(a.href);
-  markDirty(false);
-});
-
+$("download").addEventListener("click", () => deskDownload(projects));
 $("copy").addEventListener("click", async () => {
   await navigator.clipboard.writeText(JSON.stringify(projects, null, 2));
   $("copy").textContent = "Copied!";
   setTimeout(() => ($("copy").textContent = "Copy JSON"), 1400);
 });
+$("discard").addEventListener("click", async () => {
+  if (!deskHasDraft()) return alert("There's no draft — you're looking at the published file.");
+  if (!confirm("Throw away every unpublished edit and reload the committed file?")) return;
+  deskDiscard();
+  location.reload();
+});
 
-// don't lose work to a stray refresh
-addEventListener("beforeunload", (e) => { if (dirty) e.preventDefault(); });
-
-// every project in data/projects.json shows up here
-fetch("data/projects.json", { cache: "no-store" })
-  .then((r) => r.json())
-  .then((d) => { projects = d; render(); })
-  .catch(() => {
-    $("warnText").textContent = "Couldn't read data/projects.json — are you running a local server?";
-  });
+deskLoad().then((d) => {
+  projects = d;
+  render();
+  if (deskHasDraft()) {
+    $("warn").classList.add("dirty");
+    $("warnText").textContent = "UNSAVED DRAFT — download projects.json and commit it to publish.";
+  }
+});
 </script>
 </body>
 </html>

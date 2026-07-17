@@ -29,29 +29,25 @@ python -m http.server 8000
 ## Structure
 
 ```
-index.html          home  (the "cut paper" zine theme — current default)
+index.html          home
 work.html           project index + category filters
 services.html       services + process
 start.html          the guided project brief
 project.html        case-study page  (project.html?id=…)
+
+admin.html          the studio desk — every project, star, reorder
+project-edit.html   focused editor for one project's page blocks
+js/desk.js          shared draft store for those two
+
 styles.css          the whole design system
 shared.js           icon sprite, reveals, sketch animation, project loading
 data/projects.json  every project on the site
-assets/             logo, illustrations, project images
+assets/             logo + project images
 ```
 
-### Theme variants
-
-Two alternate directions live alongside the default while a final look is chosen:
-
-| files | direction |
-|---|---|
-| `index.html`, `work.html`, `services.html`, `start.html`, `project.html` | **Cut-paper zine** (default) |
-| `*-editorial.html` + `css/editorial.css` | Editorial / Fraunces serif |
-| `*-corporate.html` + `css/corporate.css` | Corporate / Space Grotesk |
-
-Once a direction is picked, the winner should be promoted to the canonical
-filenames and the other two sets deleted.
+The look is the **cut-paper zine** theme. Two alternate directions (editorial /
+corporate) were explored and live in the working folder outside this repo —
+they're deliberately not deployed.
 
 ## Projects
 
