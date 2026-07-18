@@ -9,10 +9,29 @@
     "behance": "https://www.behance.net/gallery/236139535/Artists-At-Work",
     "image": "assets/projects/behance/artists-at-work.jpg",
     "blocks": [
-      { "type": "text", "style": "lead", "text": "A portrait series photographing artists at work — three studies in light, stillness, and the moment a performance turns inward." },
-      { "type": "image", "width": "full", "image": "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200_webp/ebbf22236139535.68e5af973540b.jpg", "caption": "A Frozen Moment in Time" },
-      { "type": "image", "width": "full", "image": "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200_webp/56153d236139535.68e5af9734ab5.jpg", "caption": "Find Me After Midnight" },
-      { "type": "image", "width": "full", "image": "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200_webp/8327f5236139535.68e5af97340c7.jpg", "caption": "Control" }
+      {
+        "type": "text",
+        "style": "lead",
+        "text": "A portrait series photographing artists at work — three studies in light, stillness, and the moment a performance turns inward."
+      },
+      {
+        "type": "image",
+        "width": "full",
+        "image": "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200_webp/ebbf22236139535.68e5af973540b.jpg",
+        "caption": "A Frozen Moment in Time"
+      },
+      {
+        "type": "image",
+        "width": "full",
+        "image": "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200_webp/56153d236139535.68e5af9734ab5.jpg",
+        "caption": "Find Me After Midnight"
+      },
+      {
+        "type": "image",
+        "width": "full",
+        "image": "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200_webp/8327f5236139535.68e5af97340c7.jpg",
+        "caption": "Control"
+      }
     ]
   },
   {
@@ -25,13 +44,24 @@
     "behance": "https://www.behance.net/gallery/235288183/LunaFit-Fresh",
     "image": "assets/projects/behance/lunafit-fresh.png",
     "blocks": [
-      { "type": "text", "style": "lead", "text": "Brand and campaign design for LunaFit Fresh, carried from the logo system through print and in-store display." },
-      { "type": "image", "width": "full", "image": "https://mir-s3-cdn-cf.behance.net/project_modules/hd_webp/46feda235288183.68d402188ae20.png" },
-      { "type": "grid", "images": [
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/864580235288183.68d402188bcd1.png",
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/9319c1235288183.68d402188b53e.png",
-        "https://mir-s3-cdn-cf.behance.net/project_modules/hd_webp/d0297b235288183.68d402188a566.png"
-      ] }
+      {
+        "type": "text",
+        "style": "lead",
+        "text": "Brand and campaign design for LunaFit Fresh, carried from the logo system through print and in-store display."
+      },
+      {
+        "type": "image",
+        "width": "full",
+        "image": "https://mir-s3-cdn-cf.behance.net/project_modules/hd_webp/46feda235288183.68d402188ae20.png"
+      },
+      {
+        "type": "grid",
+        "images": [
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/864580235288183.68d402188bcd1.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/9319c1235288183.68d402188b53e.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/hd_webp/d0297b235288183.68d402188a566.png"
+        ]
+      }
     ]
   },
   {
@@ -44,9 +74,43 @@
     "behance": "https://www.behance.net/gallery/178266131/Sticker-Portraits",
     "image": "assets/projects/behance/sticker-portraits.png",
     "blocks": [
-      { "type": "text", "style": "lead", "text": "Send your picture, and you will get a personalized portrait in the form of a sticker." },
-      { "type": "text", "style": "body", "text": "The project was a way to sharpen my illustration and produce personalized artwork clients could reuse — as stickers, phone wallpapers, or t-shirt designs." },
-      { "type": "image", "width": "full", "image": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/e87443178266131.64e50a0099c70.png" }
+      {
+        "type": "text",
+        "style": "lead",
+        "text": "Send your picture, and you will get a personalized portrait in the form of a sticker."
+      },
+      {
+        "type": "text",
+        "style": "body",
+        "text": "The project was a way to sharpen my illustration and produce personalized artwork clients could reuse — as stickers, phone wallpapers, or t-shirt designs."
+      },
+      {
+        "type": "grid",
+        "images": [
+          "https://mir-s3-cdn-cf.behance.net/project_modules/disp/5c42e1178266131.64e8c70080de5.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/disp/bf3fdf178266131.64e8c700838f2.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/disp/c65146178266131.64e8c7007fe95.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/disp/632a33178266131.64e8c700828b0.png"
+        ]
+      },
+      {
+        "type": "grid",
+        "images": [
+          "https://mir-s3-cdn-cf.behance.net/project_modules/disp/53cc78178266131.64e8c70138cb2.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/disp/b1148f178266131.64e8c70137247.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/disp/a1f428178266131.64e8c70137f02.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/disp/ab592e178266131.64e8c701365d1.png"
+        ]
+      },
+      {
+        "type": "split",
+        "width": "half",
+        "side": "left",
+        "image": "https://mir-s3-cdn-cf.behance.net/project_modules/disp/c5a237178266131.64e8c70081b0d.png",
+        "text": "Love! \nLive! \nLove!",
+        "caption": "",
+        "style": "lead"
+      }
     ]
   },
   {
@@ -59,20 +123,35 @@
     "behance": "https://www.behance.net/gallery/177227881/Case-Study-Beautiful-Web-Spring-Wear",
     "image": "assets/projects/behance/spring-wear.png",
     "blocks": [
-      { "type": "text", "style": "lead", "text": "What if spiders ran a clothing store?" },
-      { "type": "text", "style": "body", "text": "Beautiful Webs is a women's boutique specializing in spring dresses made from soft, vibrant silks. The concept frames the shopping experience as discovering a field of flowers inside a forest. Brand identity, logo, and visual system built in Adobe Illustrator and Adobe Dimension." },
-      { "type": "image", "width": "full", "image": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/0d7fe4177227881.64e8ded183327.png" },
-      { "type": "grid", "images": [
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/a8ebe5177227881.64e8cd6fcf7e9.png",
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/ea03cb177227881.64e8ded181aec.png",
-        "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200_webp/5ac640177227881.64e8ded17fbb0.png",
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/a94298177227881.64e8ded183f6a.png",
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/8491b4177227881.64e8ded180b2e.png",
-        "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200_webp/f49563177227881.64d29530a4475.png",
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/28c198177227881.64e8ded184e2f.png",
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/c32a87177227881.64e8ded17ed20.png",
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/12eeda177227881.64e8ded182722.png"
-      ] }
+      {
+        "type": "text",
+        "style": "lead",
+        "text": "What if spiders ran a clothing store?"
+      },
+      {
+        "type": "text",
+        "style": "body",
+        "text": "Beautiful Webs is a women's boutique specializing in spring dresses made from soft, vibrant silks. The concept frames the shopping experience as discovering a field of flowers inside a forest. Brand identity, logo, and visual system built in Adobe Illustrator and Adobe Dimension."
+      },
+      {
+        "type": "image",
+        "width": "full",
+        "image": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/0d7fe4177227881.64e8ded183327.png"
+      },
+      {
+        "type": "grid",
+        "images": [
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/a8ebe5177227881.64e8cd6fcf7e9.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/ea03cb177227881.64e8ded181aec.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200_webp/5ac640177227881.64e8ded17fbb0.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/a94298177227881.64e8ded183f6a.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/8491b4177227881.64e8ded180b2e.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200_webp/f49563177227881.64d29530a4475.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/28c198177227881.64e8ded184e2f.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/c32a87177227881.64e8ded17ed20.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/12eeda177227881.64e8ded182722.png"
+        ]
+      }
     ]
   },
   {
@@ -85,14 +164,29 @@
     "behance": "https://www.behance.net/gallery/177227683/Case-Study-Butterfly-Garden-Candy-Shop",
     "image": "assets/projects/behance/butterfly-garden.png",
     "blocks": [
-      { "type": "text", "style": "lead", "text": "What if butterflies ran a candy store?" },
-      { "type": "text", "style": "body", "text": "The treats are shaped like flowers — butterflies love floral nectar — and the confections use natural ingredients from pesticide-free farms, safe for butterflies and customers alike. The logo balances elegance with play: \"Butterfly\" in an elegant script, \"garden\" and \"candy shop\" grounded in a legible, approachable font." },
-      { "type": "image", "width": "full", "image": "https://mir-s3-cdn-cf.behance.net/project_modules/max_632_webp/831dd7177227683.64de5aca250a3.png" },
-      { "type": "grid", "images": [
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/499e93177227683.64e8f4c90928a.png",
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/849951177227683.64e8f4c9083ef.png",
-        "https://mir-s3-cdn-cf.behance.net/project_modules/max_632_webp/8ff771177227683.64de5aca25c7c.png"
-      ] }
+      {
+        "type": "text",
+        "style": "lead",
+        "text": "What if butterflies ran a candy store?"
+      },
+      {
+        "type": "text",
+        "style": "body",
+        "text": "The treats are shaped like flowers — butterflies love floral nectar — and the confections use natural ingredients from pesticide-free farms, safe for butterflies and customers alike. The logo balances elegance with play: \"Butterfly\" in an elegant script, \"garden\" and \"candy shop\" grounded in a legible, approachable font."
+      },
+      {
+        "type": "image",
+        "width": "full",
+        "image": "https://mir-s3-cdn-cf.behance.net/project_modules/max_632_webp/831dd7177227683.64de5aca250a3.png"
+      },
+      {
+        "type": "grid",
+        "images": [
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/499e93177227683.64e8f4c90928a.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/849951177227683.64e8f4c9083ef.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/max_632_webp/8ff771177227683.64de5aca25c7c.png"
+        ]
+      }
     ]
   },
   {
@@ -105,16 +199,31 @@
     "behance": "https://www.behance.net/gallery/177227305/Case-Study-Castillo-Sampaguita",
     "image": "assets/projects/behance/castillo-sampaguita.jpg",
     "blocks": [
-      { "type": "text", "style": "lead", "text": "Castillo Sampaguita is a family Spanish-Philippine restaurant that promises to transport you back to the Philippines through its cuisine and its environment." },
-      { "type": "text", "style": "body", "text": "The identity draws on bringing Philippine nature to Valencia — capturing the flora and fauna, and the connection between Pampanga, Philippines and Valencia, Spain. Authentic island spices, a child-friendly menu with visual aids, Philippine staff, and artisanal décor all work to make diners feel at home on the islands." },
-      { "type": "image", "width": "full", "image": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/397687177227305.64e8cf6c918e2.png" },
-      { "type": "grid", "images": [
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/54cf11177227305.64e4edfd1de98.png",
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/75712d177227305.64e8edfe867f3.png",
-        "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200_webp/9d2220177227305.64e8edfe8575c.png",
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/23f32e177227305.64e8edfe882eb.png",
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/5259c7177227305.64e8edfe874b1.png"
-      ] }
+      {
+        "type": "text",
+        "style": "lead",
+        "text": "Castillo Sampaguita is a family Spanish-Philippine restaurant that promises to transport you back to the Philippines through its cuisine and its environment."
+      },
+      {
+        "type": "text",
+        "style": "body",
+        "text": "The identity draws on bringing Philippine nature to Valencia — capturing the flora and fauna, and the connection between Pampanga, Philippines and Valencia, Spain. Authentic island spices, a child-friendly menu with visual aids, Philippine staff, and artisanal décor all work to make diners feel at home on the islands."
+      },
+      {
+        "type": "image",
+        "width": "full",
+        "image": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/397687177227305.64e8cf6c918e2.png"
+      },
+      {
+        "type": "grid",
+        "images": [
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/54cf11177227305.64e4edfd1de98.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/75712d177227305.64e8edfe867f3.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200_webp/9d2220177227305.64e8edfe8575c.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/23f32e177227305.64e8edfe882eb.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/5259c7177227305.64e8edfe874b1.png"
+        ]
+      }
     ]
   },
   {
@@ -127,26 +236,41 @@
     "behance": "https://www.behance.net/gallery/177222527/Case-Study-Social-Cereal",
     "image": "assets/projects/behance/social-cereal.png",
     "blocks": [
-      { "type": "text", "style": "lead", "text": "Cereal Killer's is a cereal brand built on mystery and horror. This time we try something new — leaning cute, while keeping some of the darkness." },
-      { "type": "text", "style": "body", "text": "So I bring you Annette Sugar Webs and Sinnamon Blood Drops: two mascots and two boxes that hold whimsy and dread in the same spoonful." },
-      { "type": "image", "width": "full", "image": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/c3c3e3177222527.64e4f2dacbf3b.png" },
-      { "type": "grid", "images": [
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/d4e072177222527.64e4f2dacaf9e.png",
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/80804d177222527.64e4f2daca189.png",
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/8d4212177222527.64e4f2dac6755.png",
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/51efc3177222527.64e4f2dacccb2.png",
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/5e3b3a177222527.64e4f2dacdb90.png",
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/9f3519177222527.64e4f2dac93f4.png",
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/4157aa177222527.64e4f2dac3b27.png",
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/9c16c7177222527.64e4f2dac59da.png",
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/7ee9d7177222527.64e4f2dac1cc3.png",
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/715fc5177222527.64e4f2dac2d12.png",
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/62b467177222527.64e4f2dac845b.png",
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/78fd73177222527.64e4f2dac4a78.png",
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/eea4ba177222527.64e4f2dac0e8c.png",
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/4e037f177222527.64e4f2dac75e6.png",
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/a664e7177222527.64e4f2dabfecb.png"
-      ] }
+      {
+        "type": "text",
+        "style": "lead",
+        "text": "Cereal Killer's is a cereal brand built on mystery and horror. This time we try something new — leaning cute, while keeping some of the darkness."
+      },
+      {
+        "type": "text",
+        "style": "body",
+        "text": "So I bring you Annette Sugar Webs and Sinnamon Blood Drops: two mascots and two boxes that hold whimsy and dread in the same spoonful."
+      },
+      {
+        "type": "image",
+        "width": "full",
+        "image": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/c3c3e3177222527.64e4f2dacbf3b.png"
+      },
+      {
+        "type": "grid",
+        "images": [
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/d4e072177222527.64e4f2dacaf9e.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/80804d177222527.64e4f2daca189.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/8d4212177222527.64e4f2dac6755.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/51efc3177222527.64e4f2dacccb2.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/5e3b3a177222527.64e4f2dacdb90.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/9f3519177222527.64e4f2dac93f4.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/4157aa177222527.64e4f2dac3b27.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/9c16c7177222527.64e4f2dac59da.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/7ee9d7177222527.64e4f2dac1cc3.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/715fc5177222527.64e4f2dac2d12.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/62b467177222527.64e4f2dac845b.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/78fd73177222527.64e4f2dac4a78.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/eea4ba177222527.64e4f2dac0e8c.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/4e037f177222527.64e4f2dac75e6.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/a664e7177222527.64e4f2dabfecb.png"
+        ]
+      }
     ]
   },
   {
@@ -159,15 +283,30 @@
     "behance": "https://www.behance.net/gallery/177227493/Case-Study-House-Ghosts",
     "image": "assets/projects/behance/house-ghosts.png",
     "blocks": [
-      { "type": "text", "style": "lead", "text": "House Ghosts is a children's book about Amelia, a curious girl who discovers the mischievous yet protective ancestral spirits guarding her family's home." },
-      { "type": "text", "style": "body", "text": "When her family is away or asleep, the house ghosts keep the home safe from intruders. Amelia sets out to unravel her family's history, travelling through time with the spirited ancestors — facing challenges, solving puzzles, and confronting a dark force that threatens the house's legacy. A heartwarming adventure about family, heritage, and the enduring power of love and protection." },
-      { "type": "image", "width": "full", "image": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/e82666177227493.64d293d3809b3.png" },
-      { "type": "grid", "images": [
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/ae4466177227493.64e505c59f412.png",
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/f99092177227493.64d293d382601.png",
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/d78dea177227493.64d293d37fa08.png",
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/77b4da177227493.64d293d381747.png"
-      ] }
+      {
+        "type": "text",
+        "style": "lead",
+        "text": "House Ghosts is a children's book about Amelia, a curious girl who discovers the mischievous yet protective ancestral spirits guarding her family's home."
+      },
+      {
+        "type": "text",
+        "style": "body",
+        "text": "When her family is away or asleep, the house ghosts keep the home safe from intruders. Amelia sets out to unravel her family's history, travelling through time with the spirited ancestors — facing challenges, solving puzzles, and confronting a dark force that threatens the house's legacy. A heartwarming adventure about family, heritage, and the enduring power of love and protection."
+      },
+      {
+        "type": "image",
+        "width": "full",
+        "image": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/e82666177227493.64d293d3809b3.png"
+      },
+      {
+        "type": "grid",
+        "images": [
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/ae4466177227493.64e505c59f412.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/f99092177227493.64d293d382601.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/d78dea177227493.64d293d37fa08.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/77b4da177227493.64d293d381747.png"
+        ]
+      }
     ]
   },
   {
@@ -180,10 +319,28 @@
     "behance": "https://www.behance.net/gallery/177222763/Case-Study-Dance-Perfumes",
     "image": "assets/projects/behance/dance-perfumes.png",
     "blocks": [
-      { "type": "text", "style": "lead", "text": "Two dance-inspired fragrances, each translating a dance into an olfactory arc of top, heart, and base notes." },
-      { "type": "text", "style": "body", "text": "Flamenco Dancing Gypsy captures the passion and elegance of Flamenco — vibrant top notes for swift footwork, deep heart notes for the emotional storytelling, fiery base notes for the finale. Bolero Sensuous Step, inspired by the intimate Bolero duet, choreographs tender top notes, emotional heart notes, and lingering base notes into an enduring romantic bond." },
-      { "type": "image", "width": "full", "image": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/7a8ffa177222763.64d28430190f6.png", "caption": "Flamenco Dancing Gypsy" },
-      { "type": "image", "width": "full", "image": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/a5972c177222763.64d284301816f.png", "caption": "Bolero Sensuous Step" }
+      {
+        "type": "text",
+        "style": "lead",
+        "text": "Two dance-inspired fragrances, each translating a dance into an olfactory arc of top, heart, and base notes."
+      },
+      {
+        "type": "text",
+        "style": "body",
+        "text": "Flamenco Dancing Gypsy captures the passion and elegance of Flamenco — vibrant top notes for swift footwork, deep heart notes for the emotional storytelling, fiery base notes for the finale. Bolero Sensuous Step, inspired by the intimate Bolero duet, choreographs tender top notes, emotional heart notes, and lingering base notes into an enduring romantic bond."
+      },
+      {
+        "type": "image",
+        "width": "full",
+        "image": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/7a8ffa177222763.64d28430190f6.png",
+        "caption": "Flamenco Dancing Gypsy"
+      },
+      {
+        "type": "image",
+        "width": "full",
+        "image": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/a5972c177222763.64d284301816f.png",
+        "caption": "Bolero Sensuous Step"
+      }
     ]
   },
   {
@@ -196,14 +353,25 @@
     "behance": "https://www.behance.net/gallery/177226105/Case-Study-Jessica-Jung-Author-Website",
     "image": "assets/projects/behance/jessica-jung.jpg",
     "blocks": [
-      { "type": "text", "style": "lead", "text": "A website design for author Jessica Jung — a home for her books, her voice, and her readers." },
-      { "type": "image", "width": "full", "image": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/99518b177226105.64d29225d8d94.png" },
-      { "type": "grid", "images": [
-        "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200_webp/fadc7c177226105.64d29225d0393.png",
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/d75795177226105.64d29225da583.png",
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/8620b3177226105.64d29225d154f.png",
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/04f9e0177226105.64d29225d7583.png"
-      ] }
+      {
+        "type": "text",
+        "style": "lead",
+        "text": "A website design for author Jessica Jung — a home for her books, her voice, and her readers."
+      },
+      {
+        "type": "image",
+        "width": "full",
+        "image": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/99518b177226105.64d29225d8d94.png"
+      },
+      {
+        "type": "grid",
+        "images": [
+          "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200_webp/fadc7c177226105.64d29225d0393.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/d75795177226105.64d29225da583.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/8620b3177226105.64d29225d154f.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/04f9e0177226105.64d29225d7583.png"
+        ]
+      }
     ]
   },
   {
@@ -216,23 +384,38 @@
     "behance": "https://www.behance.net/gallery/177225427/Case-Study-XS-Energy-Drinks",
     "image": "assets/projects/behance/xs-energy.png",
     "blocks": [
-      { "type": "text", "style": "lead", "text": "An advertising and social campaign for XS Energy Drinks — a set of ads and social posts built to move fast and feel loud." },
-      { "type": "text", "style": "body", "text": "Designed across Adobe InDesign, XD, and Keynote." },
-      { "type": "image", "width": "full", "image": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/738ad3177225427.64d28d24c1246.png" },
-      { "type": "grid", "images": [
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/10a868177225427.64d28d24ccebe.png",
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/289ef1177225427.64d28d24cbd81.png",
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/2b70cd177225427.64d28d24cee65.png",
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/af2ecb177225427.64d28d24d1f08.png",
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/7acb50177225427.64d28d24cfc33.png",
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/9c3486177225427.64d28d24bf207.png",
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/4ef347177225427.64d28d24c526f.png",
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/e384e4177225427.64d28d24d9808.png",
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/6af66f177225427.64d28d24d53ff.png",
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/c324e6177225427.64d28d24d6ffe.png",
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/b6aee3177225427.64d28d24da8f5.png",
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/db356f177225427.64d28d24d7d4f.png"
-      ] }
+      {
+        "type": "text",
+        "style": "lead",
+        "text": "An advertising and social campaign for XS Energy Drinks — a set of ads and social posts built to move fast and feel loud."
+      },
+      {
+        "type": "text",
+        "style": "body",
+        "text": "Designed across Adobe InDesign, XD, and Keynote."
+      },
+      {
+        "type": "image",
+        "width": "full",
+        "image": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/738ad3177225427.64d28d24c1246.png"
+      },
+      {
+        "type": "grid",
+        "images": [
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/10a868177225427.64d28d24ccebe.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/289ef1177225427.64d28d24cbd81.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/2b70cd177225427.64d28d24cee65.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/af2ecb177225427.64d28d24d1f08.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/7acb50177225427.64d28d24cfc33.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/9c3486177225427.64d28d24bf207.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/4ef347177225427.64d28d24c526f.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/e384e4177225427.64d28d24d9808.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/6af66f177225427.64d28d24d53ff.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/c324e6177225427.64d28d24d6ffe.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/b6aee3177225427.64d28d24da8f5.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/db356f177225427.64d28d24d7d4f.png"
+        ]
+      }
     ]
   },
   {
@@ -245,18 +428,29 @@
     "behance": "https://www.behance.net/gallery/177223501/Case-Study-Couture-Queens-LA-Fashion-Festival",
     "image": "assets/projects/behance/couture-queens.png",
     "blocks": [
-      { "type": "text", "style": "lead", "text": "Branding, website, and app design for the Couture Queens L.A. Fashion Festival — one identity carried from logo to landing page to app." },
-      { "type": "image", "width": "full", "image": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/6b35b7177223501.64d286f51674e.png" },
-      { "type": "grid", "images": [
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/2692a7177223501.64d286f51ec83.png",
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/0b0993177223501.64d286f520269.png",
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/77bc9b177223501.64d286f51870d.png",
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/ba4993177223501.64d286f51b60a.png",
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/2f041d177223501.64d286f5195bf.png",
-        "https://mir-s3-cdn-cf.behance.net/project_modules/source/c46ec3177223501.64d286f51c2ba.gif",
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/d50bfd177223501.64d286f51a525.png",
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/6c116d177223501.64d286f5176f2.png"
-      ] }
+      {
+        "type": "text",
+        "style": "lead",
+        "text": "Branding, website, and app design for the Couture Queens L.A. Fashion Festival — one identity carried from logo to landing page to app."
+      },
+      {
+        "type": "image",
+        "width": "full",
+        "image": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/6b35b7177223501.64d286f51674e.png"
+      },
+      {
+        "type": "grid",
+        "images": [
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/2692a7177223501.64d286f51ec83.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/0b0993177223501.64d286f520269.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/77bc9b177223501.64d286f51870d.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/ba4993177223501.64d286f51b60a.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/2f041d177223501.64d286f5195bf.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/source/c46ec3177223501.64d286f51c2ba.gif",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/d50bfd177223501.64d286f51a525.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/6c116d177223501.64d286f5176f2.png"
+        ]
+      }
     ]
   }
 ]
