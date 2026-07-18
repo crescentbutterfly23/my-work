@@ -176,43 +176,52 @@ async function next() {
       msg.textContent = "I need a name and a working email to reply.";
       return;
     }
-    // Static host (GitHub Pages) — no backend. The brief is composed into an
-    // email the visitor sends from their own mail client.
+    // Static host (GitHub Pages) — no backend of our own, so the brief is
+    // POSTed to Formspree, which forwards it to the studio inbox by email.
+    // Create a free form at https://formspree.io, then replace the ID below
+    // (the part after "/f/") with your own form's ID.
+    const FORMSPREE_ID = "mgogkale";
     const STUDIO_EMAIL = "crescentbutterfly23@gmail.com";
-    const body = [
-      `Name:      ${answers.name}`,
-      `Email:     ${answers.email}`,
-      "",
-      `Services:  ${answers.services.join(", ") || "—"}`,
-      `Stage:     ${answers.stage || "—"}`,
-      `Timeline:  ${answers.timeline || "—"}`,
-      `Budget:    ${answers.budget || "—"}`,
-      "",
-      "The story:",
-      answers.message || "—",
-      "",
-      "— sent from crescentbutterfly.design",
-    ].join("\n");
-    const mailto =
-      `mailto:${STUDIO_EMAIL}` +
-      `?subject=${encodeURIComponent(`Project brief — ${answers.name}`)}` +
-      `&body=${encodeURIComponent(body)}`;
 
+    quiz.innerHTML = `<div class="qcard reveal in"><h2>Sending your brief…</h2><p class="sub">One moment.</p></div>`;
     progress.style.display = "none";
-    quiz.innerHTML = `
-      <div class="done-card reveal in">
-        <span class="icon done-icon"><svg class="ic"><use href="#ic-butterfly" /></svg></span>
-        <h2>One last tap.</h2>
-        <p>Thanks, ${answers.name.split(" ")[0]} — your brief is ready to go. Hit the button and it'll
-           open in your email, already filled in. Send it and it lands straight in my studio.</p>
-        <a class="btn" id="sendBrief" href="${mailto}">Send my brief</a>
-        <p class="qmsg" style="margin-top:1.4rem">
-          Email not opening? Copy it across to
-          <a href="mailto:${STUDIO_EMAIL}" style="color:inherit;text-decoration:underline">${STUDIO_EMAIL}</a>.
-        </p>
-        <p style="margin-top:1.4rem"><a class="btn ghost" href="work.html">Browse the work meanwhile</a></p>
-      </div>`;
-    document.getElementById("sendBrief").focus();
+
+    let ok = true;
+    try {
+      const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+        method: "POST",
+        headers: { Accept: "application/json", "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: answers.name,
+          email: answers.email,
+          services: answers.services.join(", ") || "—",
+          stage: answers.stage || "—",
+          timeline: answers.timeline || "—",
+          budget: answers.budget || "—",
+          message: answers.message || "—",
+          _subject: `Project brief — ${answers.name}`,
+          _gotcha: "", // honeypot: real visitors leave this empty; bots that fill it are silently dropped
+        }),
+      });
+      ok = res.ok;
+    } catch (e) {
+      ok = false;
+    }
+
+    quiz.innerHTML = ok
+      ? `<div class="done-card reveal in">
+          <span class="icon done-icon"><svg class="ic"><use href="#ic-butterfly" /></svg></span>
+          <h2>Sent.</h2>
+          <p>Thanks, ${answers.name.split(" ")[0]} — your brief just landed in my inbox. I answer every
+             inquiry personally, usually within two days.</p>
+          <p style="margin-top:1.4rem"><a class="btn ghost" href="work.html">Browse the work meanwhile</a></p>
+        </div>`
+      : `<div class="done-card reveal in">
+          <span class="icon done-icon"><svg class="ic"><use href="#ic-butterfly" /></svg></span>
+          <h2>That didn't go through.</h2>
+          <p>Sorry about that — please email your brief directly to
+             <a href="mailto:${STUDIO_EMAIL}" style="color:inherit;text-decoration:underline">${STUDIO_EMAIL}</a> instead.</p>
+        </div>`;
     return;
   }
   step++;
