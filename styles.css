@@ -96,14 +96,20 @@ h1, h2, h3 {
    scroll (100vw includes the scrollbar width). main wraps the sections; the
    sticky header is its sibling, so sticky is unaffected. */
 main { overflow-x: clip; }
-.paper-ruled { position: relative; }
+/* The ruled lines live on the SECTION box, which is capped at max-width, so
+   they stop at the sheet's edge instead of running edge to edge — it reads as
+   a bounded page. The ::before is a plain full-bleed backdrop (no lines), there
+   only to hide the global dot grain in this band so the margins stay clean. */
+.paper-ruled {
+  position: relative;
+  background-image: repeating-linear-gradient(to bottom, transparent 0 31px, rgba(20, 16, 15, 0.09) 31px 32px);
+}
 .paper-ruled::before {
   content: "";
   position: absolute; inset: 0;
   left: 50%; width: 100vw; transform: translateX(-50%);
   z-index: -1; pointer-events: none;
   background-color: var(--paper);
-  background-image: repeating-linear-gradient(to bottom, transparent 0 31px, rgba(20, 16, 15, 0.09) 31px 32px);
 }
 .paper-ruled > .margin-rule {
   position: absolute; top: 0; bottom: 0; left: clamp(1.6rem, 5vw, 4.2rem);
@@ -306,6 +312,7 @@ header.site nav a.nav-cta:hover { transform: translate(-2px,-2px); box-shadow: 6
 .hero .deco { position: absolute; pointer-events: none; z-index: 1; }
 .hero .d-moon     { width: clamp(70px, 8vw, 120px); top: 5%;  left: 2%; transform: rotate(-12deg); }
 .hero .d-sparkle  { width: clamp(46px, 5vw, 76px);  top: 7%;  right: 36%; }
+.hero .d-asterisk { width: clamp(22px, 2.6vw, 36px); top: 9%; left: 31%; }
 .hero .d-bloom    { width: clamp(80px, 10vw, 150px); bottom: 5%; right: 3%; transform: rotate(12deg); }
 .hero .d-petals   { width: clamp(64px, 7vw, 110px); bottom: 12%; left: 27%; transform: rotate(-8deg); }
 .hero .d-sparkle2 { width: clamp(36px, 4vw, 58px); top: 54%; left: 3%; }
@@ -318,7 +325,12 @@ header.site nav a.nav-cta:hover { transform: translate(-2px,-2px); box-shadow: 6
   transform: rotate(6deg);
   filter: drop-shadow(7px 7px 0 rgba(20,16,15,0.92));
 }
-.hero .hero-sticker { position: absolute; z-index: 4; right: 7%; bottom: 9%; }
+/* in normal flow on every breakpoint — sits right under the headline.
+   (Was absolutely positioned against .hero; moving it inside .hero-stage so
+   mobile can place it precisely between the h1 and the lede changed its
+   containing block, so this drops the absolute positioning entirely rather
+   than fight it. Flow layout also guarantees it never overlaps anything.) */
+.hero .hero-sticker { position: static; display: inline-flex; margin: 1.1rem 0 0; }
 
 /* ---------- interior page hero: black slab ---------- */
 .page-hero {
@@ -783,12 +795,17 @@ body.themed .prose, body.themed .project-hero .lede { font-family: var(--t-font-
 @media (max-width: 900px) {
   .hero .slab { display: none; }
   .hero .cutout { position: relative; right: auto; top: auto; display: block; margin: 2rem auto 0; transform: rotate(4deg); }
-  .hero .hero-sticker { position: relative; right: auto; bottom: auto; display: inline-flex; margin-top: 1.5rem; }
   /* these two decos are positioned by percentage against the DESKTOP hero's
      short, wide box. On mobile the hero stacks tall instead, so the same
      percentages land on top of the buttons and body text — hide them rather
      than chase a moving target. */
   .hero .d-spiral, .hero .d-sparkle2 { display: none; }
+  /* the sparkle moves beside the butterfly, close to the right edge, instead
+     of hovering above it; the asterisk moves off the top of the logo entirely
+     into the open space below the moon. Fixed px, not %, since the hero's
+     height is now driven by stacked content rather than a fixed aspect box. */
+  .hero .d-sparkle  { top: 128px; right: 5%; left: auto; }
+  .hero .d-asterisk { top: 110px; left: 6%; }
   .svc { grid-template-columns: 1fr; gap: 1.2rem; padding: 2.5rem 0; }
 }
 @media (max-width: 700px) {
