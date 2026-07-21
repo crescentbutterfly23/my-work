@@ -76,9 +76,30 @@ Run the site locally and open **`/admin.html`**. It lists every project, and let
 - edit the title, category, year, description, image path and Behance link
 - reorder, add and delete
 
-It has no backend, so nothing saves by itself. When you're done hit
-**Download projects.json**, drop it into `site/data/`, then commit and push —
-that's what publishes the change.
+It has two ways to publish:
+
+- **Save to site** (recommended) — commits `data/projects.json` straight to the
+  repo through the GitHub API. Needs a one-time token (see below). Uploaded images
+  go the same way.
+- **Download projects.json** — the old manual route: download it, drop it into
+  `data/`, commit and push. Kept as a record-keeping / offline fallback.
+
+### Connecting GitHub (one-time)
+
+To use **Save to site** and drag-drop image uploads, connect a token:
+
+1. GitHub → **Settings → Developer settings → Fine-grained personal access tokens
+   → Generate new token**.
+2. **Repository access → Only select repositories → `my-work`**.
+3. **Permissions → Repository → Contents → Read and write**.
+4. Generate, copy, and paste it into the **Connect GitHub** box in the Studio.
+
+The token lives in your browser only (localStorage) and is **never** committed —
+so nothing about it is visible to site visitors. It grants write access to the
+repo, so treat it like a password and hit **Disconnect** on a shared machine.
+The plumbing is in [`js/github.js`](js/github.js).
+
+Either way, a published change goes live once GitHub Pages rebuilds (~1 min).
 
 ### Client previews (unlisted + passcode)
 

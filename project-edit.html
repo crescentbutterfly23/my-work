@@ -35,6 +35,42 @@
     }
     .bar .star.on { background: var(--crimson); border-color: var(--crimson); }
 
+    /* --- GitHub sync bar --- */
+    .gh-bar {
+      display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap;
+      padding: 0.55rem 3vw; background: var(--paper);
+      border-bottom: 3px solid var(--ink);
+      font-family: "Space Mono", monospace; font-size: 0.7rem; font-weight: 700;
+    }
+    .gh-bar .gh-ok { color: #1a7a3a; }
+    .gh-bar .gh-off { color: var(--ink-2); }
+    .gh-input {
+      font-family: "Inter", sans-serif; font-size: 0.85rem; font-weight: 500;
+      padding: 0.4rem 0.55rem; border: 2.5px solid var(--ink); background: #fff;
+      color: var(--maroon); flex: 1 1 14rem; min-width: 0;
+    }
+    .gh-input:focus { outline: 3px solid var(--coral); outline-offset: 1px; }
+    .gh-btn {
+      font-family: "Space Mono", monospace; font-size: 0.62rem; font-weight: 700;
+      letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer;
+      border: 2.5px solid var(--ink); background: var(--paper); color: var(--ink);
+      padding: 0.4rem 0.7rem;
+    }
+    .gh-btn:hover { background: var(--coral); }
+    .gh-btn:disabled { opacity: 0.5; cursor: default; }
+    .gh-help { font-size: 0.62rem; color: var(--crimson); text-decoration: underline; }
+
+    /* --- cover image drop zone --- */
+    .cover-drop {
+      border: 3px dashed var(--ink); background: #fff; margin-top: 0.4rem;
+      padding: 0.7rem; font-family: "Space Mono", monospace; font-size: 0.62rem;
+      text-align: center; cursor: pointer; color: var(--ink-2);
+    }
+    .cover-drop:focus, .cover-drop.drag { outline: 3px solid var(--coral); background: var(--blush); color: var(--ink); }
+    .cover-prev { margin-top: 0.5rem; border: 2.5px solid var(--ink); max-height: 200px; overflow: hidden; background: var(--rose); }
+    .cover-prev img { width: 100%; display: block; }
+    .paste.drag { outline: 3px solid var(--coral); background: var(--blush); color: var(--ink); }
+
     .sheet { max-width: 980px; margin: 0 auto; padding: 2rem 3vw 6rem; }
 
     .meta {
@@ -127,16 +163,21 @@
   <button class="star" id="star" title="Show on the home page">☆</button>
   <span class="spacer"></span>
   <span class="saved" id="saved"></span>
+  <button class="btn hot" id="save" style="padding:.5rem .9rem;font-size:.7rem">💾 Save to site</button>
   <button class="btn ghost" id="download" style="padding:.5rem .9rem;font-size:.7rem">↓ projects.json</button>
 </div>
+
+<div class="gh-bar" id="gh-mount"></div>
 
 <div class="sheet">
   <details class="howto">
     <summary>How this page works ▾</summary>
     <div class="body">
       <p>Blocks stack down the project page in the order you put them here. Edits save to a
-        local draft as you type — <strong>they only go live once you download
-        <code>projects.json</code>, drop it into <code>site/data/</code>, and commit.</strong></p>
+        local draft as you type. Once you've connected GitHub, <strong>hit "Save to site" to
+        publish — it commits the change and the site updates in about a minute.</strong>
+        Not connected? You can still <strong>download <code>projects.json</code></strong>,
+        drop it into <code>data/</code>, and commit by hand.</p>
 
       <h4>Text — the style picker</h4>
       <ul>
@@ -169,8 +210,10 @@
 
       <h4>Images</h4>
       <ul>
-        <li><strong>Paste a link</strong> (right-click an image on Behance → Copy image address). This is the easy path.</li>
-        <li><strong>Paste an image</strong> into the dashed box — it downloads the file and fills in the path. Move it to the folder shown, then commit it too.</li>
+        <li><strong>Paste a link</strong> (right-click an image anywhere → Copy image address) — Behance or any other source works.</li>
+        <li><strong>Drop or paste a file</strong> into the dashed box. Connected to GitHub? It uploads
+          straight into <code>assets/projects/…</code> and fills in the path. Otherwise it downloads so
+          you can move and commit it by hand.</li>
       </ul>
     </div>
   </details>
@@ -187,8 +230,13 @@
     <label for="f-description">Description — shown on the card</label>
     <textarea id="f-description" data-k="description" rows="2"></textarea>
     <div class="grid2">
-      <div><label for="f-image">Cover image</label><input id="f-image" class="mono" data-k="image" /></div>
-      <div><label for="f-behance">Behance link (shown at the foot of the page)</label><input id="f-behance" class="mono" data-k="behance" /></div>
+      <div>
+        <label for="f-image">Cover image — a link (Behance or anywhere) or a file you drop below</label>
+        <input id="f-image" class="mono" data-k="image" placeholder="https://…  or  assets/projects/…" />
+        <div class="cover-drop" id="coverDrop" tabindex="0">drop an image here, or click and paste (Ctrl+V) — it uploads to your repo</div>
+        <div class="cover-prev" id="coverPrev" hidden><img alt=""></div>
+      </div>
+      <div><label for="f-behance">Behance link (optional — shown at the foot of the page)</label><input id="f-behance" class="mono" data-k="behance" /></div>
     </div>
   </div>
 
@@ -204,6 +252,7 @@
 </div>
 
 <script src="js/desk.js"></script>
+<script src="js/github.js"></script>
 <script>
 let projects = [];
 let p = null;
@@ -349,35 +398,110 @@ $("blocks").addEventListener("click", (e) => {
   touch(); render();
 });
 
-/* paste an image — see admin.html for why this downloads instead of embedding */
-$("blocks").addEventListener("paste", (e) => {
-  const zone = e.target.closest("[data-paste]");
-  if (!zone) return;
-  const bi = +zone.dataset.bi;
-  const item = [...(e.clipboardData?.items || [])].find((x) => x.type.startsWith("image/"));
-
-  if (!item) {
-    const text = e.clipboardData.getData("text").trim();
-    if (!/^https?:\/\/|^assets\//.test(text)) return;
-    e.preventDefault();
-    p.blocks[bi].image = text;
-    touch(); return render();
+/* Take an image File and get a repo path for it.
+   Connected → commit it straight to the repo and return the path.
+   Offline  → fall back to the old download-and-move flow.            */
+async function stashImage(file, hint) {
+  if (ghConnected()) {
+    return await ghUploadImage(file, p.id, hint);
   }
-
-  e.preventDefault();
-  const file = item.getAsFile();
   const ext = (file.type.split("/")[1] || "png").replace("jpeg", "jpg");
-  const name = `${p.id}-${bi + 1}.${ext}`;
+  const name = `${p.id}-${hint || Date.now().toString(36)}.${ext}`;
   const path = `assets/projects/${p.id}/${name}`;
   const a = document.createElement("a");
   a.href = URL.createObjectURL(file);
   a.download = name;
   a.click();
   URL.revokeObjectURL(a.href);
-  p.blocks[bi].image = path;
+  alert(`Not connected to GitHub, so "${name}" went to your Downloads.\n\nMove it to:\n  site/${path}\n\nThen commit it. (Connect GitHub to skip this step.)`);
+  return path;
+}
+
+/* Route an image file dropped/pasted onto a block into that block. */
+async function blockImage(bi, file) {
+  const zone = document.querySelector(`[data-paste][data-bi="${bi}"]`);
+  const old = zone ? zone.textContent : "";
+  if (zone) zone.textContent = ghConnected() ? "uploading…" : "saving…";
+  try {
+    p.blocks[bi].image = await stashImage(file, `${bi + 1}`);
+    touch(); render();
+  } catch (err) {
+    if (zone) zone.textContent = old;
+    alert("Upload failed:\n\n" + err.message);
+  }
+}
+
+const imageFromClipboard = (e) =>
+  [...(e.clipboardData?.items || [])].find((x) => x.type.startsWith("image/"))?.getAsFile() || null;
+
+$("blocks").addEventListener("paste", (e) => {
+  const zone = e.target.closest("[data-paste]");
+  if (!zone) return;
+  const bi = +zone.dataset.bi;
+  const file = imageFromClipboard(e);
+  if (file) { e.preventDefault(); return blockImage(bi, file); }
+  // no image on the clipboard — accept a pasted link instead
+  const text = e.clipboardData.getData("text").trim();
+  if (!/^https?:\/\/|^assets\//.test(text)) return;
+  e.preventDefault();
+  p.blocks[bi].image = text;
   touch(); render();
-  alert(`Saved "${name}" to your Downloads.\n\nMove it to:\n  site/${path}\n\nThen commit it alongside projects.json.`);
 });
+
+/* drag-and-drop onto a block's paste zone */
+$("blocks").addEventListener("dragover", (e) => {
+  const zone = e.target.closest("[data-paste]");
+  if (!zone) return;
+  e.preventDefault(); zone.classList.add("drag");
+});
+$("blocks").addEventListener("dragleave", (e) => {
+  const zone = e.target.closest("[data-paste]");
+  if (zone) zone.classList.remove("drag");
+});
+$("blocks").addEventListener("drop", (e) => {
+  const zone = e.target.closest("[data-paste]");
+  if (!zone) return;
+  e.preventDefault(); zone.classList.remove("drag");
+  const file = [...(e.dataTransfer?.files || [])].find((f) => f.type.startsWith("image/"));
+  if (file) blockImage(+zone.dataset.bi, file);
+});
+
+/* ---------- cover image: drop / paste / preview ---------- */
+function paintCover() {
+  const prev = $("coverPrev");
+  const img = prev.querySelector("img");
+  if (p.image) { img.src = p.image; prev.hidden = false; }
+  else { prev.hidden = true; img.removeAttribute("src"); }
+}
+
+async function setCover(file) {
+  const drop = $("coverDrop");
+  const label = drop.textContent;
+  drop.textContent = ghConnected() ? "uploading…" : "saving…";
+  try {
+    p.image = await stashImage(file, "cover");
+    $("f-image").value = p.image;
+    touch(); paintCover();
+    drop.textContent = label;
+  } catch (err) {
+    drop.textContent = label;
+    alert("Upload failed:\n\n" + err.message);
+  }
+}
+
+$("coverDrop").addEventListener("paste", (e) => {
+  const file = imageFromClipboard(e);
+  if (file) { e.preventDefault(); setCover(file); }
+});
+$("coverDrop").addEventListener("dragover", (e) => { e.preventDefault(); $("coverDrop").classList.add("drag"); });
+$("coverDrop").addEventListener("dragleave", () => $("coverDrop").classList.remove("drag"));
+$("coverDrop").addEventListener("drop", (e) => {
+  e.preventDefault(); $("coverDrop").classList.remove("drag");
+  const file = [...(e.dataTransfer?.files || [])].find((f) => f.type.startsWith("image/"));
+  if (file) setCover(file);
+});
+// keep the cover preview in step when the path is typed by hand
+$("f-image").addEventListener("input", () => { p.image = $("f-image").value.trim() || undefined; paintCover(); });
 
 /* ---------- toolbar ---------- */
 document.querySelector(".addbar").addEventListener("click", (e) => {
@@ -397,6 +521,26 @@ document.querySelector(".addbar").addEventListener("click", (e) => {
 $("star").addEventListener("click", () => { p.featured = !p.featured; touch(); render(); });
 $("download").addEventListener("click", () => { deskSave(projects); deskDownload(projects); });
 
+$("save").addEventListener("click", async () => {
+  if (!ghConnected()) return alert("Connect GitHub first (the bar under the toolbar), then Save publishes straight to the site.");
+  const btn = $("save");
+  const orig = btn.textContent;
+  btn.disabled = true; btn.textContent = "Saving…";
+  deskSave(projects);
+  try {
+    await ghSaveProjects(projects);
+    deskDiscard(); // the draft is now the published file
+    $("saved").textContent = "published ✓ — live in ~1 min";
+    btn.textContent = "Saved ✓";
+    setTimeout(() => (btn.textContent = orig), 1800);
+  } catch (e) {
+    alert("Couldn't save:\n\n" + e.message);
+    btn.textContent = orig;
+  } finally {
+    btn.disabled = false;
+  }
+});
+
 /* ---------- boot ---------- */
 deskLoad().then((d) => {
   projects = d;
@@ -410,8 +554,11 @@ deskLoad().then((d) => {
   document.title = `Editing ${p.title} · Crescent Butterfly`;
   fillMeta();
   render();
+  paintCover();
   $("saved").textContent = deskHasDraft() ? "draft loaded · not published" : "";
 });
+
+ghMountConnect("gh-mount");
 </script>
 </body>
 </html>

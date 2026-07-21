@@ -37,6 +37,34 @@
     }
     .tally b { color: var(--crimson); }
 
+    /* --- GitHub sync bar --- */
+    .gh-bar {
+      display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap;
+      margin: -1.4rem 0 2.4rem; padding: 0.6rem 0.9rem;
+      border: 3px solid var(--ink); background: var(--paper);
+      font-family: "Space Mono", monospace; font-size: 0.72rem; font-weight: 700;
+    }
+    .gh-bar .gh-ok { color: #1a7a3a; }
+    .gh-bar .gh-off { color: var(--ink-2); }
+    .gh-input {
+      font-family: "Inter", sans-serif; font-size: 0.85rem; font-weight: 500;
+      padding: 0.4rem 0.55rem; border: 2.5px solid var(--ink); background: #fff;
+      color: var(--maroon); flex: 1 1 14rem; min-width: 0;
+    }
+    .gh-input:focus { outline: 3px solid var(--coral); outline-offset: 1px; }
+    .gh-btn {
+      font-family: "Space Mono", monospace; font-size: 0.65rem; font-weight: 700;
+      letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer;
+      border: 2.5px solid var(--ink); background: var(--paper); color: var(--ink);
+      padding: 0.4rem 0.7rem; box-shadow: 2px 2px 0 var(--ink);
+    }
+    .gh-btn:hover { background: var(--coral); }
+    .gh-btn:disabled { opacity: 0.5; cursor: default; }
+    .gh-help {
+      font-size: 0.65rem; color: var(--crimson); text-decoration: underline;
+      letter-spacing: 0.04em;
+    }
+
     .rows { display: flex; flex-direction: column; gap: 1.8rem; }
     .prow {
       display: grid; grid-template-columns: 132px 1fr auto; gap: 1.2rem; align-items: start;
@@ -242,12 +270,15 @@
   </div>
 
   <div class="toolbar">
-    <button class="btn hot" id="download">↓ Download projects.json</button>
+    <button class="btn hot" id="save">💾 Save to site</button>
+    <button class="btn ghost" id="download">↓ Download projects.json</button>
     <button class="btn ghost" id="copy">Copy JSON</button>
     <button class="btn ghost" id="add">+ New project</button>
     <button class="btn ghost" id="discard">Discard draft</button>
     <span class="tally"><b id="starCount">0</b> starred · <span id="totalCount">0</span> total</span>
   </div>
+
+  <div class="gh-bar" id="gh-mount"></div>
 
   <div class="rows" id="rows"></div>
 
@@ -260,6 +291,7 @@
 </div>
 
 <script src="js/desk.js"></script>
+<script src="js/github.js"></script>
 <script>
 let projects = [];
 
@@ -336,10 +368,16 @@ function render() {
 $("rows").addEventListener("input", (e) => {
   const k = e.target.dataset.k;
   if (!k) return;
-  const i = +e.target.closest(".prow").dataset.i;
+  const row = e.target.closest(".prow");
+  const i = +row.dataset.i;
   const v = e.target.value.trim();
   if (v === "") delete projects[i][k];
   else projects[i][k] = v;
+  // Enable "Copy link" live as the URL is typed (no re-render, keeps focus).
+  if (k === "previewUrl") {
+    const copy = row.querySelector('[data-act="copylink"]');
+    if (copy) copy.disabled = v === "";
+  }
   touch();
 });
 
@@ -404,6 +442,27 @@ $("add").addEventListener("click", () => {
   });
   touch(); render();
 });
+$("save").addEventListener("click", async () => {
+  if (!ghConnected()) {
+    return alert("Connect GitHub first (the bar below the toolbar), then Save publishes straight to the site.");
+  }
+  const btn = $("save");
+  const label = btn.textContent;
+  btn.disabled = true; btn.textContent = "Saving…";
+  try {
+    await ghSaveProjects(projects);
+    deskDiscard(); // the draft is now the published file
+    $("warn").classList.remove("dirty");
+    $("warnText").textContent = "Published ✓ — live on the site in about a minute.";
+    btn.textContent = "Saved ✓";
+    setTimeout(() => (btn.textContent = label), 1800);
+  } catch (e) {
+    alert("Couldn't save:\n\n" + e.message);
+    btn.textContent = label;
+  } finally {
+    btn.disabled = false;
+  }
+});
 $("download").addEventListener("click", () => deskDownload(projects));
 $("copy").addEventListener("click", async () => {
   await navigator.clipboard.writeText(JSON.stringify(projects, null, 2));
@@ -416,6 +475,8 @@ $("discard").addEventListener("click", async () => {
   deskDiscard();
   location.reload();
 });
+
+ghMountConnect("gh-mount");
 
 deskLoad().then((d) => {
   projects = d;
