@@ -67,7 +67,10 @@ function showTab(cat) {
 
 loadProjects().then((projects) => {
   all = publicProjects(projects);
-  const cats = ["All", ...new Set(projects.map((p) => p.category || "Other"))];
+  // Build the tabs from the filtered list, not the raw file — otherwise a
+  // client preview with a category of its own leaves an empty tab behind,
+  // which quietly advertises that a hidden project exists.
+  const cats = ["All", ...new Set(all.map((p) => p.category || "Other"))];
   tabsEl.innerHTML = "";
   cats.forEach((cat) => {
     const b = document.createElement("button");

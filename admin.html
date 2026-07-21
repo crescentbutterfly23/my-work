@@ -126,6 +126,19 @@
       padding-bottom: 0.55rem; white-space: nowrap;
     }
     .pv-set b { color: #1a7a3a; }
+    .pv-reveal:empty { display: none; }
+    .pv-reveal { display: flex; gap: 0.4rem; align-items: center; flex-wrap: wrap; }
+    .pv-code {
+      font-family: "Space Mono", monospace; font-size: 0.78rem; font-weight: 700;
+      letter-spacing: 0.06em; color: var(--maroon);
+      border: 2.5px solid var(--ink); background: #fff; padding: 0.35rem 0.6rem;
+      min-width: 7rem;
+    }
+    .pv-note {
+      font-family: "Space Mono", monospace; font-size: 0.58rem; font-weight: 700;
+      color: var(--ink-2); line-height: 1.4;
+    }
+
     .pv-actions { display: flex; gap: 0.4rem; flex-wrap: wrap; }
     .pv-btn {
       font-family: "Space Mono", monospace; font-size: 0.58rem; font-weight: 700;
@@ -346,6 +359,7 @@ function render() {
                 </div>
                 <button class="pv-btn" data-act="clearpass" ${p.passcodeHash ? "" : "disabled"}>Clear</button>
               </div>
+              <div class="pv-reveal">${revealHTML(p)}</div>
               <div class="pv-actions">
                 <button class="pv-btn" data-act="copylink" ${p.previewUrl ? "" : "disabled"}>Copy link</button>
                 <button class="pv-btn" data-act="copysnippet" ${p.passcodeHash ? "" : "disabled"}>Copy gate snippet</button>
@@ -381,6 +395,30 @@ $("rows").addEventListener("input", (e) => {
   touch();
 });
 
+/* ---------- passcodes you can read back ----------
+   projects.json only ever carries the SHA-256 hash, because it's published at
+   a public URL — plaintext there would hand every client passcode to anyone
+   who fetched the file. The readable copy lives here in this browser instead,
+   so the Studio can show it to you without it ever being committed.
+   Consequence: it's per-browser. On another machine you'll see that a passcode
+   is set but not its text, and you'd simply set a new one.                  */
+const PASS_KEY = "cb-passcodes";
+const passAll = () => { try { return JSON.parse(localStorage.getItem(PASS_KEY)) || {}; } catch { return {}; } };
+const passGet = (id) => passAll()[id] || "";
+function passSet(id, val) { const s = passAll(); s[id] = val; localStorage.setItem(PASS_KEY, JSON.stringify(s)); }
+function passForget(id) { const s = passAll(); delete s[id]; localStorage.setItem(PASS_KEY, JSON.stringify(s)); }
+
+function revealHTML(p) {
+  if (!p.passcodeHash) return "";
+  const known = passGet(p.id);
+  if (!known) {
+    return `<span class="pv-note">Passcode is set, but wasn't saved on this device — set a new one to read it here.</span>`;
+  }
+  return `<code class="pv-code" data-pass="${esc(known)}">••••••••</code>
+    <button class="pv-btn" data-act="showpass">Show</button>
+    <button class="pv-btn" data-act="copypass">Copy</button>`;
+}
+
 async function sha256(str) {
   const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(str));
   return Array.from(new Uint8Array(buf)).map((b) => b.toString(16).padStart(2, "0")).join("");
@@ -415,8 +453,23 @@ $("rows").addEventListener("click", async (e) => {
     return flash(t, "Copied!");
   }
 
+  // reveal / copy the readable passcode — neither touches the draft
+  if (act === "showpass") {
+    const code = t.closest(".pv-body").querySelector("[data-pass]");
+    const shown = code.textContent !== "••••••••";
+    code.textContent = shown ? "••••••••" : code.dataset.pass;
+    t.textContent = shown ? "Show" : "Hide";
+    return;
+  }
+  if (act === "copypass") {
+    const code = t.closest(".pv-body").querySelector("[data-pass]");
+    await navigator.clipboard.writeText(code.dataset.pass);
+    return flash(t, "Copied!");
+  }
+
   if (act === "clearpass") {
     delete p.passcodeHash;
+    passForget(p.id);
     paintPasscode(t.closest(".prow"), p); // in place — don't rebuild the row
     touch();
     return;
@@ -448,6 +501,8 @@ function paintPasscode(row, p) {
   if (clear) clear.disabled = !p.passcodeHash;
   const snippet = row.querySelector('[data-act="copysnippet"]');
   if (snippet) snippet.disabled = !p.passcodeHash;
+  const reveal = row.querySelector(".pv-reveal");
+  if (reveal) reveal.innerHTML = revealHTML(p);
 }
 
 // Passcode: hash on blur so the plaintext never lands in the draft file.
@@ -458,6 +513,7 @@ $("rows").addEventListener("change", async (e) => {
   const val = e.target.value;
   if (val === "") return; // blank = leave the existing passcode untouched
   projects[i].passcodeHash = await sha256(val);
+  passSet(projects[i].id, val); // readable copy, this browser only — never committed
   paintPasscode(row, projects[i]);
   touch();
 });
