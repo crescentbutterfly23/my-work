@@ -5,17 +5,11 @@
     "category": "Brand Identity",
     "year": "2026",
     "featured": false,
-    "description": "",
-    "blocks": [
-      {
-        "type": "image",
-        "width": "full",
-        "image": "assets/projects/casa-croqueta/casa-croqueta-1.png",
-        "caption": ""
-      }
-    ],
+    "description": "Test",
+    "blocks": [],
     "behance": "https://crescentbutterfly23.github.io/my-work/assets/projects/Casa%20Croqueta/Website/",
-    "image": "assets/projects/casa-croqueta/cover-mrurexq1.jpg"
+    "previewUrl": "https://crescentbutterfly23.github.io/my-work/assets/projects/Casa%20Croqueta/Website/",
+    "image": "assets/projects/casa-croqueta/cover-mrurcigw.jpg"
   },
   {
     "id": "artists-at-work",
