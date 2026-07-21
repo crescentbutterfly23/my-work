@@ -39,18 +39,20 @@ const ghUrl = (path) =>
   `https://api.github.com/repos/${GH.owner}/${GH.repo}/contents/` +
   path.split("/").map(encodeURIComponent).join("/");
 
-/** Validate the token + confirm it can push. Returns {ok, reason?}. */
+/** Validate the token can reach the repo. Returns {ok, reason?}.
+    NOTE: this only proves READ access. A repo's `permissions` field reports
+    YOUR role as owner, not what a fine-grained token was scoped to do — so a
+    read-only token still passes here and fails at the first write with a 403.
+    ghPutFile explains how to fix that when it happens. */
 async function ghCheck() {
   if (!ghConnected()) return { ok: false, reason: "No token set." };
   try {
     const r = await fetch(`https://api.github.com/repos/${GH.owner}/${GH.repo}`, { headers: ghHeaders() });
     if (r.status === 401) return { ok: false, reason: "Token rejected (401) — wrong or expired." };
-    if (r.status === 404) return { ok: false, reason: "Repo not visible to this token — check its repository access." };
-    if (!r.ok) return { ok: false, reason: `GitHub error ${r.status}.` };
-    const data = await r.json();
-    if (!data.permissions || !data.permissions.push) {
-      return { ok: false, reason: "Token can read but not write — give it Contents: Read and write." };
+    if (r.status === 404) {
+      return { ok: false, reason: "Repo not visible to this token — set Repository access to 'Only select repositories → my-work'." };
     }
+    if (!r.ok) return { ok: false, reason: `GitHub error ${r.status}.` };
     return { ok: true };
   } catch (e) {
     return { ok: false, reason: "Network error reaching GitHub." };
@@ -84,6 +86,19 @@ async function ghPutFile(path, content, message) {
   if (sha) body.sha = sha;
   const r = await fetch(ghUrl(path), { method: "PUT", headers: ghHeaders(), body: JSON.stringify(body) });
   if (!r.ok) {
+    // 403 here almost always means the token can read but not write. The repo
+    // check at connect time can't catch it: that reflects YOUR access as owner,
+    // not what the token was scoped to do.
+    if (r.status === 403) {
+      throw new Error(
+        "GitHub refused the write (403).\n\n" +
+        "The token can read this repo but not write to it. Re-make it with:\n" +
+        "  • Repository access → Only select repositories → my-work\n" +
+        "  • Permissions → Repository → Contents → Read and write\n\n" +
+        'If you picked "Public repositories (read-only)" when creating it, that is the cause — ' +
+        "that option can never write.\n\nThen Disconnect and paste the new token."
+      );
+    }
     let detail = "";
     try { detail = (await r.json()).message || ""; } catch {}
     throw new Error(`Save failed (${r.status})${detail ? ": " + detail : ""}.`);

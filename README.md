@@ -91,8 +91,16 @@ To use **Save to site** and drag-drop image uploads, connect a token:
 1. GitHub → **Settings → Developer settings → Fine-grained personal access tokens
    → Generate new token**.
 2. **Repository access → Only select repositories → `my-work`**.
-3. **Permissions → Repository → Contents → Read and write**.
+   ⚠️ *Not* "Public repositories (read-only)" — that option can never write.
+3. **Permissions → Repository permissions → Contents → Read and write.**
+   This is the one that's easy to miss: permissions start at *none*, so you have
+   to add Contents explicitly. Without it every save fails with a **403**.
 4. Generate, copy, and paste it into the **Connect GitHub** box in the Studio.
+
+Connecting only proves the token can *read* the repo — GitHub doesn't expose a
+way to test writes without writing — so if Connect succeeds but Save returns a
+403, step 2 or 3 is what's wrong. Fix the token, **Disconnect**, and paste the
+new one.
 
 The token lives in your browser only (localStorage) and is **never** committed —
 so nothing about it is visible to site visitors. It grants write access to the
