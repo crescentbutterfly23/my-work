@@ -398,6 +398,11 @@ $("rows").addEventListener("click", async (e) => {
   const act = t.dataset.act;
   const p = projects[i];
 
+  // The passcode field carries data-act too, but it's a field, not a button —
+  // without this it falls through to render() below and gets torn out from
+  // under the cursor the instant you click it.
+  if (act === "pass") return;
+
   // read-only actions — no draft change, no re-render (keeps focus/inputs intact)
   if (act === "copylink") {
     if (!p.previewUrl) return;
@@ -410,9 +415,15 @@ $("rows").addEventListener("click", async (e) => {
     return flash(t, "Copied!");
   }
 
+  if (act === "clearpass") {
+    delete p.passcodeHash;
+    paintPasscode(t.closest(".prow"), p); // in place — don't rebuild the row
+    touch();
+    return;
+  }
+
   if (act === "star") p.featured = !p.featured;
   if (act === "unlist") p.unlisted = t.checked ? true : undefined;
-  if (act === "clearpass") { delete p.passcodeHash; }
   if (act === "up" && i > 0) [projects[i - 1], projects[i]] = [projects[i], projects[i - 1]];
   if (act === "down" && i < projects.length - 1) [projects[i + 1], projects[i]] = [projects[i], projects[i + 1]];
   if (act === "del") {
@@ -422,15 +433,33 @@ $("rows").addEventListener("click", async (e) => {
   touch(); render();
 });
 
+/* Refresh just the passcode controls in one row. Re-rendering the whole row
+   here would yank the field/buttons out mid-interaction — see the click
+   handler's note — so this patches the few bits that actually change. */
+function paintPasscode(row, p) {
+  const label = row.querySelector(".pv-pass label");
+  if (label) label.innerHTML = "Passcode " + (p.passcodeHash ? '<span class="pv-set">· <b>set ✓</b></span>' : "");
+  const input = row.querySelector('[data-act="pass"]');
+  if (input) {
+    input.value = "";
+    input.placeholder = p.passcodeHash ? "type to change" : "set a passcode";
+  }
+  const clear = row.querySelector('[data-act="clearpass"]');
+  if (clear) clear.disabled = !p.passcodeHash;
+  const snippet = row.querySelector('[data-act="copysnippet"]');
+  if (snippet) snippet.disabled = !p.passcodeHash;
+}
+
 // Passcode: hash on blur so the plaintext never lands in the draft file.
 $("rows").addEventListener("change", async (e) => {
   if (e.target.dataset.act !== "pass") return;
-  const i = +e.target.closest(".prow").dataset.i;
+  const row = e.target.closest(".prow");
+  const i = +row.dataset.i;
   const val = e.target.value;
   if (val === "") return; // blank = leave the existing passcode untouched
   projects[i].passcodeHash = await sha256(val);
-  e.target.value = "";
-  touch(); render();
+  paintPasscode(row, projects[i]);
+  touch();
 });
 
 $("add").addEventListener("click", () => {

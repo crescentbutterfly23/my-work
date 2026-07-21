@@ -59,9 +59,14 @@ async function ghCheck() {
   }
 }
 
-/** Current blob SHA for a path, or null if the file doesn't exist yet. */
+/** Current blob SHA for a path, or null if the file doesn't exist yet.
+    `no-store` matters: GitHub sends an ETag here, and a cached hit would hand
+    back a stale SHA — which GitHub then rejects at write time with a 409. */
 async function ghGetSha(path) {
-  const r = await fetch(`${ghUrl(path)}?ref=${GH.branch}`, { headers: ghHeaders() });
+  const r = await fetch(`${ghUrl(path)}?ref=${GH.branch}&t=${Date.now()}`, {
+    headers: ghHeaders(),
+    cache: "no-store",
+  });
   if (r.status === 404) return null;
   if (!r.ok) throw new Error(`Couldn't read ${path} (${r.status}).`);
   const data = await r.json();
@@ -81,10 +86,20 @@ async function ghPutFile(path, content, message) {
   if (!ghConnected()) throw new Error("Connect GitHub first.");
   const blob = content instanceof Blob ? content : new Blob([content], { type: "text/plain" });
   const base64 = await blobToBase64(blob);
-  const sha = await ghGetSha(path); // omitted → create; present → update
-  const body = { message, content: base64, branch: GH.branch };
-  if (sha) body.sha = sha;
-  const r = await fetch(ghUrl(path), { method: "PUT", headers: ghHeaders(), body: JSON.stringify(body) });
+
+  // Read the SHA as late as possible, then write. If the file moved in between
+  // (a push from elsewhere, a stale read), GitHub answers 409 — re-read and go
+  // again. The Studio's draft is the intended state, so the retry wins.
+  const attempt = async () => {
+    const sha = await ghGetSha(path); // null → create; present → update
+    const body = { message, content: base64, branch: GH.branch };
+    if (sha) body.sha = sha;
+    return fetch(ghUrl(path), { method: "PUT", headers: ghHeaders(), body: JSON.stringify(body) });
+  };
+
+  let r = await attempt();
+  if (r.status === 409) r = await attempt();
+
   if (!r.ok) {
     // 403 here almost always means the token can read but not write. The repo
     // check at connect time can't catch it: that reflects YOUR access as owner,
@@ -97,6 +112,14 @@ async function ghPutFile(path, content, message) {
         "  • Permissions → Repository → Contents → Read and write\n\n" +
         'If you picked "Public repositories (read-only)" when creating it, that is the cause — ' +
         "that option can never write.\n\nThen Disconnect and paste the new token."
+      );
+    }
+    if (r.status === 409) {
+      throw new Error(
+        "The file on GitHub changed while saving (409), twice in a row.\n\n" +
+        "Something else is writing to the repo — a push from your machine, or " +
+        "another tab with the Studio open.\n\nClose the other tab, reload this " +
+        "page so it reads the latest file, and save again."
       );
     }
     let detail = "";
