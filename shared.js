@@ -130,6 +130,11 @@ async function loadProjects() {
   return Array.isArray(seed) ? seed : [];
 }
 
+// Projects flagged `unlisted` are client previews — visible in the Studio desk
+// and reachable by direct link, but kept out of the public grids until they go
+// live. Every public page filters through this before rendering.
+const publicProjects = (projects) => projects.filter((p) => !p.unlisted);
+
 // pinned-up paper cards
 function renderCards(grid, projects) {
   grid.innerHTML = "";

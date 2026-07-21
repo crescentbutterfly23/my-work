@@ -76,6 +76,38 @@
     .editlink:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--coral); background: var(--crimson); border-color: var(--crimson); }
     .editlink .n { background: var(--coral); color: var(--ink); padding: 0 0.35rem; }
 
+    /* --- client preview controls --- */
+    .preview-box {
+      margin-top: 0.5rem; border: 2.5px dashed var(--ink); background: var(--paper-2);
+      padding: 0.7rem 0.8rem;
+    }
+    .preview-box.on { border-style: solid; background: var(--blush); }
+    .pv-toggle {
+      display: flex; align-items: center; gap: 0.5rem; cursor: pointer;
+      font-family: "Space Mono", monospace; font-size: 0.62rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink);
+    }
+    .pv-toggle input { width: auto; margin: 0; }
+    .pv-body { display: none; margin-top: 0.7rem; flex-direction: column; gap: 0.55rem; }
+    .preview-box.on .pv-body { display: flex; }
+    .pv-pass { display: flex; gap: 0.4rem; align-items: flex-end; flex-wrap: wrap; }
+    .pv-pass > div { flex: 1 1 8rem; min-width: 0; }
+    .pv-set {
+      font-family: "Space Mono", monospace; font-size: 0.58rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-2);
+      padding-bottom: 0.55rem; white-space: nowrap;
+    }
+    .pv-set b { color: #1a7a3a; }
+    .pv-actions { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+    .pv-btn {
+      font-family: "Space Mono", monospace; font-size: 0.58rem; font-weight: 700;
+      letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer;
+      border: 2.5px solid var(--ink); background: var(--paper); color: var(--ink);
+      padding: 0.4rem 0.6rem; box-shadow: 2px 2px 0 var(--ink);
+    }
+    .pv-btn:hover { background: var(--coral); }
+    .pv-btn:disabled { opacity: 0.4; cursor: not-allowed; box-shadow: none; }
+
     .side { display: flex; flex-direction: column; gap: 0.5rem; align-items: center; }
     .star {
       font-size: 1.6rem; line-height: 1; cursor: pointer;
@@ -264,6 +296,30 @@ function render() {
           <a class="editlink" href="project-edit.html?id=${encodeURIComponent(p.id)}">
             ✎ Edit project page <span class="n">${n} block${n === 1 ? "" : "s"}</span>
           </a>
+
+          <div class="preview-box ${p.unlisted ? "on" : ""}">
+            <label class="pv-toggle">
+              <input type="checkbox" data-act="unlist" ${p.unlisted ? "checked" : ""} />
+              Client preview — hide from the public site
+            </label>
+            <div class="pv-body">
+              <div>
+                <label>Live / preview link</label>
+                <input data-k="previewUrl" value="${esc(p.previewUrl)}" placeholder="https://crescentbutterfly23.github.io/…" />
+              </div>
+              <div class="pv-pass">
+                <div>
+                  <label>Passcode ${p.passcodeHash ? '<span class="pv-set">· <b>set ✓</b></span>' : ""}</label>
+                  <input type="text" data-act="pass" placeholder="${p.passcodeHash ? "type to change" : "set a passcode"}" />
+                </div>
+                <button class="pv-btn" data-act="clearpass" ${p.passcodeHash ? "" : "disabled"}>Clear</button>
+              </div>
+              <div class="pv-actions">
+                <button class="pv-btn" data-act="copylink" ${p.previewUrl ? "" : "disabled"}>Copy link</button>
+                <button class="pv-btn" data-act="copysnippet" ${p.passcodeHash ? "" : "disabled"}>Copy gate snippet</button>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="side">
           <button class="star ${p.featured ? "on" : ""}" data-act="star" title="Show on the home page">${p.featured ? "★" : "☆"}</button>
@@ -287,18 +343,55 @@ $("rows").addEventListener("input", (e) => {
   touch();
 });
 
-$("rows").addEventListener("click", (e) => {
+async function sha256(str) {
+  const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(str));
+  return Array.from(new Uint8Array(buf)).map((b) => b.toString(16).padStart(2, "0")).join("");
+}
+async function flash(btn, msg) {
+  const old = btn.textContent;
+  btn.textContent = msg;
+  setTimeout(() => (btn.textContent = old), 1400);
+}
+
+$("rows").addEventListener("click", async (e) => {
   const t = e.target.closest("[data-act]");
   if (!t) return;
   const i = +t.closest(".prow").dataset.i;
   const act = t.dataset.act;
-  if (act === "star") projects[i].featured = !projects[i].featured;
+  const p = projects[i];
+
+  // read-only actions — no draft change, no re-render (keeps focus/inputs intact)
+  if (act === "copylink") {
+    if (!p.previewUrl) return;
+    await navigator.clipboard.writeText(p.previewUrl);
+    return flash(t, "Copied!");
+  }
+  if (act === "copysnippet") {
+    if (!p.passcodeHash) return;
+    await navigator.clipboard.writeText(`<script src="gate.js" data-hash="${p.passcodeHash}"></` + "script>");
+    return flash(t, "Copied!");
+  }
+
+  if (act === "star") p.featured = !p.featured;
+  if (act === "unlist") p.unlisted = t.checked ? true : undefined;
+  if (act === "clearpass") { delete p.passcodeHash; }
   if (act === "up" && i > 0) [projects[i - 1], projects[i]] = [projects[i], projects[i - 1]];
   if (act === "down" && i < projects.length - 1) [projects[i + 1], projects[i]] = [projects[i], projects[i + 1]];
   if (act === "del") {
-    if (!confirm(`Delete "${projects[i].title}"? This only changes the file you export.`)) return;
+    if (!confirm(`Delete "${p.title}"? This only changes the file you export.`)) return;
     projects.splice(i, 1);
   }
+  touch(); render();
+});
+
+// Passcode: hash on blur so the plaintext never lands in the draft file.
+$("rows").addEventListener("change", async (e) => {
+  if (e.target.dataset.act !== "pass") return;
+  const i = +e.target.closest(".prow").dataset.i;
+  const val = e.target.value;
+  if (val === "") return; // blank = leave the existing passcode untouched
+  projects[i].passcodeHash = await sha256(val);
+  e.target.value = "";
   touch(); render();
 });
 

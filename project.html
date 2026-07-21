@@ -95,6 +95,17 @@
   document.getElementById("pTitle").textContent = p.title;
   document.getElementById("pDesc").textContent = p.description || "";
 
+  // live client site, when there is one (may be passcode-gated on the other end)
+  if (p.previewUrl) {
+    const live = document.createElement("a");
+    live.className = "behance-link reveal";
+    live.href = p.previewUrl;
+    live.target = "_blank";
+    live.rel = "noopener";
+    live.textContent = p.unlisted ? "Visit the live preview ↗" : "Visit the live site ↗";
+    document.querySelector(".project-hero").appendChild(live);
+  }
+
   // storytelling flow: cover first, then the presentation blocks in order
   const body = document.getElementById("pBody");
 

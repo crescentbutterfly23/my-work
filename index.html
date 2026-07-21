@@ -163,8 +163,9 @@
 // The home grid shows only starred projects (set the star in admin.html).
 // If nothing is starred yet, fall back to the three newest so the page is never empty.
 loadProjects().then((projects) => {
-  const starred = projects.filter((p) => p.featured);
-  renderCards(document.getElementById("workGrid"), starred.length ? starred : projects.slice(0, 3));
+  const listed = publicProjects(projects);
+  const starred = listed.filter((p) => p.featured);
+  renderCards(document.getElementById("workGrid"), starred.length ? starred : listed.slice(0, 3));
 });
 </script>
 </body>

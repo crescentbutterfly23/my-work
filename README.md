@@ -80,6 +80,36 @@ It has no backend, so nothing saves by itself. When you're done hit
 **Download projects.json**, drop it into `site/data/`, then commit and push —
 that's what publishes the change.
 
+### Client previews (unlisted + passcode)
+
+Each project row has a **Client preview** panel for sharing a site with a client
+before it's public:
+
+- **Hide from the public site** — sets `unlisted`, so the project drops off the
+  home and Work grids but stays in the Studio and reachable by direct link.
+- **Live / preview link** — the site's URL (`previewUrl`). If set, `project.html`
+  shows a "Visit the live site" button.
+- **Passcode** — typing one stores its SHA-256 as `passcodeHash` (the plaintext is
+  never saved). **Clear** removes it.
+
+To lock the preview site itself, host it (a separate repo →
+`https://crescentbutterfly23.github.io/<repo>/`, or a folder in this one →
+`…/my-work/<folder>/`) and drop [`js/gate.js`](js/gate.js) beside its page:
+
+```html
+<body class="cb-locked">
+  …your page…
+  <script src="gate.js" data-hash="…"></script>
+</body>
+```
+
+Hit **Copy gate snippet** in the Studio to get that `<script>` tag with the hash
+filled in, then give the client the passcode separately.
+
+**This is a casual gate, not real security** — GitHub Pages is always public, and
+any client-side check can be bypassed with browser dev tools. It keeps a preview
+out of casual view; never put anything genuinely sensitive behind it.
+
 ## Notes / gotchas
 
 - **No backend.** GitHub Pages is static only. The "Start a project" brief is
