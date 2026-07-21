@@ -1,5 +1,23 @@
 [
   {
+    "id": "casa-croqueta",
+    "title": "Casa Croqueta",
+    "category": "Brand Identity",
+    "year": "2026",
+    "featured": false,
+    "description": "",
+    "blocks": [
+      {
+        "type": "image",
+        "width": "full",
+        "image": "assets/projects/casa-croqueta/casa-croqueta-1.png",
+        "caption": ""
+      }
+    ],
+    "unlisted": true,
+    "behance": "https://crescentbutterfly23.github.io/my-work/assets/projects/Casa%20Croqueta/Website/"
+  },
+  {
     "id": "artists-at-work",
     "title": "Artists At Work",
     "category": "Photography",
