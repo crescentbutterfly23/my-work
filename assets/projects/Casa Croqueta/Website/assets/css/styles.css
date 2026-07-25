@@ -435,6 +435,59 @@ p { margin: 0; }
 @media (max-width:900px){ .usage-grid{ grid-template-columns:1fr 1fr; } .callout{ grid-template-columns:1fr; text-align:center; } .callout img{ margin: 0 auto; } }
 @media (max-width:560px){ .usage-grid{ grid-template-columns:1fr; } }
 
+/* Mascot — primary marks (lineart vs full color, bust + full body) */
+.marks-grid { display:grid; grid-template-columns: repeat(4,1fr); gap: 1.4rem; }
+.mark-tile { border:1px solid var(--hair-light); border-radius: var(--radius); background:#fff; overflow:hidden; text-align:center; }
+.mark-tile .m-media { background: var(--casa-black); display:flex; align-items:flex-end; justify-content:center; min-height: 260px; padding: 1.4rem 1rem 0; }
+.mark-tile .m-media img { max-height: 240px; }
+.mark-tile .m-label { padding: 1rem 0.8rem 1.2rem; }
+.mark-tile .m-label b { font-family: var(--display); font-weight:600; font-size: 1.05rem; display:block; }
+.mark-tile .m-label span { font-size: 0.72rem; letter-spacing:0.14em; text-transform:uppercase; color: var(--kraft); }
+@media (max-width: 900px){ .marks-grid{ grid-template-columns: repeat(2,1fr); } }
+
+/* Mascot — construction details (circular crops) */
+.detail-grid { display:grid; grid-template-columns: repeat(4,1fr); gap: 1.6rem; }
+.detail-tile { text-align:center; }
+.detail-ring {
+  aspect-ratio: 1; border-radius: 50%; background: var(--warm-white);
+  border: 1.5px solid var(--gold); display:flex; align-items:center; justify-content:center;
+  overflow:hidden; padding: 1rem;
+  box-shadow: inset 0 0 0 5px #fff;
+}
+.detail-ring img { width: 78%; height: 78%; object-fit: contain; }
+.detail-tile figcaption { margin-top: 1rem; }
+.detail-tile figcaption b { display:block; font-family: var(--body); font-weight:700; font-size: 0.82rem; letter-spacing:0.1em; text-transform:uppercase; }
+.detail-tile figcaption span { font-size: 0.82rem; color: var(--ink-soft); }
+@media (max-width: 760px){ .detail-grid{ grid-template-columns: repeat(2,1fr); } }
+
+/* Mascot — expressions */
+.expr-grid { display:grid; grid-template-columns: repeat(4,1fr); gap: 1.4rem; }
+.expr-tile { border:1px solid var(--hair-light); border-radius: var(--radius); background:#fff; text-align:center; padding: 1.4rem 1rem 1.2rem; }
+.expr-tile img { max-height: 130px; margin: 0 auto; }
+.expr-tile span { display:block; margin-top: 0.9rem; font-size: 0.74rem; letter-spacing:0.16em; text-transform:uppercase; color: var(--ink-soft); }
+@media (max-width: 760px){ .expr-grid{ grid-template-columns: repeat(2,1fr); } }
+
+/* Mascot — small size / icon use */
+.icon-use-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 1.6rem; }
+.icon-use-tile { border:1px solid var(--hair-light); border-radius: var(--radius); background:#fff; text-align:center; padding: 2rem 1.4rem 1.6rem; }
+.icon-use-tile.dark-bg { background: var(--casa-black); }
+.icon-use-tile img { max-height: 220px; margin: 0 auto; }
+.icon-use-tile .iu-label { margin-top: 1.2rem; }
+.icon-use-tile .iu-label b { font-family: var(--display); font-weight:600; font-size: 1.1rem; display:block; color: var(--ink); }
+.icon-use-tile.dark-bg .iu-label b { color: var(--warm-white); }
+.icon-use-tile .iu-label span { font-size: 0.8rem; color: var(--ink-soft); }
+.icon-use-tile.dark-bg .iu-label span { color: #B7AE9D; }
+@media (max-width: 760px){ .icon-use-grid{ grid-template-columns: 1fr; } }
+
+/* Mascot — sticker seals for packaging */
+.sticker-grid { display:grid; grid-template-columns: repeat(2,1fr); gap: 1.6rem; }
+.sticker-tile { border:1px solid var(--hair-light); border-radius: var(--radius); background:#fff; text-align:center; padding: 2rem 1.4rem 1.6rem; }
+.sticker-tile img { max-height: 200px; margin: 0 auto; }
+.sticker-tile .st-label { margin-top: 1.2rem; }
+.sticker-tile .st-label b { font-family: var(--display); font-weight:600; font-size: 1.1rem; display:block; }
+.sticker-tile .st-label span { font-size: 0.8rem; color: var(--ink-soft); }
+@media (max-width: 640px){ .sticker-grid{ grid-template-columns: 1fr; } }
+
 /* Icons */
 .icon-row { display:grid; grid-template-columns: repeat(5,1fr); gap: 1.2rem; }
 .icon-cell { border:1px solid var(--hair-light); border-radius: var(--radius); background:#fff; padding: 2rem 1rem; text-align:center; }
