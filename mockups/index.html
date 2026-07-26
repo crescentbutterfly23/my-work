@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mockup Library · Crescent Butterfly</title>
+<meta name="description" content="Searchable index of free, commercially-usable mockup templates — filter by category, style, business type, setting and customization.">
+<link rel="icon" href="../assets/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600&family=Caveat:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f4ece2; --paper-2:#e9dccb; --ink:#14100f; --ink-2:#6b5f57;
+  --blush:#f9c4d6; --rose:#e6b1c3; --rose-deep:#d99cb2; --warm:#e2bcc1;
+  --coral:#f15b6b; --crimson:#ba132f; --maroon:#1a0f12;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Inter,"Segoe UI",sans-serif;background:var(--paper);color:var(--maroon);line-height:1.55}
+body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
+  background-image:radial-gradient(rgba(20,16,15,0.13) 1px, transparent 1.1px);background-size:9px 9px}
+h1,h2,h3{font-family:"Archivo Black",Impact,sans-serif;font-weight:400;letter-spacing:-.03em;
+  line-height:.9;text-transform:uppercase;color:var(--ink)}
+a{color:var(--crimson)}
+
+/* ---------- cover ---------- */
+header.cover{background:var(--ink);border-bottom:6px solid var(--ink);color:var(--paper);
+  padding:clamp(2rem,5vw,3.4rem) 4vw;position:relative;overflow:hidden}
+header.cover::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:radial-gradient(rgba(249,196,214,0.2) 1.2px, transparent 1.3px);background-size:10px 10px}
+header.cover .inner{position:relative;z-index:1;max-width:1280px;margin:0 auto}
+.backlink{font-family:"Space Mono",monospace;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;
+  font-weight:700;color:var(--blush);text-decoration:none;display:inline-block;margin-bottom:.9rem}
+.backlink:hover{color:var(--coral)}
+.eyebrow{display:inline-block;font-family:"Space Mono",monospace;letter-spacing:.16em;text-transform:uppercase;
+  font-size:.66rem;font-weight:700;color:var(--ink);background:var(--coral);border:2px solid var(--ink);
+  padding:.3rem .7rem;transform:rotate(-1.5deg);margin-bottom:1rem}
+header.cover h1{font-size:clamp(2rem,5.4vw,3.6rem);color:var(--paper)}
+header.cover p{color:var(--blush);font-weight:500;font-size:1rem;margin-top:.9rem;max-width:46rem}
+.stats{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:1.5rem}
+.stat{background:var(--paper);border:3px solid var(--paper);box-shadow:5px 5px 0 var(--coral);
+  padding:.55rem .95rem;min-width:112px}
+.stat b{display:block;font-family:"Archivo Black",Impact,sans-serif;font-size:1.45rem;color:var(--ink);line-height:1}
+.stat span{font-family:"Space Mono",monospace;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;
+  font-weight:700;color:var(--ink-2)}
+
+.wrap{max-width:1280px;margin:0 auto;padding:0 4vw 5rem}
+
+/* ---------- note ---------- */
+.callout{background:var(--paper-2);border:3px solid var(--ink);box-shadow:6px 6px 0 var(--ink);
+  padding:1rem 1.2rem;margin:1.8rem 0;font-size:.9rem;color:var(--maroon)}
+.callout h4{font-family:"Space Mono",monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--crimson);margin-bottom:.5rem;font-weight:700}
+.callout p+p{margin-top:.5rem}
+.scribble{font-family:Caveat,"Segoe Script",cursive;font-size:1.25rem;font-weight:700;color:var(--crimson);
+  transform:rotate(-2deg);display:inline-block}
+
+/* ---------- controls ---------- */
+.controls{position:sticky;top:0;z-index:30;background:var(--paper);padding:.9rem 0 .8rem;
+  border-bottom:4px solid var(--ink);margin-bottom:1.2rem}
+.row{display:flex;flex-wrap:wrap;gap:.55rem;align-items:center}
+input[type=search],select{font-family:"Space Mono",monospace;font-size:.72rem;text-transform:uppercase;
+  letter-spacing:.04em;background:var(--paper);color:var(--ink);border:2.5px solid var(--ink);
+  padding:.5rem .6rem;min-width:142px;font-weight:700}
+input[type=search]{flex:1;min-width:200px;text-transform:none;letter-spacing:0}
+input[type=search]:focus,select:focus{outline:none;box-shadow:4px 4px 0 var(--coral)}
+button{font-family:"Space Mono",monospace;font-size:.7rem;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;background:var(--ink);color:var(--paper);border:2.5px solid var(--ink);
+  padding:.5rem .8rem;cursor:pointer;box-shadow:4px 4px 0 var(--coral)}
+button:hover{background:var(--crimson);border-color:var(--ink)}
+button.ghost{background:var(--paper);color:var(--ink);box-shadow:4px 4px 0 var(--ink)}
+.count{font-family:"Space Mono",monospace;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;
+  font-weight:700;color:var(--ink-2);margin:.9rem 0}
+
+/* ---------- cards ---------- */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(258px,1fr));gap:1.3rem}
+.card{background:var(--paper);border:3.5px solid var(--ink);box-shadow:7px 7px 0 var(--ink);
+  display:flex;flex-direction:column;overflow:hidden}
+.card:hover{box-shadow:7px 7px 0 var(--coral)}
+.thumb{position:relative;aspect-ratio:3/2;border-bottom:3.5px solid var(--ink);background:var(--rose);
+  background-image:radial-gradient(var(--ink) 1.3px, transparent 1.4px);background-size:8px 8px;overflow:hidden}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.thumb .noimg{position:absolute;inset:0;display:none;align-items:center;justify-content:center;
+  font-family:"Space Mono",monospace;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;
+  font-weight:700;color:var(--ink)}
+/* only surfaces when there is no image, or the image failed to load */
+.thumb.noimage .noimg,.thumb.failed .noimg{display:flex}
+.meta{padding:.85rem .9rem;display:flex;flex-direction:column;gap:.5rem;flex:1}
+.meta h3{font-size:.98rem;line-height:1.1}
+.meta h3 a{color:var(--ink);text-decoration:none}
+.meta h3 a:hover{color:var(--crimson)}
+.crumb{font-family:"Space Mono",monospace;font-size:.56rem;letter-spacing:.07em;text-transform:uppercase;
+  font-weight:700;color:var(--ink-2)}
+.tags{display:flex;flex-wrap:wrap;gap:.3rem}
+.tag{font-family:"Space Mono",monospace;font-size:.55rem;letter-spacing:.05em;text-transform:uppercase;
+  font-weight:700;color:var(--ink);background:var(--blush);border:2px solid var(--ink);padding:.13rem .38rem}
+.tag.cust{background:var(--warm)}
+.tag.src{background:var(--paper-2)}
+.foot{margin-top:auto;padding-top:.5rem;border-top:2px dashed rgba(20,16,15,.28)}
+.foot a{font-family:"Space Mono",monospace;font-size:.6rem;letter-spacing:.09em;text-transform:uppercase;
+  font-weight:700;color:var(--crimson);text-decoration:none}
+.foot a:hover{text-decoration:underline}
+
+/* ---------- table ---------- */
+.tblwrap{overflow-x:auto;border:3.5px solid var(--ink);box-shadow:7px 7px 0 var(--ink);background:var(--paper)}
+table{width:100%;border-collapse:collapse;font-size:.8rem}
+th,td{text-align:left;padding:.5rem .65rem;border-bottom:2px solid rgba(20,16,15,.18);vertical-align:top}
+th{background:var(--ink);color:var(--paper);font-family:"Space Mono",monospace;font-size:.6rem;
+  letter-spacing:.08em;text-transform:uppercase;position:sticky;top:60px;cursor:pointer;white-space:nowrap}
+th:hover{color:var(--coral)}
+td a{color:var(--crimson);text-decoration:none;font-weight:600}
+td a:hover{text-decoration:underline}
+.hidden{display:none}
+
+footer{background:var(--ink);color:var(--blush);padding:2rem 4vw;margin-top:2.5rem;
+  font-family:"Space Mono",monospace;font-size:.68rem;letter-spacing:.05em}
+footer .inner{max-width:1280px;margin:0 auto}
+footer h4{font-family:"Space Mono",monospace;color:var(--coral);font-size:.68rem;letter-spacing:.12em;
+  text-transform:uppercase;margin:1.1rem 0 .4rem}
+footer ul{padding-left:1.1rem;line-height:1.7}
+footer a{color:var(--coral)}
+@media(max-width:640px){.grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:.8rem}}
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <div class="inner">
+    <a class="backlink" href="../admin.html">← Studio desk</a>
+    <span class="eyebrow">Crescent Butterfly · Asset Library</span>
+    <h1>Mockup Library</h1>
+    <p>Free, commercially-usable mockups — filter by category, style, business type, setting or
+       customization, then head to the source page to download the PSD.</p>
+    <div class="stats">
+      <div class="stat"><b id="sTotal">0</b><span>Indexed</span></div>
+      <div class="stat"><b id="sCats">0</b><span>Categories</span></div>
+      <div class="stat"><b id="sSubs">0</b><span>Subcategories</span></div>
+      <div class="stat"><b id="sSrcs">0</b><span>Sources</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+<div class="callout">
+  <h4>Read me first</h4>
+  <p>Every entry links to a real product page on a site stating its mockups are free for personal
+     <i>and</i> commercial use. <b>Style, business, setting and customization tags are estimates
+     derived from each mockup's title</b> — good for narrowing a long list, not a guarantee.
+     Confirm the license and what's actually editable before client work.</p>
+  <p>Downloads happen on the source site — Mr.Mockup has a download button on each product page,
+     MockupTree routes through a free cart. Neither allows a direct-file link, so
+     <b>“Go to download” lands on the page holding the PSD.</b></p>
+  <p class="scribble">Same index as the studio drive — this copy travels.</p>
+</div>
+
+<div class="controls">
+  <div class="row">
+    <input type="search" id="q" placeholder="Search… coffee, takeout, hoodie, billboard">
+    <select id="fCat"><option value="">All categories</option></select>
+    <select id="fSrc"><option value="">All sources</option></select>
+    <select id="fStyle"><option value="">All styles</option></select>
+    <select id="fBiz"><option value="">All business types</option></select>
+    <select id="fSet"><option value="">All settings</option></select>
+    <select id="fCust"><option value="">All customization</option></select>
+    <button id="reset" class="ghost">Reset</button>
+    <button id="view">Table</button>
+  </div>
+</div>
+
+<div class="count" id="count"></div>
+<div class="grid" id="grid"></div>
+<div class="tblwrap hidden" id="tblwrap">
+  <table><thead><tr>
+    <th data-s="title">Mockup</th><th data-s="cat">Category</th>
+    <th data-s="sub">Sub</th><th data-s="style">Style</th><th data-s="biz">Business</th>
+    <th data-s="setting">Setting</th><th data-s="cust">Customization</th><th data-s="src">Source</th>
+  </tr></thead><tbody id="tbody"></tbody></table>
+</div>
+</div>
+
+<footer><div class="inner">
+  <h4>Sources &amp; licensing</h4>
+  <ul id="srcList"></ul>
+  <h4>Where downloads go</h4>
+  <ul>
+    <li>Grab the PSD from the source page, then file it on the studio drive under its category</li>
+    <li>Keep the master PSD unflattened — the smart object is the whole value</li>
+    <li>Keep each download's license PDF next to its PSD, renamed to match</li>
+  </ul>
+  <p id="stamp" style="margin-top:1.2rem"></p>
+</div></footer>
+
+<script src="mockup-data.js"></script>
+<script>
+const RULES={
+ style:[[/isometric|floating|flying|cuboid|abstract/i,"Isometric / 3D"],
+   [/vintage|retro|enamel|leather|chalkboard|craft|kraft|classic|hippie|camper/i,"Vintage / Retro"],
+   [/luxury|embossed|golden|gold|premium|marble|champagne|jewelry|classy/i,"Luxury / Premium"],
+   [/minimal|minimalist|clean|empty|isolated|plain|simple|white|blank/i,"Minimal / Clean"],
+   [/dark|black|shadow|moody|night/i,"Dark / Moody"],
+   [/industrial|concrete|urban|subway|tram|city|construction|street/i,"Industrial / Urban"],
+   [/top view|flat lay|laying|lying|top-view/i,"Flat Lay / Top View"],
+   [/scene|generator|identity scene|workplace|home office|lifestyle/i,"Lifestyle / Scene"],
+   [/wood|wooden|stone|rock|natural|eco|fabric|cotton|paper/i,"Natural / Organic"]],
+ biz:[[/coffee|mug|cafe|espresso|thermos|capsule/i,"Cafe & Coffee"],
+   [/menu|restaurant|burger|pizza|food|noodle|dish|takeaway|chopstick|popcorn|snack|chocolate|ice cream/i,"Restaurant & Food"],
+   [/cosmetic|lipstick|soap|cream|beauty|makeup|toothpaste|mask|jar/i,"Beauty & Cosmetics"],
+   [/t-shirt|tshirt|hoodie|sweatshirt|polo|shirt|onesie|apparel|clothing|jacket|shoes|flip flop/i,"Fashion & Apparel"],
+   [/iphone|macbook|laptop|smartphone|device|app|screen|usb|sim|headphone/i,"Tech & SaaS"],
+   [/instagram|story|carousel|feed|social|profile/i,"Social & Content"],
+   [/wine|beer|champagne|juice|soda|milk|flask|bottle/i,"Beverage & Alcohol"],
+   [/billboard|storefront|facade|signage|bus stop|banner|truck|van|tram|citylight/i,"Outdoor Advertising"],
+   [/book|magazine|recipe|newspaper|poster|cinema|notebook/i,"Publishing & Media"],
+   [/invitation|greeting|easter|card &|playing card|gift/i,"Events & Weddings"],
+   [/business card|stationery|letterhead|envelope|folder|corporate|identity|branding|logo/i,"Corporate & Branding"],
+   [/bag|box|pouch|shipping|delivery|mailer|shopping|packaging|label|tag/i,"Retail & Ecommerce"]],
+ setting:[[/in hand|hand|hands|holding|held|wearing/i,"In-Hand / Worn"],
+   [/desk|office|workplace|workspace|dresser|table|countertop|sofa|chair/i,"Desk / Workspace"],
+   [/street|outdoor|roadside|city|urban|building|subway|garden|terrace|bus stop|mall/i,"Outdoor / Street"],
+   [/storefront|facade|shop|window|shelf|retail/i,"Retail / Storefront"],
+   [/home|bedding|bathroom|kitchen|bedroom|room/i,"Indoor / Home"],
+   [/wall|concrete|rock|stone|wood|marble|fabric|tiled/i,"Textured Surface"],
+   [/scene|generator|set|collection|branding/i,"Styled Scene"]],
+ cust:[[/scene generator|generator|smart objects\)|set$|sets$|psd set|collection|pack$/i,"High — scene / multi-object"],
+   [/mockups|set|two |three|four|five|front & back|front-back|customizable|versatile|branding|stationery|identity/i,"Medium — multi smart object"]]
+};
+const tag=(t,k,f)=>{for(const[re,l]of RULES[k])if(re.test(t))return l;return f};
+const slug=p=>(p.startsWith("/free/")?"mt-":"mm-")+p.replace(/[^a-zA-Z0-9]+/g,"-").replace(/^-+|-+$/g,"").toLowerCase();
+
+const DATA=MOCKUPS.map((m,i)=>({
+  i, title:m[0], url:SOURCES[m[4]].host+m[1], key:m[1],
+  thumb:m[5]||"thumbs/"+slug(m[1])+".jpg",
+  cat:m[2], sub:m[3], src:SOURCES[m[4]].name,
+  style:tag(m[0],"style","Realistic / Photographic"),
+  biz:tag(m[0],"biz","General / Versatile"),
+  setting:tag(m[0],"setting","Studio / Isolated"),
+  cust:tag(m[0],"cust","Basic — single smart object")
+}));
+
+const $=s=>document.querySelector(s);
+const fill=(sel,v)=>[...new Set(v)].sort().forEach(x=>sel.insertAdjacentHTML("beforeend",`<option>${x}</option>`));
+fill($("#fCat"),DATA.map(d=>d.cat)); fill($("#fSrc"),DATA.map(d=>d.src));
+fill($("#fStyle"),DATA.map(d=>d.style));
+fill($("#fBiz"),DATA.map(d=>d.biz)); fill($("#fSet"),DATA.map(d=>d.setting));
+fill($("#fCust"),DATA.map(d=>d.cust));
+
+const FILTERS=["q","fCat","fSrc","fStyle","fBiz","fSet","fCust"];
+let tableMode=false,sortKey=null,sortAsc=true;
+function current(){
+  const q=$("#q").value.trim().toLowerCase();
+  let r=DATA.filter(d=>
+    (!q||`${d.title} ${d.cat} ${d.sub} ${d.style} ${d.biz} ${d.setting}`.toLowerCase().includes(q))&&
+    (!$("#fCat").value||d.cat===$("#fCat").value)&&
+    (!$("#fSrc").value||d.src===$("#fSrc").value)&&
+    (!$("#fStyle").value||d.style===$("#fStyle").value)&&
+    (!$("#fBiz").value||d.biz===$("#fBiz").value)&&
+    (!$("#fSet").value||d.setting===$("#fSet").value)&&
+    (!$("#fCust").value||d.cust===$("#fCust").value));
+  if(sortKey)r.sort((a,b)=>{const A=a[sortKey],B=b[sortKey];
+    return (A>B?1:A<B?-1:0)*(sortAsc?1:-1)});
+  return r;
+}
+function render(){
+  const r=current();
+  $("#sTotal").textContent=DATA.length;
+  $("#sCats").textContent=new Set(DATA.map(d=>d.cat)).size;
+  $("#sSubs").textContent=new Set(DATA.map(d=>d.cat+"/"+d.sub)).size;
+  $("#sSrcs").textContent=new Set(DATA.map(d=>d.src)).size;
+  $("#count").textContent=`Showing ${r.length} of ${DATA.length}`;
+  if(tableMode){
+    $("#tbody").innerHTML=r.map(d=>`<tr>
+      <td><a href="${d.url}" target="_blank" rel="noopener">${d.title}</a></td>
+      <td>${d.cat}</td><td>${d.sub}</td><td>${d.style}</td><td>${d.biz}</td>
+      <td>${d.setting}</td><td>${d.cust}</td><td>${d.src}</td></tr>`).join("");
+  }else{
+    $("#grid").innerHTML=r.map(d=>`<div class="card">
+      <div class="thumb">
+        <span class="noimg">No preview</span>
+        <img loading="lazy" src="${d.thumb}" alt="" onerror="this.closest('.thumb').classList.add('failed');this.remove()">
+      </div>
+      <div class="meta">
+        <div class="crumb">${d.cat} › ${d.sub}</div>
+        <h3><a href="${d.url}" target="_blank" rel="noopener">${d.title}</a></h3>
+        <div class="tags"><span class="tag">${d.style}</span><span class="tag">${d.biz}</span>
+          <span class="tag">${d.setting}</span><span class="tag cust">${d.cust}</span>
+          <span class="tag src">${d.src}</span></div>
+        <div class="foot"><a href="${d.url}" target="_blank" rel="noopener">Go to download →</a></div>
+      </div></div>`).join("");
+  }
+}
+FILTERS.forEach(id=>$("#"+id).addEventListener("input",render));
+$("#reset").onclick=()=>{FILTERS.forEach(id=>$("#"+id).value="");sortKey=null;render()};
+$("#view").onclick=e=>{tableMode=!tableMode;$("#grid").classList.toggle("hidden",tableMode);
+  $("#tblwrap").classList.toggle("hidden",!tableMode);e.target.textContent=tableMode?"Cards":"Table";render()};
+document.querySelectorAll("th[data-s]").forEach(th=>th.onclick=()=>{
+  const k=th.dataset.s; sortAsc=(sortKey===k)?!sortAsc:true; sortKey=k; render()});
+$("#srcList").innerHTML=SOURCES.map(s=>`<li><a href="${s.host}" target="_blank" rel="noopener">${s.name}</a> — ${s.license} ${s.note}</li>`).join("");
+$("#stamp").textContent=`${DATA.length} mockups indexed · compiled 25 July 2026 · tags auto-derived from titles`;
+render();
+</script>
+</body>
+</html>
