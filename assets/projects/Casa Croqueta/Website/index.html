@@ -23,19 +23,47 @@
     </a>
     <nav class="nav-links" aria-label="Primary">
       <a href="#story">Our Story</a>
-      <a href="#croquetas">Croquetas</a>
+      <a href="#menu">Menu</a>
       <a href="#ambassador">Ambassador</a>
       <a href="#share">Made to Share</a>
       <a href="brand.html">Brand Guide</a>
     </nav>
     <div class="nav-cta">
-      <a class="btn btn-gold" href="#order">Order</a>
+      <button class="cart-btn" data-cart-toggle aria-label="View cart" aria-expanded="false">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2l2.4 12.4a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.6L21 8H6"/><circle cx="9.5" cy="20" r="1.4"/><circle cx="17.5" cy="20" r="1.4"/></svg>
+        <span class="cart-count" data-cart-count hidden>0</span>
+      </button>
+      <a class="btn btn-gold" href="#menu">Order</a>
       <button class="nav-toggle" data-nav-toggle aria-label="Menu" aria-expanded="false">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
       </button>
     </div>
   </div>
 </header>
+
+<!-- CART DRAWER -->
+<div class="cart-drawer" data-cart-drawer aria-hidden="true">
+  <div class="cart-drawer-backdrop" data-cart-close></div>
+  <aside class="cart-drawer-panel" role="dialog" aria-modal="true" aria-label="Your cart">
+    <div class="cart-drawer-head">
+      <h2>Your Cart</h2>
+      <button class="cart-drawer-close" data-cart-close aria-label="Close cart">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <div class="cart-drawer-body">
+      <p class="cart-drawer-empty" data-drawer-empty>Your cart is empty. Add a few croquetas from the menu to get started.</p>
+      <ul class="cart-drawer-list" data-drawer-list></ul>
+    </div>
+    <div class="cart-drawer-foot" data-drawer-foot hidden>
+      <div class="cart-drawer-total">
+        <span>Estimated total</span>
+        <strong data-drawer-total-amount>$0</strong>
+      </div>
+      <a class="btn btn-gold" href="#order" data-cart-checkout>Review &amp; Send Order <span class="arrow">&rarr;</span></a>
+    </div>
+  </aside>
+</div>
 
 <!-- HERO -->
 <section class="hero monogram-field" style="--mono-bg:url('assets/logo/monogram-tile.svg')">
@@ -49,7 +77,7 @@
         </h1>
         <p class="hero-sub" data-reveal>A beloved family recipe, handcrafted in small batches. Crispy outside, creamy inside, and always meant for the table.</p>
         <div class="hero-actions" data-reveal>
-          <a class="btn btn-gold" href="#order">Order Croquetas <span class="arrow">&rarr;</span></a>
+          <a class="btn btn-gold" href="#menu">Order Croquetas <span class="arrow">&rarr;</span></a>
           <a class="btn btn-ghost-light" href="#story">Our Story</a>
         </div>
       </div>
@@ -136,6 +164,108 @@
   </div>
 </section>
 
+<!-- MENU / BUILD YOUR BOX -->
+<section class="section" id="menu">
+  <div class="wrap">
+    <div style="max-width:640px;margin-bottom:3rem" data-reveal>
+      <h2 class="h2" style="color:var(--warm-white)">Build your box.</h2>
+      <p style="color:#C6BDAC;margin-top:1.1rem;font-size:1.06rem">Pick your favorites and quantities, add them to your cart, then send us the details. We will confirm pricing, availability, and pickup or delivery by email or phone.</p>
+    </div>
+
+    <div class="menu-grid">
+      <article class="menu-item" data-reveal data-id="ham-half" data-name="Half Dozen Ham Croquetas" data-price="18">
+        <div class="menu-item-media"><img src="assets/img/food-cut.jpg" alt="Ham croquetas, half dozen"></div>
+        <div class="menu-item-body">
+          <span class="kicker">Tradicional</span>
+          <h3>Half Dozen Ham Croquetas</h3>
+          <p>6 pieces. The heritage recipe, slow-made bechamel folded with cured ham.</p>
+          <div class="menu-item-foot">
+            <span class="menu-price">$18</span>
+            <div class="qty-stepper">
+              <button type="button" data-qty-minus aria-label="Decrease quantity">&minus;</button>
+              <input type="number" data-qty-input value="1" min="1" max="20" inputmode="numeric" aria-label="Quantity">
+              <button type="button" data-qty-plus aria-label="Increase quantity">+</button>
+            </div>
+          </div>
+          <button type="button" class="btn btn-gold add-to-cart" data-add-to-cart>Add to Cart</button>
+        </div>
+      </article>
+
+      <article class="menu-item d1" data-reveal data-id="ham-dozen" data-name="Dozen Ham Croquetas" data-price="32">
+        <div class="menu-item-media"><img src="assets/img/food-cut.jpg" alt="Ham croquetas, dozen"></div>
+        <div class="menu-item-body">
+          <span class="kicker">Tradicional</span>
+          <h3>Dozen Ham Croquetas</h3>
+          <p>12 pieces. Perfect for a family table or a small gathering.</p>
+          <div class="menu-item-foot">
+            <span class="menu-price">$32</span>
+            <div class="qty-stepper">
+              <button type="button" data-qty-minus aria-label="Decrease quantity">&minus;</button>
+              <input type="number" data-qty-input value="1" min="1" max="20" inputmode="numeric" aria-label="Quantity">
+              <button type="button" data-qty-plus aria-label="Increase quantity">+</button>
+            </div>
+          </div>
+          <button type="button" class="btn btn-gold add-to-cart" data-add-to-cart>Add to Cart</button>
+        </div>
+      </article>
+
+      <article class="menu-item d2" data-reveal data-id="chicken-half" data-name="Half Dozen Chicken Croquetas" data-price="18">
+        <div class="menu-item-media"><img src="assets/img/food-cut.jpg" alt="Chicken croquetas, half dozen"></div>
+        <div class="menu-item-body">
+          <span class="kicker">Pollo</span>
+          <h3>Half Dozen Chicken Croquetas</h3>
+          <p>6 pieces. Our classic, tender chicken in a silky, seasoned filling.</p>
+          <div class="menu-item-foot">
+            <span class="menu-price">$18</span>
+            <div class="qty-stepper">
+              <button type="button" data-qty-minus aria-label="Decrease quantity">&minus;</button>
+              <input type="number" data-qty-input value="1" min="1" max="20" inputmode="numeric" aria-label="Quantity">
+              <button type="button" data-qty-plus aria-label="Increase quantity">+</button>
+            </div>
+          </div>
+          <button type="button" class="btn btn-gold add-to-cart" data-add-to-cart>Add to Cart</button>
+        </div>
+      </article>
+
+      <article class="menu-item d3" data-reveal data-id="chicken-dozen" data-name="Dozen Chicken Croquetas" data-price="32">
+        <div class="menu-item-media"><img src="assets/img/food-cut.jpg" alt="Chicken croquetas, dozen"></div>
+        <div class="menu-item-body">
+          <span class="kicker">Pollo</span>
+          <h3>Dozen Chicken Croquetas</h3>
+          <p>12 pieces. Always a favorite, always crowd-ready.</p>
+          <div class="menu-item-foot">
+            <span class="menu-price">$32</span>
+            <div class="qty-stepper">
+              <button type="button" data-qty-minus aria-label="Decrease quantity">&minus;</button>
+              <input type="number" data-qty-input value="1" min="1" max="20" inputmode="numeric" aria-label="Quantity">
+              <button type="button" data-qty-plus aria-label="Increase quantity">+</button>
+            </div>
+          </div>
+          <button type="button" class="btn btn-gold add-to-cart" data-add-to-cart>Add to Cart</button>
+        </div>
+      </article>
+
+      <article class="menu-item featured" data-reveal data-id="mixed-box" data-name="Mixed Gift Box" data-price="34">
+        <div class="menu-item-media"><img src="assets/img/app-gablebox.jpg" alt="Mixed gift box of croquetas"></div>
+        <div class="menu-item-body">
+          <span class="kicker" style="color:var(--gold-bright)">By the box</span>
+          <h3>Mixed Gift Box</h3>
+          <p>6 ham and 6 chicken, boxed and ribboned. Made to share, made as a gift.</p>
+          <div class="menu-item-foot">
+            <span class="menu-price">$34</span>
+            <div class="qty-stepper">
+              <button type="button" data-qty-minus aria-label="Decrease quantity">&minus;</button>
+              <input type="number" data-qty-input value="1" min="1" max="20" inputmode="numeric" aria-label="Quantity">
+              <button type="button" data-qty-plus aria-label="Increase quantity">+</button>
+            </div>
+          </div>
+          <button type="button" class="btn btn-gold add-to-cart" data-add-to-cart>Add to Cart</button>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
 <!-- AMBASSADOR -->
 <section class="section ambassador" id="ambassador">
   <div class="wrap">
@@ -180,12 +310,82 @@
 <section class="cta-band monogram-field" id="order" style="--mono-bg:url('assets/logo/monogram-tile.svg')">
   <div class="wrap-narrow" data-reveal>
     <p class="script">From our table to yours.</p>
-    <h2 class="h2">Now taking orders.</h2>
-    <p>Family gatherings, corporate events, gifts, or any occasion. Tell us the date and we will bring the tradition.</p>
-    <div class="hero-actions" style="justify-content:center">
-      <a class="btn btn-gold" href="mailto:hello@casacroqueta.com?subject=Casa%20Croqueta%20Order">Order Croquetas <span class="arrow">&rarr;</span></a>
-      <a class="btn btn-ghost-light" href="https://instagram.com/casacroquetamiami" target="_blank" rel="noopener">DM @casacroquetamiami</a>
+    <h2 class="h2">Review &amp; send your order.</h2>
+    <p>This sends an order inquiry, not a live checkout. We will confirm pricing, availability, and pickup or delivery by email or phone.</p>
+
+    <!-- Cart review: populated by assets/js/main.js from the cart added in #menu -->
+    <div class="order-review" data-order-review>
+      <div class="order-review-empty" data-cart-empty>
+        <p>Your cart is empty. <a href="#menu">Browse the menu</a> to add items, or just send us a message below.</p>
+      </div>
+      <ul class="order-review-list" data-cart-list hidden></ul>
+      <div class="order-review-total" data-cart-total hidden>
+        <span>Estimated total</span>
+        <strong data-cart-total-amount>$0</strong>
+      </div>
     </div>
+
+    <!--
+      GOOGLE FORM SETUP (required before this form can send email):
+      1. Go to https://forms.google.com while signed in as casacroquetamiami@gmail.com
+         (or add that address as a collaborator on the form).
+      2. Create a form with these fields, in this order:
+           - Name        (Short answer)
+           - Email       (Short answer, set validation to "Email")
+           - Phone       (Short answer, not required)
+           - Occasion or date (Short answer, not required)
+           - Message     (Paragraph)
+      3. In the Responses tab, click the kebab menu (three dots) and enable
+         "Get email notifications for new responses" so replies land in
+         casacroquetamiami@gmail.com automatically.
+      4. Click Send, copy the form link, and share it so the fields below can
+         be wired to the real entry IDs (or open the form, use "Get pre-filled
+         link" on each question to find its entry.XXXXXXXX number yourself).
+      5. Replace YOUR_GOOGLE_FORM_ID in the form action, and each
+         ENTRY_ID_* placeholder in the name attributes below, with the real
+         values from your form.
+    -->
+    <form id="order-form" class="order-form"
+          action="https://docs.google.com/forms/d/e/YOUR_GOOGLE_FORM_ID/formResponse"
+          method="POST" target="hidden-form-target">
+      <div class="form-row">
+        <div class="field">
+          <label for="of-name">Name</label>
+          <input id="of-name" name="entry.ENTRY_ID_NAME" type="text" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="of-email">Email</label>
+          <input id="of-email" name="entry.ENTRY_ID_EMAIL" type="email" autocomplete="email" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="field">
+          <label for="of-phone">Phone <span class="optional">(optional)</span></label>
+          <input id="of-phone" name="entry.ENTRY_ID_PHONE" type="tel" autocomplete="tel">
+        </div>
+        <div class="field">
+          <label for="of-occasion">Occasion or date</label>
+          <input id="of-occasion" name="entry.ENTRY_ID_OCCASION" type="text" placeholder="e.g. Family gathering, Aug 14">
+        </div>
+      </div>
+      <div class="field">
+        <label for="of-message">Message</label>
+        <textarea id="of-message" name="entry.ENTRY_ID_MESSAGE" rows="4" placeholder="Any additional details we should know."></textarea>
+      </div>
+
+      <!-- Honeypot spam trap: checked client-side only, not part of the Google Form -->
+      <input type="text" name="company" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+      <div class="form-actions">
+        <button type="submit" class="btn btn-gold">Send Order Inquiry <span class="arrow">&rarr;</span></button>
+        <a class="btn btn-ghost-light" href="https://instagram.com/casacroquetamiami" target="_blank" rel="noopener">DM @casacroquetamiami</a>
+      </div>
+
+      <p class="form-status" role="status" aria-live="polite"></p>
+    </form>
+
+    <!-- Hidden target so the native form POST doesn't navigate away from the site -->
+    <iframe name="hidden-form-target" data-hidden-form-target style="display:none" aria-hidden="true"></iframe>
   </div>
 </section>
 
@@ -209,7 +409,7 @@
       <div>
         <h4>Order &amp; Connect</h4>
         <ul>
-          <li><a href="mailto:hello@casacroqueta.com">hello@casacroqueta.com</a></li>
+          <li><a href="mailto:casacroquetamiami@gmail.com">casacroquetamiami@gmail.com</a></li>
           <li><a href="https://instagram.com/casacroquetamiami" target="_blank" rel="noopener">@casacroquetamiami</a></li>
           <li><a href="tel:+13055000000">305 &middot; Miami, FL</a></li>
         </ul>
