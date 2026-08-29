@@ -364,7 +364,7 @@ p { margin: 0; }
 .menu-item-body > p { color: #B7AE9D; margin-top: 0.5rem; font-size: 0.92rem; }
 .menu-item-foot { display:flex; align-items:center; justify-content:space-between; margin-top: 1.2rem; gap: 1rem; }
 .menu-price { font-family: var(--display); font-weight:600; font-size: 1.3rem; color: var(--gold-bright); }
-.qty-stepper { display:flex; align-items:center; border:1px solid var(--hair-dark); border-radius: 999px; overflow:hidden; }
+.qty-stepper { display:flex; align-items:center; border:1px solid rgba(201,162,94,0.6); border-radius: 999px; overflow:hidden; }
 .qty-stepper button {
   width: 30px; height: 30px; background:none; border:0; color: var(--warm-white);
   font-size: 1.1rem; cursor:pointer; line-height:1;
@@ -407,13 +407,15 @@ p { margin: 0; }
 .field label .optional { text-transform: none; letter-spacing: normal; color: #8F887A; }
 .field input, .field textarea {
   font-family: var(--body); font-size: 0.98rem; color: var(--warm-white);
-  background: var(--black-800); border: 1px solid var(--hair-dark);
+  background: #262320; border: 1px solid rgba(201,162,94,0.6);
   border-radius: var(--radius); padding: 0.85em 1em; resize: vertical;
-  transition: border-color 0.3s var(--ease), background-color 0.3s var(--ease);
+  transition: border-color 0.3s var(--ease), background-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
 }
 .field input::placeholder, .field textarea::placeholder { color: #8F887A; }
+.field input:hover, .field textarea:hover { border-color: rgba(201,162,94,0.65); }
 .field input:focus, .field textarea:focus {
-  outline: none; border-color: var(--gold); background: #262320;
+  outline: none; border-color: var(--gold); background: #2c2822;
+  box-shadow: 0 0 0 3px rgba(201,162,94,0.18);
 }
 .hp-field { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
 .form-actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; margin-top: 0.6rem; }
