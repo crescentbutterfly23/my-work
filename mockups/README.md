@@ -34,6 +34,27 @@ Neither source allows a direct-file link — Mr.Mockup puts a download button on
 page, MockupTree routes through a free cart/checkout. So **“Go to download” lands on the page
 holding the PSD**, one click from the file.
 
+## Finishes
+
+A **finishes** filter covers print treatments — Spot UV, emboss, deboss, letterpress,
+foil stamp, die cut, varnish, engraving, kraft/uncoated, textured stock.
+
+Two things feed it, and the hand-curated one is the important half:
+
+1. **Keyword guess.** If a title literally says "Embossed Business Card", it gets tagged.
+   Restricted to print categories, so "Matte Lipstick" and "Metallic Food Pouch" are not
+   mistaken for print finishes. This only catches **11 of 1,009** — source titles almost
+   never mention finishes, and nothing in the catalog says spot UV, letterpress or die cut.
+2. **`FINISHES` in `mockup-data.js`.** A map of `url -> finish`, hand-edited, which always
+   wins over the guess. This is where the filter actually becomes useful: when you open a
+   PSD and see what it supports, record it and it stays filterable.
+
+The map is not limited to print categories — tag an apparel mockup "Screen print" or
+"Embroidery" and it works, and the label becomes a filter option automatically.
+
+Unfinished entries are not given a made-up default; they show `—` and group under
+**Not specified** in the filter.
+
 ## Updating
 
 The catalog lives in `mockup-data.js` as rows of

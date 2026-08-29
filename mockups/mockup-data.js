@@ -17,6 +17,21 @@ const SOURCES = [
     note: "Free account needed to download; free-tier daily limits apply. Only free-license items are indexed here — the site’s Premium mockups need a paid subscription." }
 ];
 
+/* Print finishes, hand-curated. Keyed by each entry's url field (the 2nd element
+   of its row). Anything listed here wins over the keyword guess in the guide.
+
+   Source titles almost never name a finish, so the automatic pass only catches a
+   dozen or so. This is where the real knowledge goes: when you open a PSD and see
+   what it actually supports, add it here and it becomes filterable forever.
+
+   Use the labels the filter already offers so they group together:
+     Spot UV · Emboss · Deboss · Letterpress · Foil stamp · Die cut · Varnish
+     Engraved · Kraft / uncoated · Textured stock
+   Any other string works too - it just shows up as its own filter option. */
+const FINISHES = {
+  // "/free-embossed-business-card-mockup/": "Emboss",
+};
+
 const MOCKUPS = [
 // ---------- Filed on the studio drive; these link to the source page ----------
 ["T-Shirt Front & Back (smart object)","/free-t-shirt-mockups/","Apparel","T-Shirts",0,"thumbs/local-tshirt-frontback.jpg"],

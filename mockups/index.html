@@ -95,6 +95,7 @@ button.ghost{background:var(--paper);color:var(--ink);box-shadow:4px 4px 0 var(-
 .tag{font-family:"Space Mono",monospace;font-size:.55rem;letter-spacing:.05em;text-transform:uppercase;
   font-weight:700;color:var(--ink);background:var(--blush);border:2px solid var(--ink);padding:.13rem .38rem}
 .tag.cust{background:var(--warm)}
+.tag.fin{background:var(--rose-deep);border-style:double;border-width:3px}
 .tag.src{background:var(--paper-2)}
 .foot{margin-top:auto;padding-top:.5rem;border-top:2px dashed rgba(20,16,15,.28)}
 .foot a{font-family:"Space Mono",monospace;font-size:.6rem;letter-spacing:.09em;text-transform:uppercase;
@@ -165,6 +166,7 @@ footer a{color:var(--coral)}
     <select id="fBiz"><option value="">All business types</option></select>
     <select id="fSet"><option value="">All settings</option></select>
     <select id="fCust"><option value="">All customization</option></select>
+    <select id="fFin"><option value="">All finishes</option><option value="__none">Not specified</option></select>
     <button id="reset" class="ghost">Reset</button>
     <button id="view">Table</button>
   </div>
@@ -176,7 +178,8 @@ footer a{color:var(--coral)}
   <table><thead><tr>
     <th data-s="title">Mockup</th><th data-s="cat">Category</th>
     <th data-s="sub">Sub</th><th data-s="style">Style</th><th data-s="biz">Business</th>
-    <th data-s="setting">Setting</th><th data-s="cust">Customization</th><th data-s="src">Source</th>
+    <th data-s="setting">Setting</th><th data-s="cust">Customization</th>
+    <th data-s="finish">Finish</th><th data-s="src">Source</th>
   </tr></thead><tbody id="tbody"></tbody></table>
 </div>
 </div>
@@ -227,10 +230,28 @@ const RULES={
    [/home|bedding|bathroom|kitchen|bedroom|room/i,"Indoor / Home"],
    [/wall|concrete|rock|stone|wood|marble|fabric|tiled/i,"Textured Surface"],
    [/scene|generator|set|collection|branding/i,"Styled Scene"]],
+ /* Print finishes only: a mockup's title has to actually name one. Deliberately
+    narrow — "Matte Lipstick" and "Metallic Food Pouch" describe a product's material,
+    not something a printer does to paper, so those words are left out. Anything the
+    title doesn't say belongs in the FINISHES map in mockup-data.js. */
+ finish:[[/spot ?uv|uv spot|uv coat/i,"Spot UV"],
+   [/letterpress/i,"Letterpress"],
+   [/\bemboss(ed|ing)?\b/i,"Emboss"],
+   [/\bdeboss(ed|ing)?\b/i,"Deboss"],
+   [/\bfoil\b(?!\s*(pouch|bag|packet))|gold foil|foil stamp/i,"Foil stamp"],
+   [/die.?cut/i,"Die cut"],
+   [/varnish|spot gloss/i,"Varnish"],
+   [/\bengrav(ed|ing)\b|\betched\b/i,"Engraved"],
+   [/kraft|uncoated/i,"Kraft / uncoated"],
+   [/\btextured\b|\blinen\b|cotton paper/i,"Textured stock"]],
  cust:[[/scene generator|generator|smart objects\)|set$|sets$|psd set|collection|pack$/i,"High — scene / multi-object"],
    [/mockups|set|two |three|four|five|front & back|front-back|customizable|versatile|branding|stationery|identity/i,"Medium — multi smart object"]]
 };
 const tag=(t,k,f)=>{for(const[re,l]of RULES[k])if(re.test(t))return l;return f};
+/* Finishes belong to printed things. A hand-entry in FINISHES always wins; otherwise
+   guess from the title, and leave it blank rather than inventing a default. */
+const PRINT=new Set(["Branding & Stationery","Print & Publishing","Packaging & Product","Signage & Outdoor"]);
+const finishOf=(m)=>FINISHES[m[1]]||(PRINT.has(m[2])?tag(m[0],"finish","")||"":"");
 const slug=p=>(p.startsWith("/free/")?"mt-":"mm-")+p.replace(/[^a-zA-Z0-9]+/g,"-").replace(/^-+|-+$/g,"").toLowerCase();
 
 const DATA=MOCKUPS.map((m,i)=>({
@@ -240,7 +261,8 @@ const DATA=MOCKUPS.map((m,i)=>({
   style:tag(m[0],"style","Realistic / Photographic"),
   biz:tag(m[0],"biz","General / Versatile"),
   setting:tag(m[0],"setting","Studio / Isolated"),
-  cust:tag(m[0],"cust","Basic — single smart object")
+  cust:tag(m[0],"cust","Basic — single smart object"),
+  finish:finishOf(m)
 }));
 
 const $=s=>document.querySelector(s);
@@ -249,19 +271,21 @@ fill($("#fCat"),DATA.map(d=>d.cat)); fill($("#fSrc"),DATA.map(d=>d.src));
 fill($("#fStyle"),DATA.map(d=>d.style));
 fill($("#fBiz"),DATA.map(d=>d.biz)); fill($("#fSet"),DATA.map(d=>d.setting));
 fill($("#fCust"),DATA.map(d=>d.cust));
+fill($("#fFin"),DATA.map(d=>d.finish).filter(Boolean));
 
-const FILTERS=["q","fCat","fSrc","fStyle","fBiz","fSet","fCust"];
+const FILTERS=["q","fCat","fSrc","fStyle","fBiz","fSet","fCust","fFin"];
 let tableMode=false,sortKey=null,sortAsc=true;
 function current(){
   const q=$("#q").value.trim().toLowerCase();
   let r=DATA.filter(d=>
-    (!q||`${d.title} ${d.cat} ${d.sub} ${d.style} ${d.biz} ${d.setting}`.toLowerCase().includes(q))&&
+    (!q||`${d.title} ${d.cat} ${d.sub} ${d.style} ${d.biz} ${d.setting} ${d.finish}`.toLowerCase().includes(q))&&
     (!$("#fCat").value||d.cat===$("#fCat").value)&&
     (!$("#fSrc").value||d.src===$("#fSrc").value)&&
     (!$("#fStyle").value||d.style===$("#fStyle").value)&&
     (!$("#fBiz").value||d.biz===$("#fBiz").value)&&
     (!$("#fSet").value||d.setting===$("#fSet").value)&&
-    (!$("#fCust").value||d.cust===$("#fCust").value));
+    (!$("#fCust").value||d.cust===$("#fCust").value)&&
+    (!$("#fFin").value||($("#fFin").value==="__none"?!d.finish:d.finish===$("#fFin").value)));
   if(sortKey)r.sort((a,b)=>{const A=a[sortKey],B=b[sortKey];
     return (A>B?1:A<B?-1:0)*(sortAsc?1:-1)});
   return r;
@@ -277,7 +301,8 @@ function render(){
     $("#tbody").innerHTML=r.map(d=>`<tr>
       <td><a href="${d.url}" target="_blank" rel="noopener">${d.title}</a></td>
       <td>${d.cat}</td><td>${d.sub}</td><td>${d.style}</td><td>${d.biz}</td>
-      <td>${d.setting}</td><td>${d.cust}</td><td>${d.src}</td></tr>`).join("");
+      <td>${d.setting}</td><td>${d.cust}</td>
+      <td>${d.finish||"—"}</td><td>${d.src}</td></tr>`).join("");
   }else{
     $("#grid").innerHTML=r.map(d=>`<div class="card">
       <div class="thumb">
@@ -289,6 +314,7 @@ function render(){
         <h3><a href="${d.url}" target="_blank" rel="noopener">${d.title}</a></h3>
         <div class="tags"><span class="tag">${d.style}</span><span class="tag">${d.biz}</span>
           <span class="tag">${d.setting}</span><span class="tag cust">${d.cust}</span>
+          ${d.finish?`<span class="tag fin">${d.finish}</span>`:""}
           <span class="tag src">${d.src}</span></div>
         <div class="foot"><a href="${d.url}" target="_blank" rel="noopener">Go to download →</a></div>
       </div></div>`).join("");
