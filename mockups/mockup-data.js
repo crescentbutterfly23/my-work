@@ -114,7 +114,7 @@ const MOCKUPS = [
 ["Isometric Business Card","/free/isometric-business-card-mockup/","Branding & Stationery","Business Cards",1],
 ["Stacked Business Cards Set","/free/stacked-business-cards-mockups/","Branding & Stationery","Business Cards",1],
 ["Natural Rock Business Card","/free/natural-rock-business-card-mockup/","Branding & Stationery","Business Cards",1],
-["Business Card Set","/free/business-card-mockups/","Branding & Stationery","Business Cards",1],
+["Business Card Set","/free/business-card-mockups-psd-set/","Branding & Stationery","Business Cards",1,"thumbs/mt-free-business-card-mockups.jpg"],
 ["Identity Scene Business Card","/free/identity-scene-business-card-mockup/","Branding & Stationery","Business Cards",1],
 ["Shadow Business Card","/free/shadow-business-card-mockup/","Branding & Stationery","Business Cards",1],
 ["Grid Business Card","/free/grid-business-card-mockup/","Branding & Stationery","Business Cards",1],
