@@ -201,6 +201,16 @@ footer a{color:var(--coral)}
 
 <script src="mockup-data.js"></script>
 <script>
+/* If mockup-data.js fails to load — a half-finished deploy, an offline tab, a stale
+   cache — every count silently reads 0 and the grid sits empty, which looks like the
+   library is broken rather than not loaded. Say so instead. */
+if (typeof MOCKUPS === "undefined" || typeof SOURCES === "undefined") {
+  document.getElementById("count").innerHTML =
+    '<span style="color:var(--crimson)">Couldn’t load the catalogue (mockup-data.js). ' +
+    'If the site was just deployed, wait a moment and hard-refresh ' +
+    '(Ctrl&nbsp;+&nbsp;Shift&nbsp;+&nbsp;R).</span>';
+  throw new Error("mockup-data.js did not load");
+}
 const RULES={
  style:[[/isometric|floating|flying|cuboid|abstract/i,"Isometric / 3D"],
    [/vintage|retro|enamel|leather|chalkboard|craft|kraft|classic|hippie|camper/i,"Vintage / Retro"],
