@@ -15,6 +15,19 @@ Open it at `mockups/index.html` — or from the **🖼 Mockup library** button o
 - **Thumbnails are downscaled** to 520 px wide (~24 MB total instead of 106 MB) so the repo
   stays reasonable. Cards display at ~258 px, so they still look sharp on a retina screen.
 
+## Sources
+
+| Source | License | Catch |
+|---|---|---|
+| Mr.Mockup | Free, personal + commercial | Download button on each page |
+| MockupTree | Free, personal + commercial | Free cart/checkout, email may be needed |
+| Magnific (Freepik) | Free **only with attribution** | Free account required; most of their mockups are Premium |
+
+**Magnific attribution is mandatory.** Their free license allows commercial use only if
+"Designed by Magnific" plus a link to www.magnific.com appears visibly on the finished piece.
+The library footer carries that credit; it has to travel onto any client work too. Only
+free-license items are indexed — their Premium mockups need a paid subscription.
+
 ## Downloads
 
 Neither source allows a direct-file link — Mr.Mockup puts a download button on each product

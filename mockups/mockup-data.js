@@ -11,7 +11,10 @@ const SOURCES = [
     note: "High-quality photographic scenes. Download button on each product page." },
   { name: "MockupTree", host: "https://mockuptree.com",
     license: "Free for personal and commercial use (per site).",
-    note: "Downloads route through a free cart/checkout flow; email may be required." }
+    note: "Downloads route through a free cart/checkout flow; email may be required." },
+  { name: "Magnific", host: "https://www.magnific.com",
+    license: "Free license: commercial use allowed BUT attribution is always required — credit “Designed by Magnific” with a link to www.magnific.com on the finished piece.",
+    note: "Free account needed to download; free-tier daily limits apply. Only free-license items are indexed here — the site’s Premium mockups need a paid subscription." }
 ];
 
 const MOCKUPS = [
@@ -1030,4 +1033,15 @@ const MOCKUPS = [
 ["Leather Keychains","/free/leather-keychains-mockup/","Home & Lifestyle","Keychains & Small Goods",1],
 ["Round Leather Keychain PSD","/free/round-leather-keychain-mockup-psd/","Home & Lifestyle","Keychains & Small Goods",1],
 ["Plastic Key Chain","/free/plastic-key-chain-mockup/","Home & Lifestyle","Keychains & Small Goods",1],
+
+// ---------- Magnific (free license — attribution required) ----------
+["Business Cards Stacked","/free-psd/business-cards-mockup-stacked_222040475.htm","Branding & Stationery","Business Cards",2,"thumbs/mg-business-cards-mockup-stacked.jpg"],
+["Cardboard Business Card","/free-psd/cardboard-business-card-mockup_1321102.htm","Branding & Stationery","Business Cards",2,"thumbs/mg-cardboard-business-card-mockup.jpg"],
+["Golden Business Card","/free-psd/golden-business-card-mock-up-template_1210388.htm","Branding & Stationery","Business Cards",2,"thumbs/mg-golden-business-card-mock-up-template.jpg"],
+["Hands Holding Business Card","/free-psd/mock-up-with-young-man-s-hands-holding-business-card_1212093.htm","Branding & Stationery","Business Cards",2,"thumbs/mg-hands-holding-business-card.jpg"],
+["Hand & Business Card Concept","/free-psd/mockup-concept-hand-business-card_1195702.htm","Branding & Stationery","Business Cards",2,"thumbs/mg-mockup-concept-hand-business-card.jpg"],
+["Business Card with Architectural Elements","/free-psd/business-card-mockup-architectural-elements_415370359.htm","Branding & Stationery","Business Cards",2,"thumbs/mg-business-card-mockup-architectural-elements.jpg"],
+["Business Card with Geometric Pattern","/free-psd/business-card-mockup-with-geometric-pattern_768985.htm","Branding & Stationery","Business Cards",2,"thumbs/mg-business-card-mockup-geometric-pattern.jpg"],
+["Corporate Card with Watercolour Stroke","/free-psd/corporative-card-mockup-with-watercolor-brush-stroke_874640.htm","Branding & Stationery","Business Cards",2,"thumbs/mg-corporative-card-mockup-watercolor.jpg"],
+["Gift Cards Falling","/free-psd/gift-cards-mockup-falling_222045055.htm","Branding & Stationery","Business Cards",2,"thumbs/mg-gift-cards-mockup-falling.jpg"],
 ];
