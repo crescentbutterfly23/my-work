@@ -1059,4 +1059,23 @@ const MOCKUPS = [
 ["Business Card with Geometric Pattern","/free-psd/business-card-mockup-with-geometric-pattern_768985.htm","Branding & Stationery","Business Cards",2,"thumbs/mg-business-card-mockup-geometric-pattern.jpg"],
 ["Corporate Card with Watercolour Stroke","/free-psd/corporative-card-mockup-with-watercolor-brush-stroke_874640.htm","Branding & Stationery","Business Cards",2,"thumbs/mg-corporative-card-mockup-watercolor.jpg"],
 ["Gift Cards Falling","/free-psd/gift-cards-mockup-falling_222045055.htm","Branding & Stationery","Business Cards",2,"thumbs/mg-gift-cards-mockup-falling.jpg"],
+
+// ---------- Perfume & Fragrance ----------
+["Glass Perfume","/free/glass-perfume-mockup/","Packaging & Product","Perfume & Fragrance",1],
+["Label Perfume Bottle","/free/label-perfume-bottle-mockup/","Packaging & Product","Perfume & Fragrance",1],
+["Perfume Bottle PSD","/free/perfume-bottle-mockup-psd/","Packaging & Product","Perfume & Fragrance",1],
+["Transparent Perfume Bottle","/free/transparent-perfume-bottle-mockup/","Packaging & Product","Perfume & Fragrance",1],
+["Rollerball Perfume","/free/rollerball-perfume-mockup/","Packaging & Product","Perfume & Fragrance",1],
+["Transparent Perfume","/free/transparent-perfume-mockup/","Packaging & Product","Perfume & Fragrance",1],
+["Clear Perfume Bottle","/free/clear-perfume-bottle-mockup/","Packaging & Product","Perfume & Fragrance",1],
+["Perfume Bottle & Box","/free/bottle-box-perfume-mockup/","Packaging & Product","Perfume & Fragrance",1],
+["Glass Bottle Perfume","/free/glass-bottle-perfume-mockup/","Packaging & Product","Perfume & Fragrance",1],
+["Perfume PSD","/free/perfume-mockup-psd/","Packaging & Product","Perfume & Fragrance",1],
+["Perfume Box","/free/perfume-box-mockup/","Packaging & Product","Perfume & Fragrance",1],
+["Classic Perfume","/free/classic-perfume-mockup/","Packaging & Product","Perfume & Fragrance",1],
+["Perfume Set","/free/perfume-mockups/","Packaging & Product","Perfume & Fragrance",1],
+["Perfume Bottle","/free/perfume-bottle-mockup/","Packaging & Product","Perfume & Fragrance",1],
+["Perfume","/free/perfume-mockup/","Packaging & Product","Perfume & Fragrance",1],
+["Transparent Perfume Bottle PSD","/free-transparent-perfume-bottle-mockup/","Packaging & Product","Perfume & Fragrance",0],
+["Glass Perfume Bottle","/free-glass-perfume-bottle-mockup/","Packaging & Product","Perfume & Fragrance",0],
 ];

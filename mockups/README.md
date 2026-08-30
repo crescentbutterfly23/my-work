@@ -34,6 +34,20 @@ Neither source allows a direct-file link — Mr.Mockup puts a download button on
 page, MockupTree routes through a free cart/checkout. So **“Go to download” lands on the page
 holding the PSD**, one click from the file.
 
+## Perfume & fragrance
+
+`Packaging & Product > Perfume & Fragrance` holds 17 perfume mockups — 15 from MockupTree,
+2 from Mr.Mockup. Searching either "perfume" or "fragrance" finds all of them.
+
+Magnific was skipped for this one. Its free perfume results are 3D renders, AI cutouts and
+isolated product illustrations ("3d Render Illustration", "icon on golden podium stage")
+rather than PSDs with an editable smart object, so they would not have been usable the way
+the rest of the library is.
+
+Note that the `biz` keyword rule needed widening for these: "Perfume Bottle" was matching
+`bottle` and landing in **Beverage & Alcohol**. Perfume, fragrance, cologne, eau de and
+scent now route to Beauty & Cosmetics, which is checked before the drinks rule.
+
 ## Finishes
 
 A **finishes** filter covers print treatments — Spot UV, emboss, deboss, letterpress,
