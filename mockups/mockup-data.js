@@ -29,7 +29,10 @@ const SOURCES = [
      Engraved · Kraft / uncoated · Textured stock
    Any other string works too - it just shows up as its own filter option. */
 const FINISHES = {
-  // "/free-embossed-business-card-mockup/": "Emboss",
+  // Verified by eye from each preview: the logo is recessed into the bar itself,
+  // the way Dove stamps theirs - not printed on a wrapper or a band.
+  "/free/soap-mockup/": "Engraved",
+  "/free/box-soap-mockup/": "Engraved",
 };
 
 const MOCKUPS = [
@@ -308,7 +311,7 @@ const MOCKUPS = [
 ["Cosmetics Scene","/free/cosmetics-mockup-scene/","Packaging & Product","Cosmetics & Beauty",1],
 ["Package Cosmetic Tube","/free/package-cosmetic-tube-mockup/","Packaging & Product","Cosmetics & Beauty",1],
 ["Mask Cosmetic Jar","/free/mask-cosmetic-jar-mockup/","Packaging & Product","Jars & Tins",1],
-["Liquid Soap","/free/liquid-soap-mockup/","Packaging & Product","Cosmetics & Beauty",1],
+["Liquid Soap","/free/liquid-soap-mockup/","Packaging & Product","Soap & Bath",1],
 ["Cosmetic Brand","/free/cosmetic-brand-mockup/","Packaging & Product","Cosmetics & Beauty",1],
 ["Cream Jar PSD","/free/cream-jar-mockup-psd/","Packaging & Product","Jars & Tins",1],
 ["Cosmetic Packaging PSD","/free/cosmetic-packaging-mockup-psd/","Packaging & Product","Cosmetics & Beauty",1],
@@ -317,13 +320,13 @@ const MOCKUPS = [
 ["Squeeze Tube","/free/squeeze-tube-mockup/","Packaging & Product","Cosmetics & Beauty",1],
 ["Cosmetic Collection","/free/cosmetic-mockups/","Packaging & Product","Cosmetics & Beauty",1],
 ["Cosmetic Tube Pump Bottle","/free/cosmetic-tube-pump-bottle-mockup/","Packaging & Product","Cosmetics & Beauty",1],
-["Craft Soap Bar","/free/craft-soap-bar-mockup/","Packaging & Product","Cosmetics & Beauty",1],
+["Craft Soap Bar","/free/craft-soap-bar-mockup/","Packaging & Product","Soap & Bath",1],
 ["Cube Cosmetic Tube","/free/cube-cosmetic-tube-mockup/","Packaging & Product","Cosmetics & Beauty",1],
 ["Makeup Cosmetic Set","/free/makeup-cosmetic-mockups/","Packaging & Product","Cosmetics & Beauty",1],
 ["Cosmetic PSD","/free/cosmetic-mockup-psd/","Packaging & Product","Cosmetics & Beauty",1],
 ["Lipsticks","/free/lipsticks-mockup/","Packaging & Product","Cosmetics & Beauty",1],
 ["Sleeping Mask","/free/sleeping-mask-mockup/","Packaging & Product","Cosmetics & Beauty",1],
-["Soap Bar","/free/soap-bar-mockup/","Packaging & Product","Cosmetics & Beauty",1],
+["Soap Bar","/free/soap-bar-mockup/","Packaging & Product","Soap & Bath",1],
 ["Toothpaste","/free/toothpaste-mockup/","Packaging & Product","Cosmetics & Beauty",1],
 ["Cylinder Packaging","/free/cylinder-packaging-mockup/","Packaging & Product","Boxes",1],
 ["Packaging Paper Tube","/free/packaging-paper-tube-mockup/","Packaging & Product","Boxes",1],
@@ -1078,4 +1081,20 @@ const MOCKUPS = [
 ["Perfume","/free/perfume-mockup/","Packaging & Product","Perfume & Fragrance",1],
 ["Transparent Perfume Bottle PSD","/free-transparent-perfume-bottle-mockup/","Packaging & Product","Perfume & Fragrance",0],
 ["Glass Perfume Bottle","/free-glass-perfume-bottle-mockup/","Packaging & Product","Perfume & Fragrance",0],
+
+// ---------- Soap & Bath ----------
+["Soap Bar & Box","/free/box-soap-mockup/","Packaging & Product","Soap & Bath",1],
+["Craft Soap Box","/free/craft-soap-box-mockup/","Packaging & Product","Soap & Bath",1],
+["Craft Soap Set","/free/craft-soap-mockup/","Packaging & Product","Soap & Bath",1],
+["Liquid Soap Bottle","/free/liquid-soap-bottle-mockup/","Packaging & Product","Soap & Bath",1],
+["Liquid Soap Bottle Set","/free/liquid-soap-bottle-mockups/","Packaging & Product","Soap & Bath",1],
+["Soap Box Packaging","/free/packaging-soap-box-mockup/","Packaging & Product","Soap & Bath",1],
+["Soap Bottle","/free/soap-bottle-mockup/","Packaging & Product","Soap & Bath",1],
+["Soap Box PSD","/free/soap-box-mockup-psd/","Packaging & Product","Soap & Bath",1],
+["Soap Box","/free/soap-box-mockup/","Packaging & Product","Soap & Bath",1],
+["Soap Box Packaging PSD","/free/soap-box-packaging-mockup/","Packaging & Product","Soap & Bath",1],
+["Soap Dispenser Bottle","/free/soap-dispenser-bottle-mockup/","Packaging & Product","Soap & Bath",1],
+["Soap Dispenser Bottle Set","/free/soap-dispenser-bottle-mockups/","Packaging & Product","Soap & Bath",1],
+["Engraved Soap Bar","/free/soap-mockup/","Packaging & Product","Soap & Bath",1],
+["Soap Packaging Scene","/free/soap-packaging-mockup/","Packaging & Product","Soap & Bath",1],
 ];

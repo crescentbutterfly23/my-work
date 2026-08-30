@@ -48,6 +48,31 @@ Note that the `biz` keyword rule needed widening for these: "Perfume Bottle" was
 `bottle` and landing in **Beverage & Alcohol**. Perfume, fragrance, cologne, eau de and
 scent now route to Beauty & Cosmetics, which is checked before the drinks rule.
 
+## Soap & bath
+
+`Packaging & Product > Soap & Bath` holds 17 — bars, boxes, bottles, dispensers and
+packaging scenes, all from MockupTree. Three of them (Liquid Soap, Craft Soap Bar, Soap Bar)
+were already indexed under Cosmetics & Beauty and were moved here.
+
+**Engraved bars.** Only **two** free soap mockups actually have the logo cut into the bar
+itself, Dove-style, rather than printed on a wrapper or paper band:
+
+- **Engraved Soap Bar** (`/free/soap-mockup/`) — the clearest one; recessed script across a
+  moulded bar
+- **Soap Bar & Box** (`/free/box-soap-mockup/`) — subtler debossed lettering, bar plus carton
+
+Both are tagged `Engraved` in the `FINISHES` map, so the Finishes filter and a plain search
+for "engraved" both find them. This was judged by looking at each preview — the product pages
+say nothing about it, and every soap page carries the word "Stamp" as boilerplate navigation,
+so keyword matching is worthless here.
+
+Strictly the Dove impression is a *deboss* (die-stamped into the bar), not an engraving.
+They are labelled `Engraved` because that is the more findable word; retag them `Deboss` in
+`FINISHES` if you prefer the trade term.
+
+Mr.Mockup's only soap mockup is Premium, and Magnific's free soap results are social-media
+templates and banners rather than bar mockups, so neither source contributed here.
+
 ## Finishes
 
 A **finishes** filter covers print treatments — Spot UV, emboss, deboss, letterpress,
