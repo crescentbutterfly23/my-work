@@ -1,0 +1,155 @@
+{
+  "blanco-hueso": {
+    "es": "Blanco Hueso",
+    "en": "Bone White",
+    "hex": "#F4F0EE",
+    "rgb": [
+      244,
+      240,
+      238
+    ],
+    "cmyk": [
+      0,
+      2,
+      2,
+      4
+    ],
+    "uso": "Fondo principal. Toda superficie parte de aquí."
+  },
+  "azul-velum": {
+    "es": "Azul Velum",
+    "en": "Velum Blue",
+    "hex": "#0B1D34",
+    "rgb": [
+      11,
+      29,
+      52
+    ],
+    "cmyk": [
+      79,
+      44,
+      0,
+      80
+    ],
+    "uso": "Tinta principal, paneles oscuros y piezas de firma."
+  },
+  "oro-velum": {
+    "es": "Oro Velum",
+    "en": "Velum Gold",
+    "hex": "#D4AF37",
+    "rgb": [
+      212,
+      175,
+      55
+    ],
+    "cmyk": [
+      0,
+      17,
+      74,
+      17
+    ],
+    "uso": "Acento único: la estrella, un filete, una palabra."
+  },
+  "crema": {
+    "es": "Crema",
+    "en": "Cream",
+    "hex": "#E8DCC0",
+    "rgb": [
+      232,
+      220,
+      192
+    ],
+    "cmyk": [
+      0,
+      5,
+      17,
+      9
+    ],
+    "uso": "Superficie cálida: etiquetas, estuches, paneles suaves."
+  },
+  "azul-medio": {
+    "es": "Azul Medio",
+    "en": "Mid Blue",
+    "hex": "#20344D",
+    "rgb": [
+      32,
+      52,
+      77
+    ],
+    "cmyk": [
+      58,
+      32,
+      0,
+      70
+    ],
+    "uso": "Segundo azul. Bloques, sellos, fondos secundarios."
+  },
+  "oro-oscuro": {
+    "es": "Oro Oscuro",
+    "en": "Deep Gold",
+    "hex": "#B8912B",
+    "rgb": [
+      184,
+      145,
+      43
+    ],
+    "cmyk": [
+      0,
+      21,
+      77,
+      28
+    ],
+    "uso": "El oro cuando funciona como texto sobre fondo claro."
+  },
+  "gris-perla": {
+    "es": "Gris Perla",
+    "en": "Pearl Grey",
+    "hex": "#DADDE3",
+    "rgb": [
+      218,
+      221,
+      227
+    ],
+    "cmyk": [
+      4,
+      3,
+      0,
+      11
+    ],
+    "uso": "La V sobre fondos oscuros. Líneas y detalles."
+  },
+  "gris": {
+    "es": "Gris",
+    "en": "Grey",
+    "hex": "#55585F",
+    "rgb": [
+      85,
+      88,
+      95
+    ],
+    "cmyk": [
+      11,
+      7,
+      0,
+      63
+    ],
+    "uso": "Texto secundario y pies sobre hueso."
+  },
+  "negro": {
+    "es": "Negro",
+    "en": "Black",
+    "hex": "#1A1A1A",
+    "rgb": [
+      26,
+      26,
+      26
+    ],
+    "cmyk": [
+      0,
+      0,
+      0,
+      90
+    ],
+    "uso": "Tinta alternativa, una tinta, grabado."
+  }
+}

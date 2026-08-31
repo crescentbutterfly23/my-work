@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+<defs>
+  <linearGradient id="gGround" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#F4F0EE"/><stop offset="0.55" stop-color="#EFEAE6"/><stop offset="1" stop-color="#F4F0EE"/>
+  </linearGradient>
+  <linearGradient id="gDark" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#0B1D34"/><stop offset="0.55" stop-color="#162943"/><stop offset="1" stop-color="#0B1D34"/>
+  </linearGradient>
+  <linearGradient id="gGold" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0" stop-color="#8A6522"/><stop offset="0.5" stop-color="#D4AF37"/><stop offset="1" stop-color="#E8DCC0"/>
+  </linearGradient>
+  <linearGradient id="gSky" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0" stop-color="#0B1D34"/><stop offset="0.5" stop-color="#20344D"/><stop offset="1" stop-color="#DADDE3"/>
+  </linearGradient>
+  <linearGradient id="gScrim" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#0B1D34" stop-opacity="0.86"/><stop offset="0.5" stop-color="#0B1D34" stop-opacity="0.46"/><stop offset="1" stop-color="#0B1D34" stop-opacity="0.92"/>
+  </linearGradient>
+  <linearGradient id="gFadeL" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0" stop-color="#F4F0EE" stop-opacity="1"/><stop offset="1" stop-color="#F4F0EE" stop-opacity="0"/>
+  </linearGradient>
+  <linearGradient id="gStrip" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0" stop-color="#F4F0EE"/><stop offset="0.35" stop-color="#D4AF37"/><stop offset="1" stop-color="#0B1D34"/>
+  </linearGradient>
+</defs>
+<rect width="1920" height="1080" fill="#0B1D34"/><rect x="0.0" y="0.0" width="1920.0" height="1080.0" fill="#0B1D34"/><g opacity="0.14"><path d="M 0.0 300.0 C 422.4 182.1 768.0 364.9 1113.6 288.2 S 1651.2 199.8 1920.0 235.1" fill="none" stroke="#D4AF37" stroke-width="1.10" stroke-linecap="round"/><path d="M 0.0 340.0 C 422.4 199.9 768.0 417.1 1113.6 326.0 S 1651.2 220.9 1920.0 262.9" fill="none" stroke="#D4AF37" stroke-width="1.10" stroke-linecap="round"/><path d="M 0.0 380.0 C 422.4 217.7 768.0 469.3 1113.6 363.8 S 1651.2 242.1 1920.0 290.7" fill="none" stroke="#D4AF37" stroke-width="1.10" stroke-linecap="round"/><path d="M 0.0 420.0 C 422.4 235.5 768.0 521.5 1113.6 401.6 S 1651.2 263.2 1920.0 318.5" fill="none" stroke="#D4AF37" stroke-width="1.10" stroke-linecap="round"/><path d="M 0.0 460.0 C 422.4 253.4 768.0 573.7 1113.6 439.3 S 1651.2 284.4 1920.0 346.3" fill="none" stroke="#D4AF37" stroke-width="1.10" stroke-linecap="round"/><path d="M 0.0 500.0 C 422.4 271.2 768.0 625.8 1113.6 477.1 S 1651.2 305.5 1920.0 374.2" fill="none" stroke="#D4AF37" stroke-width="1.10" stroke-linecap="round"/><path d="M 0.0 540.0 C 422.4 289.0 768.0 678.0 1113.6 514.9 S 1651.2 326.7 1920.0 402.0" fill="none" stroke="#D4AF37" stroke-width="1.10" stroke-linecap="round"/><path d="M 0.0 580.0 C 422.4 329.0 768.0 718.0 1113.6 554.9 S 1651.2 366.7 1920.0 442.0" fill="none" stroke="#D4AF37" stroke-width="1.10" stroke-linecap="round"/><path d="M 0.0 620.0 C 422.4 391.2 768.0 745.8 1113.6 597.1 S 1651.2 425.5 1920.0 494.2" fill="none" stroke="#D4AF37" stroke-width="1.10" stroke-linecap="round"/><path d="M 0.0 660.0 C 422.4 453.4 768.0 773.7 1113.6 639.3 S 1651.2 484.4 1920.0 546.3" fill="none" stroke="#D4AF37" stroke-width="1.10" stroke-linecap="round"/><path d="M 0.0 700.0 C 422.4 515.5 768.0 801.5 1113.6 681.6 S 1651.2 543.2 1920.0 598.5" fill="none" stroke="#D4AF37" stroke-width="1.10" stroke-linecap="round"/><path d="M 0.0 740.0 C 422.4 577.7 768.0 829.3 1113.6 723.8 S 1651.2 602.1 1920.0 650.7" fill="none" stroke="#D4AF37" stroke-width="1.10" stroke-linecap="round"/><path d="M 0.0 780.0 C 422.4 639.9 768.0 857.1 1113.6 766.0 S 1651.2 660.9 1920.0 702.9" fill="none" stroke="#D4AF37" stroke-width="1.10" stroke-linecap="round"/><path d="M 0.0 820.0 C 422.4 702.1 768.0 884.9 1113.6 808.2 S 1651.2 719.8 1920.0 755.1" fill="none" stroke="#D4AF37" stroke-width="1.10" stroke-linecap="round"/></g><rect x="56.0" y="56.0" width="1808.0" height="968.0" fill="none" opacity="0.22" stroke="#DADDE3" stroke-width="0.80"/><text x="170.0" y="470.0" font-family="Cinzel, Cormorant Garamond, Georgia, serif" font-size="150.0" font-weight="400" fill="#D4AF37" letter-spacing="4.00" opacity="0.90">05</text><text x="170.0" y="610.0" font-family="Cinzel, Cormorant Garamond, Georgia, serif" font-size="76.0" font-weight="400" fill="#F7F7F7" letter-spacing="4.00">EL VELO</text><line x1="170.0" y1="668.0" x2="370.0" y2="668.0" stroke="#D4AF37" stroke-width="1.20"/><text x="170.0" y="726.0" font-family="Montserrat, Poppins, Arial, sans-serif" font-size="18.0" font-weight="400" fill="#DADDE3" opacity="0.85">Elemento gráfico, tramas y atmósfera</text><g transform="translate(1570.00 380.00) scale(3.19489)"><g>
+      <path fill="#F7F7F7" d="M46.25,7.7c-10.43,1.51-20.91,4.67-29,11.62-3.15,2.63-5.91,5.71-8.21,9.1-1.17,1.67-2.17,3.46-3.13,5.25-.8,1.56-2.73,2.16-4.27,1.33-1.52-.82-2.09-2.72-1.27-4.24C9.05,16.97,23.55,8.74,39.64,7.35c2.17-.24,4.38-.3,6.49-.49.5-.04.64.73.12.83h0Z"/>
+      <path fill="#D4AF37" d="M51.98,2.68l.79,2.13c.23.62.72,1.12,1.35,1.35l2.13.79c.12.05.12.22,0,.27l-2.13.79c-.62.23-1.12.72-1.35,1.35l-.79,2.13c-.05.12-.22.12-.27,0l-.79-2.13c-.23-.62-.72-1.12-1.35-1.35l-2.13-.79c-.12-.05-.12-.22,0-.27l2.13-.79c.62-.23,1.12-.72,1.35-1.35l.79-2.13c.05-.12.22-.12.27,0Z"/>
+      <g>
+        <path fill="#F7F7F7" d="M33.84,8.17c-.96.19-1.91.4-2.85.63l-1.27,3.12c1-.4,2.02-.78,3.04-1.13l1.08-2.63Z"/>
+        <path fill="#DADDE3" d="M32.54,3.71c0,.68-.31,1.84-.92,3.47.94-.22,1.89-.41,2.85-.58l.04-.1c.33-.8.66-1.51.99-2.13.32-.62.7-1.16,1.13-1.6.43-.45.92-.81,1.49-1.09.57-.28,1.25-.49,2.05-.64V0h-11.64v1.03c1.47.19,2.5.53,3.11,1.04.6.51.91,1.05.91,1.63Z"/>
+        <path fill="#F7F7F7" d="M17.55,19.07l-1.66-3.83c-1.52.96-2.98,2-4.39,3.11l1.97,4.53c1.19-1.26,2.44-2.46,3.78-3.57.1-.09.21-.16.31-.25Z"/>
+        <path fill="#DADDE3" d="M4.63,3.01c.28.33.79,1.36,1.53,3.06l4.75,10.92c1.41-1.1,2.88-2.14,4.4-3.09l-2.6-5.99c-.85-1.95-1.28-3.4-1.28-4.35,0-.33.05-.64.15-.91.1-.27.3-.51.6-.72.3-.21.72-.39,1.27-.54.55-.15,1.27-.27,2.16-.36V0H.17v1.03c1.17.09,2.09.3,2.76.63.67.33,1.23.78,1.7,1.35Z"/>
+        <path fill="#DADDE3" d="M28.95,13.79l-6.63,16.27-4.18-9.63c-1.43,1.19-2.78,2.49-4.05,3.88l6.22,14.32h1.03l10.69-26.07c-1.06.38-2.08.79-3.08,1.22Z"/>
+      </g>
+    </g></g><text x="170.0" y="980.0" font-family="Montserrat, Poppins, Arial, sans-serif" font-size="10.0" font-weight="600" fill="#DADDE3" letter-spacing="3.40">VELUM ENTERPRISE</text><text x="1750.0" y="982.0" font-family="Montserrat, Poppins, Arial, sans-serif" font-size="15.0" font-weight="600" fill="#DADDE3" letter-spacing="1.00" text-anchor="end">29</text><text x="1714.0" y="982.0" font-family="Montserrat, Poppins, Arial, sans-serif" font-size="15.0" font-weight="400" fill="#DADDE3" letter-spacing="1.00" text-anchor="end" opacity="0.50">/ 36</text></svg>

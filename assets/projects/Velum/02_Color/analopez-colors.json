@@ -1,0 +1,157 @@
+{
+  "brand": "AnaLopez",
+  "palette": [
+    {
+      "token": "negro",
+      "name_es": "Negro",
+      "name_en": "Black",
+      "hex": "#0D0D0C",
+      "rgb": [
+        13,
+        13,
+        12
+      ],
+      "cmyk": [
+        0,
+        0,
+        8,
+        95
+      ],
+      "role_es": "Tinta primaria. Texto, logotipo por defecto.",
+      "role_en": "Primary ink. Body text, default logotype."
+    },
+    {
+      "token": "verde",
+      "name_es": "Verde Profundo",
+      "name_en": "Deep Green",
+      "hex": "#1C2417",
+      "rgb": [
+        28,
+        36,
+        23
+      ],
+      "cmyk": [
+        22,
+        0,
+        36,
+        86
+      ],
+      "role_es": "Color de marca. Packaging, estuches, fondos oscuros.",
+      "role_en": "Brand colour. Packaging, cartons, dark grounds."
+    },
+    {
+      "token": "oliva",
+      "name_es": "Oliva",
+      "name_en": "Olive",
+      "hex": "#585C41",
+      "rgb": [
+        88,
+        92,
+        65
+      ],
+      "cmyk": [
+        4,
+        0,
+        29,
+        64
+      ],
+      "role_es": "Secundario. Jardin, botanica, superficies medias.",
+      "role_en": "Secondary. Garden, botanical, mid surfaces."
+    },
+    {
+      "token": "cacao",
+      "name_es": "Cacao",
+      "name_en": "Cacao",
+      "hex": "#492B17",
+      "rgb": [
+        73,
+        43,
+        23
+      ],
+      "cmyk": [
+        0,
+        41,
+        68,
+        71
+      ],
+      "role_es": "Secundario. Materias tostadas: cafe, tabaco, cacao.",
+      "role_en": "Secondary. Roasted matter: coffee, tobacco, cacao."
+    },
+    {
+      "token": "ambar",
+      "name_es": "Ambar",
+      "name_en": "Amber",
+      "hex": "#B8762A",
+      "rgb": [
+        184,
+        118,
+        42
+      ],
+      "cmyk": [
+        0,
+        36,
+        77,
+        28
+      ],
+      "role_es": "Acento unico. Metal, foil, detalle. Nunca dominante.",
+      "role_en": "Single accent. Metal, foil, detail. Never dominant."
+    },
+    {
+      "token": "arena",
+      "name_es": "Arena",
+      "name_en": "Sand",
+      "hex": "#D6BD9A",
+      "rgb": [
+        214,
+        189,
+        154
+      ],
+      "cmyk": [
+        0,
+        12,
+        28,
+        16
+      ],
+      "role_es": "Neutro calido. Kraft, papel, sombra de pared.",
+      "role_en": "Warm neutral. Kraft, paper, wall shadow."
+    },
+    {
+      "token": "jazmin",
+      "name_es": "Jazmin",
+      "name_en": "Jasmine",
+      "hex": "#EDE5DA",
+      "rgb": [
+        237,
+        229,
+        218
+      ],
+      "cmyk": [
+        0,
+        3,
+        8,
+        7
+      ],
+      "role_es": "Base clara. Etiquetas, reverso del logotipo.",
+      "role_en": "Light base. Labels, reversed logotype."
+    },
+    {
+      "token": "cal",
+      "name_es": "Blanco Cal",
+      "name_en": "Limewash",
+      "hex": "#F5F0EA",
+      "rgb": [
+        245,
+        240,
+        234
+      ],
+      "cmyk": [
+        0,
+        2,
+        4,
+        4
+      ],
+      "role_es": "Superficie. Fondo de pagina y fotografia.",
+      "role_en": "Surface. Page ground and photography."
+    }
+  ]
+}
